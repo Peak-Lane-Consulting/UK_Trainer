@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0061)file:///Users/fehradvice/Downloads/UK_Trainer_Prototyp_2.html -->
+<!-- saved from url=(0061)file:///Users/fehradvice/Downloads/UK_Trainer_Prototyp_3.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1577,9 +1577,13 @@ async function sendMessage() {
 
   try {
     var sysPrompt = buildSystemPrompt();
+    // CORS-kompatibler Proxy-Endpunkt
     var response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
@@ -1595,7 +1599,7 @@ async function sendMessage() {
       chatHistory.push({role:'assistant', content: reply});
 
       // Impuls aus Antwort extrahieren
-      var impulseMatch = reply.match(/IMPULS:\s*(WENN[\s\S]+?)(?:\n|$)/i);
+      var impulseMatch = reply.match(/IMPULS:\s*(WENN[\s\S]+?)(?=\n|$)/i);
       if (impulseMatch) {
         var cleanReply = reply.replace(/IMPULS:[\s\S]+/, '').trim();
         addMessage('bot', cleanReply);
