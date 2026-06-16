@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)file:///Users/fehradvice/Downloads/UK_Trainer_Prototyp_2.html -->
+<html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal UK Trainer – Prototyp</title>
+<style>
+  :root{--orange:#ec5916;--amber:#f9aa11;--yellow:#feda00;--ink:#191917;--g:#7a7973;--bg:#f4f2ec;--ab:#fdf3e3;--at:#854f0b;--rd:#d40000;--bd:#dddbd4;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#e9e7e0;color:var(--ink);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;align-items:flex-start;padding:26px 12px;min-height:100vh;}
+  .ph{width:390px;background:#fff;border:1px solid var(--bd);border-radius:26px;overflow:hidden;box-shadow:0 14px 44px rgba(0,0,0,.12);}
+  .pb{display:flex;align-items:center;gap:8px;padding:16px 18px 12px;border-bottom:4px solid var(--orange);}
+  .pb b{font-weight:700;font-size:17px;}
+  .pb .cx{margin-left:auto;font-size:11px;color:var(--g);}
+  .pg{height:4px;background:var(--bd);margin:0;}
+  .pg .bar{height:4px;background:var(--orange);transition:width .4s ease;}
+  .sc{display:none;padding:18px;animation:fade .25s ease;}
+  .sc.on{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  h3{font-size:20px;font-weight:600;margin:0 0 4px;}
+  .su{font-size:12.5px;color:var(--g);line-height:1.5;margin:0 0 10px;}
+  .bt{display:block;width:100%;border:none;border-radius:13px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px;transition:filter .15s;}
+  .bt.pr{background:var(--orange);color:#fff;}
+  .bt.pr:hover{filter:brightness(1.06);}
+  .bt.gh{background:#fff;color:var(--ink);border:1.5px solid var(--bd);}
+  .bt:disabled{opacity:.4;cursor:not-allowed;}
+  .codebox{display:flex;justify-content:center;gap:8px;margin:20px 0 6px;}
+  .codebox input{width:42px;height:52px;text-align:center;font-size:24px;font-weight:600;border:1.5px solid var(--bd);border-radius:11px;color:var(--ink);text-transform:uppercase;}
+  .codebox input:focus{outline:none;border-color:var(--orange);background:var(--ab);}
+  .anonbadge{display:flex;align-items:center;gap:9px;background:var(--bg);border-radius:12px;padding:12px 14px;margin:16px 0;font-size:11.5px;color:#5f5e5a;line-height:1.45;}
+  .logohero{text-align:center;margin:8px 0 12px;}
+  .exp{color:#fff;border-radius:18px;padding:34px 24px;text-align:center;min-height:340px;display:flex;flex-direction:column;justify-content:center;}
+  .exp.o{background:var(--orange);}
+  .exp.a{background:#e08a12;}
+  .exp.w{background:#cf4a16;}
+  .exp .kicker{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;margin-bottom:16px;}
+  .exp h2{font-size:24px;font-weight:600;line-height:1.3;margin:0 0 16px;color:#fff;}
+  .exp p{font-size:14px;line-height:1.6;opacity:.96;margin:0;}
+  .exp .big{font-size:50px;line-height:1;margin-bottom:18px;}
+  .dots{display:flex;justify-content:center;gap:7px;margin:16px 0 2px;}
+  .dots i{width:8px;height:8px;border-radius:50%;background:var(--bd);transition:all .2s;}
+  .dots i.on{background:var(--orange);width:24px;border-radius:5px;}
+  .hfbadge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;padding:3px 11px;border-radius:999px;background:var(--bg);color:var(--g);margin-bottom:8px;}
+  .qtype{font-size:10px;color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+  .qtitle{font-size:15px;font-weight:600;line-height:1.4;margin:2px 0 14px;}
+  .scn{background:var(--bg);border-radius:14px;padding:14px;margin:10px 0;font-size:13.5px;line-height:1.5;}
+  .ctxbox{background:var(--ab);border-left:4px solid var(--orange);border-radius:0 11px 11px 0;padding:12px 14px;margin:12px 0;font-size:12.5px;line-height:1.5;color:var(--at);}
+  .ctxbox b{color:#633806;}
+  .scale{display:flex;justify-content:space-between;gap:5px;margin:6px 0 8px;}
+  .scale button{flex:1;aspect-ratio:1;border:1.5px solid var(--bd);background:#fff;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;color:var(--ink);transition:all .12s;}
+  .scale button:hover{border-color:var(--orange);background:var(--ab);}
+  .scale button.sel{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .ends{display:flex;justify-content:space-between;font-size:10.5px;color:var(--g);margin-bottom:5px;}
+  .persona{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:13px;padding:12px 14px;margin-bottom:12px;}
+  .persona .av{width:40px;height:40px;border-radius:50%;background:#dce3f0;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .persona .tx{font-size:12.5px;line-height:1.4;}
+  .op{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--bd);border-radius:12px;padding:13px 14px;margin-bottom:9px;font-size:13px;cursor:pointer;line-height:1.4;color:var(--ink);transition:all .12s;}
+  .op:hover{border-color:var(--orange);background:var(--ab);}
+  .op.sel{border-color:var(--orange);background:var(--ab);}
+  .op .k{font-weight:700;color:var(--orange);margin-right:7px;}
+  .yn{display:flex;gap:10px;margin-top:6px;}
+  .yn button{flex:1;border:1.5px solid var(--bd);background:#fff;border-radius:13px;padding:18px;font-size:15px;font-weight:600;cursor:pointer;color:var(--ink);transition:all .12s;}
+  .yn button:hover{border-color:var(--orange);background:var(--ab);}
+  .yn button.sel{border-color:var(--orange);background:var(--ab);}
+  .yn .ic{font-size:24px;display:block;margin-bottom:5px;}
+  .nxt{display:block;width:100%;border:none;border-radius:13px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;margin-top:12px;background:var(--orange);color:#fff;opacity:.4;transition:opacity .2s;}
+  .nxt.ready{opacity:1;}
+  .reward{text-align:center;padding:20px 6px 6px;}
+  .reward .face{font-size:64px;line-height:1;animation:pop .5s cubic-bezier(.2,1.4,.5,1);}
+  @keyframes pop{0%{transform:scale(0) rotate(-30deg);}70%{transform:scale(1.2) rotate(8deg);}100%{transform:scale(1) rotate(0);}}
+  .conf{position:relative;height:0;}
+  .conf span{position:absolute;width:9px;height:9px;border-radius:2px;animation:fall 1.2s ease-out forwards;opacity:0;}
+  @keyframes fall{0%{opacity:1;transform:translateY(-12px) rotate(0);}100%{opacity:0;transform:translateY(100px) rotate(220deg);}}
+  .fl{width:310px;height:310px;margin:2px auto 6px;display:block;}
+  .pet{cursor:pointer;transition:opacity .15s;}
+  .pet:hover{opacity:.82;}
+  .pet text{pointer-events:none;}
+  .hint{fill:#fff;font-weight:600;}
+  .lg2{font-size:11.5px;color:var(--g);text-align:center;margin:2px 0 0;}
+  .insight{border-radius:13px;padding:13px 14px;margin-bottom:9px;font-size:12.5px;line-height:1.55;}
+  .insight.good{background:#fbe7dd;color:#993c1d;}
+  .insight.pot{background:var(--ab);color:var(--at);}
+  .insight b{display:block;margin-bottom:3px;}
+  .blindspot{background:#fff3cd;border:1px solid var(--yellow);border-radius:10px;padding:9px 12px;margin-top:5px;font-size:11.5px;color:#6a5500;}
+  .goalopt{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--bd);border-radius:13px;padding:13px 14px;margin-bottom:9px;font-size:13px;cursor:pointer;color:var(--ink);transition:all .12s;}
+  .goalopt:hover{border-color:var(--orange);background:var(--ab);}
+  .goalopt.sel{border-color:var(--orange);background:var(--ab);}
+  .goalopt .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .goalopt.sel .dot{border-color:var(--orange);background:var(--orange);color:#fff;font-size:13px;}
+  .ct{display:flex;flex-direction:column;gap:10px;}
+  .m{max-width:86%;padding:10px 13px;font-size:12.5px;line-height:1.5;border-radius:15px;}
+  .m.b{background:var(--bg);border-bottom-left-radius:4px;align-self:flex-start;}
+  .m.u{background:var(--orange);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+  .goalbanner{background:var(--ab);border:1px solid #f0d9b0;border-radius:13px;padding:11px 14px;margin-bottom:11px;font-size:12px;color:var(--at);line-height:1.4;}
+  .goalbanner b{color:#633806;}
+  .im{border:2px solid var(--yellow);background:#fffbe6;border-radius:15px;padding:13px;}
+  .im .l{font-size:11px;font-weight:600;color:#6a5500;margin-bottom:6px;}
+  .im p{font-size:12.5px;line-height:1.5;}
+  .im .r{display:flex;gap:8px;margin-top:11px;}
+  .im .r button{flex:1;border:none;border-radius:999px;padding:9px;font-size:12.5px;font-weight:600;cursor:pointer;}
+  .ia{background:var(--orange);color:#fff;}
+  .ib{background:#fff;border:1px solid #d3d1c7;color:var(--ink);}
+  .cp{display:flex;align-items:center;gap:8px;margin-top:14px;}
+  .cp .f{flex:1;border:1px solid #d3d1c7;border-radius:999px;padding:11px 15px;font-size:12.5px;color:#9a988f;}
+  .cp .s{width:40px;height:40px;border-radius:50%;background:var(--orange);color:#fff;border:none;cursor:pointer;font-size:17px;}
+  .lk{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#5f5e5a;background:var(--bg);padding:3px 9px;border-radius:999px;margin-left:auto;}
+  .nv{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:1px solid var(--bd);}
+  .nv a{font-size:12.5px;color:var(--orange);cursor:pointer;font-weight:600;}
+  .nv a.m{color:var(--g);}
+  .legendrow{display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:var(--g);margin-top:2px;}
+  .legendrow span{display:flex;align-items:center;gap:5px;}
+
+  .barchart{display:grid;gap:8px;margin:8px 0;}
+  .barrow{font-size:12.5px;}
+  .barrow .top{display:flex;justify-content:space-between;margin-bottom:3px;}
+  .barrow .track{height:12px;background:var(--bg);border-radius:6px;overflow:hidden;}
+  .barrow .fill{height:12px;border-radius:6px;transition:width .8s ease;}
+  .barrow .sub{font-size:11px;color:var(--g);margin-top:2px;}
+  .scorebig{font-size:36px;font-weight:700;color:var(--orange);text-align:center;margin:8px 0 4px;}
+  .bslabel{display:inline-block;background:#fff3cd;border:1px solid var(--yellow);color:#6a5500;font-size:10.5px;padding:2px 8px;border-radius:999px;margin-top:4px;}
+
+  .scoreboard{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
+  .scorecard{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:12px;}
+  .scorecard .val{font-size:22px;font-weight:700;color:var(--orange);}
+  .scorecard .lbl{color:var(--g);font-size:11px;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="ph" id="ph">
+  <div class="pb"><b>wir</b><svg width="26" height="26" viewBox="0 0 300 300" id="lg"><path d="M150.0,123.0 L152.6,120.8 L155.4,118.7 L158.4,116.7 L161.5,114.8 L164.9,113.1 L168.3,111.4 L171.9,109.9 L175.6,108.5 L179.4,107.3 L183.4,106.2 L187.4,105.3 L191.6,104.5 L195.8,103.9 L200.1,103.5 L204.4,103.2 L208.8,103.2 L213.2,103.3 L217.7,103.6 L222.2,104.1 L226.7,104.8 L231.2,105.7 L235.7,106.8 L240.2,108.2 L244.6,109.8 L249.1,111.6 L253.4,113.7 L257.8,116.0 L262.0,118.5 L266.2,121.4 L270.3,124.4 L270.3,124.4 L271.0,121.7 L271.4,119.0 L271.7,116.4 L271.7,114.0 L271.6,111.7 L271.4,109.6 L271.1,107.7 L270.7,106.0 L270.2,104.5 L269.7,103.3 L269.2,102.4 L268.8,101.7 L268.4,101.4 L268.1,101.4 L267.8,101.7 L267.8,102.4 L267.8,102.4 L265.7,100.2 L263.5,98.1 L261.0,96.1 L258.4,94.3 L255.6,92.7 L252.7,91.2 L249.6,89.8 L246.4,88.6 L243.1,87.6 L239.7,86.6 L236.1,85.9 L232.5,85.2 L228.9,84.7 L225.1,84.3 L221.4,84.1 L217.5,84.0 L213.7,84.1 L209.8,84.3 L206.0,84.6 L202.2,85.1 L198.4,85.7 L194.6,86.4 L190.9,87.2 L187.2,88.2 L183.6,89.3 L180.1,90.6 L176.7,92.0 L173.4,93.5 L170.2,95.1 L167.1,96.9 L164.2,98.8 L161.5,100.8 L158.9,102.9 L156.5,105.1 L154.3,107.5 L152.2,110.0 L150.4,112.6 L148.9,115.4 L147.5,118.2 L146.5,121.2 L146.5,121.2 L148.0,122.0 L149.0,122.5 L149.6,122.8 L149.9,122.9 L150.0,123.0 L150.0,123.0 Z" fill="#ec5916"></path><path d="M169.1,130.9 L172.5,131.2 L176.0,131.7 L179.5,132.4 L183.0,133.3 L186.6,134.4 L190.2,135.7 L193.8,137.1 L197.4,138.8 L201.0,140.6 L204.6,142.7 L208.1,144.9 L211.5,147.2 L214.9,149.8 L218.3,152.5 L221.5,155.4 L224.7,158.5 L227.7,161.7 L230.7,165.0 L233.5,168.6 L236.2,172.3 L238.7,176.1 L241.1,180.1 L243.3,184.2 L245.3,188.5 L247.2,192.9 L248.8,197.5 L250.3,202.1 L251.5,207.0 L252.4,211.9 L253.2,217.0 L253.2,217.0 L255.6,215.5 L257.8,213.9 L259.8,212.3 L261.5,210.6 L263.1,208.9 L264.4,207.3 L265.5,205.7 L266.4,204.2 L267.2,202.8 L267.7,201.6 L268.0,200.6 L268.2,199.8 L268.1,199.3 L267.9,199.1 L267.5,199.2 L266.9,199.6 L266.9,199.6 L267.0,196.6 L266.9,193.5 L266.6,190.4 L266.0,187.3 L265.2,184.2 L264.2,181.0 L263.0,177.9 L261.6,174.8 L260.0,171.7 L258.2,168.6 L256.3,165.6 L254.2,162.6 L251.9,159.6 L249.6,156.7 L247.0,153.9 L244.4,151.1 L241.6,148.4 L238.8,145.8 L235.8,143.4 L232.8,141.0 L229.7,138.7 L226.5,136.5 L223.3,134.5 L220.0,132.6 L216.6,130.9 L213.3,129.3 L209.9,127.8 L206.5,126.6 L203.1,125.5 L199.7,124.5 L196.3,123.8 L192.9,123.3 L189.6,123.0 L186.3,122.9 L183.0,123.0 L179.9,123.3 L176.7,123.9 L173.7,124.7 L170.7,125.8 L167.9,127.1 L167.9,127.1 L168.4,128.7 L168.7,129.8 L168.9,130.4 L169.0,130.8 L169.1,130.9 L169.1,130.9 Z" fill="#f9aa11"></path><path d="M177.0,150.0 L179.2,152.6 L181.3,155.4 L183.3,158.4 L185.2,161.5 L186.9,164.9 L188.6,168.3 L190.1,171.9 L191.5,175.6 L192.7,179.4 L193.8,183.4 L194.7,187.4 L195.5,191.6 L196.1,195.8 L196.5,200.1 L196.8,204.4 L196.8,208.8 L196.7,213.2 L196.4,217.7 L195.9,222.2 L195.2,226.7 L194.3,231.2 L193.2,235.7 L191.8,240.2 L190.2,244.6 L188.4,249.1 L186.3,253.4 L184.0,257.8 L181.5,262.0 L178.6,266.2 L175.6,270.3 L175.6,270.3 L178.3,271.0 L181.0,271.4 L183.6,271.7 L186.0,271.7 L188.3,271.6 L190.4,271.4 L192.3,271.1 L194.0,270.7 L195.5,270.2 L196.7,269.7 L197.6,269.2 L198.3,268.8 L198.6,268.4 L198.6,268.1 L198.3,267.8 L197.6,267.8 L197.6,267.8 L199.8,265.7 L201.9,263.5 L203.9,261.0 L205.7,258.4 L207.3,255.6 L208.8,252.7 L210.2,249.6 L211.4,246.4 L212.4,243.1 L213.4,239.7 L214.1,236.1 L214.8,232.5 L215.3,228.9 L215.7,225.1 L215.9,221.4 L216.0,217.5 L215.9,213.7 L215.7,209.8 L215.4,206.0 L214.9,202.2 L214.3,198.4 L213.6,194.6 L212.8,190.9 L211.8,187.2 L210.7,183.6 L209.4,180.1 L208.0,176.7 L206.5,173.4 L204.9,170.2 L203.1,167.1 L201.2,164.2 L199.2,161.5 L197.1,158.9 L194.9,156.5 L192.5,154.3 L190.0,152.2 L187.4,150.4 L184.6,148.9 L181.8,147.5 L178.8,146.5 L178.8,146.5 L178.0,148.0 L177.5,149.0 L177.2,149.6 L177.1,149.9 L177.0,150.0 L177.0,150.0 Z" fill="#feda00"></path><path d="M169.1,169.1 L168.8,172.5 L168.3,176.0 L167.6,179.5 L166.7,183.0 L165.6,186.6 L164.3,190.2 L162.9,193.8 L161.2,197.4 L159.4,201.0 L157.3,204.6 L155.1,208.1 L152.8,211.5 L150.2,214.9 L147.5,218.3 L144.6,221.5 L141.5,224.7 L138.3,227.7 L135.0,230.7 L131.4,233.5 L127.7,236.2 L123.9,238.7 L119.9,241.1 L115.8,243.3 L111.5,245.3 L107.1,247.2 L102.5,248.8 L97.9,250.3 L93.0,251.5 L88.1,252.4 L83.0,253.2 L83.0,253.2 L84.5,255.6 L86.1,257.8 L87.7,259.8 L89.4,261.5 L91.1,263.1 L92.7,264.4 L94.3,265.5 L95.8,266.4 L97.2,267.2 L98.4,267.7 L99.4,268.0 L100.2,268.2 L100.7,268.1 L100.9,267.9 L100.8,267.5 L100.4,266.9 L100.4,266.9 L103.4,267.0 L106.5,266.9 L109.6,266.6 L112.7,266.0 L115.8,265.2 L119.0,264.2 L122.1,263.0 L125.2,261.6 L128.3,260.0 L131.4,258.2 L134.4,256.3 L137.4,254.2 L140.4,251.9 L143.3,249.6 L146.1,247.0 L148.9,244.4 L151.6,241.6 L154.2,238.8 L156.6,235.8 L159.0,232.8 L161.3,229.7 L163.5,226.5 L165.5,223.3 L167.4,220.0 L169.1,216.6 L170.7,213.3 L172.2,209.9 L173.4,206.5 L174.5,203.1 L175.5,199.7 L176.2,196.3 L176.7,192.9 L177.0,189.6 L177.1,186.3 L177.0,183.0 L176.7,179.9 L176.1,176.7 L175.3,173.7 L174.2,170.7 L172.9,167.9 L172.9,167.9 L171.3,168.4 L170.2,168.7 L169.6,168.9 L169.2,169.0 L169.1,169.1 L169.1,169.1 Z" fill="#f9aa11"></path><path d="M150.0,177.0 L147.4,179.2 L144.6,181.3 L141.6,183.3 L138.5,185.2 L135.1,186.9 L131.7,188.6 L128.1,190.1 L124.4,191.5 L120.6,192.7 L116.6,193.8 L112.6,194.7 L108.4,195.5 L104.2,196.1 L99.9,196.5 L95.6,196.8 L91.2,196.8 L86.8,196.7 L82.3,196.4 L77.8,195.9 L73.3,195.2 L68.8,194.3 L64.3,193.2 L59.8,191.8 L55.4,190.2 L50.9,188.4 L46.6,186.3 L42.2,184.0 L38.0,181.5 L33.8,178.6 L29.7,175.6 L29.7,175.6 L29.0,178.3 L28.6,181.0 L28.3,183.6 L28.3,186.0 L28.4,188.3 L28.6,190.4 L28.9,192.3 L29.3,194.0 L29.8,195.5 L30.3,196.7 L30.8,197.6 L31.2,198.3 L31.6,198.6 L31.9,198.6 L32.2,198.3 L32.2,197.6 L32.2,197.6 L34.3,199.8 L36.5,201.9 L39.0,203.9 L41.6,205.7 L44.4,207.3 L47.3,208.8 L50.4,210.2 L53.6,211.4 L56.9,212.4 L60.3,213.4 L63.9,214.1 L67.5,214.8 L71.1,215.3 L74.9,215.7 L78.6,215.9 L82.5,216.0 L86.3,215.9 L90.2,215.7 L94.0,215.4 L97.8,214.9 L101.6,214.3 L105.4,213.6 L109.1,212.8 L112.8,211.8 L116.4,210.7 L119.9,209.4 L123.3,208.0 L126.6,206.5 L129.8,204.9 L132.9,203.1 L135.8,201.2 L138.5,199.2 L141.1,197.1 L143.5,194.9 L145.7,192.5 L147.8,190.0 L149.6,187.4 L151.1,184.6 L152.5,181.8 L153.5,178.8 L153.5,178.8 L152.0,178.0 L151.0,177.5 L150.4,177.2 L150.1,177.1 L150.0,177.0 L150.0,177.0 Z" fill="#ec5916"></path><path d="M130.9,169.1 L127.5,168.8 L124.0,168.3 L120.5,167.6 L117.0,166.7 L113.4,165.6 L109.8,164.3 L106.2,162.9 L102.6,161.2 L99.0,159.4 L95.4,157.3 L91.9,155.1 L88.5,152.8 L85.1,150.2 L81.7,147.5 L78.5,144.6 L75.3,141.5 L72.3,138.3 L69.3,135.0 L66.5,131.4 L63.8,127.7 L61.3,123.9 L58.9,119.9 L56.7,115.8 L54.7,111.5 L52.8,107.1 L51.2,102.5 L49.7,97.9 L48.5,93.0 L47.6,88.1 L46.8,83.0 L46.8,83.0 L44.4,84.5 L42.2,86.1 L40.2,87.7 L38.5,89.4 L36.9,91.1 L35.6,92.7 L34.5,94.3 L33.6,95.8 L32.8,97.2 L32.3,98.4 L32.0,99.4 L31.8,100.2 L31.9,100.7 L32.1,100.9 L32.5,100.8 L33.1,100.4 L33.1,100.4 L33.0,103.4 L33.1,106.5 L33.4,109.6 L34.0,112.7 L34.8,115.8 L35.8,119.0 L37.0,122.1 L38.4,125.2 L40.0,128.3 L41.8,131.4 L43.7,134.4 L45.8,137.4 L48.1,140.4 L50.4,143.3 L53.0,146.1 L55.6,148.9 L58.4,151.6 L61.2,154.2 L64.2,156.6 L67.2,159.0 L70.3,161.3 L73.5,163.5 L76.7,165.5 L80.0,167.4 L83.4,169.1 L86.7,170.7 L90.1,172.2 L93.5,173.4 L96.9,174.5 L100.3,175.5 L103.7,176.2 L107.1,176.7 L110.4,177.0 L113.7,177.1 L117.0,177.0 L120.1,176.7 L123.3,176.1 L126.3,175.3 L129.3,174.2 L132.1,172.9 L132.1,172.9 L131.6,171.3 L131.3,170.2 L131.1,169.6 L131.0,169.2 L130.9,169.1 L130.9,169.1 Z" fill="#f9aa11"></path><path d="M123.0,150.0 L120.8,147.4 L118.7,144.6 L116.7,141.6 L114.8,138.5 L113.1,135.1 L111.4,131.7 L109.9,128.1 L108.5,124.4 L107.3,120.6 L106.2,116.6 L105.3,112.6 L104.5,108.4 L103.9,104.2 L103.5,99.9 L103.2,95.6 L103.2,91.2 L103.3,86.8 L103.6,82.3 L104.1,77.8 L104.8,73.3 L105.7,68.8 L106.8,64.3 L108.2,59.8 L109.8,55.4 L111.6,50.9 L113.7,46.6 L116.0,42.2 L118.5,38.0 L121.4,33.8 L124.4,29.7 L124.4,29.7 L121.7,29.0 L119.0,28.6 L116.4,28.3 L114.0,28.3 L111.7,28.4 L109.6,28.6 L107.7,28.9 L106.0,29.3 L104.5,29.8 L103.3,30.3 L102.4,30.8 L101.7,31.2 L101.4,31.6 L101.4,31.9 L101.7,32.2 L102.4,32.2 L102.4,32.2 L100.2,34.3 L98.1,36.5 L96.1,39.0 L94.3,41.6 L92.7,44.4 L91.2,47.3 L89.8,50.4 L88.6,53.6 L87.6,56.9 L86.6,60.3 L85.9,63.9 L85.2,67.5 L84.7,71.1 L84.3,74.9 L84.1,78.6 L84.0,82.5 L84.1,86.3 L84.3,90.2 L84.6,94.0 L85.1,97.8 L85.7,101.6 L86.4,105.4 L87.2,109.1 L88.2,112.8 L89.3,116.4 L90.6,119.9 L92.0,123.3 L93.5,126.6 L95.1,129.8 L96.9,132.9 L98.8,135.8 L100.8,138.5 L102.9,141.1 L105.1,143.5 L107.5,145.7 L110.0,147.8 L112.6,149.6 L115.4,151.1 L118.2,152.5 L121.2,153.5 L121.2,153.5 L122.0,152.0 L122.5,151.0 L122.8,150.4 L122.9,150.1 L123.0,150.0 L123.0,150.0 Z" fill="#feda00"></path><path d="M130.9,130.9 L131.2,127.5 L131.7,124.0 L132.4,120.5 L133.3,117.0 L134.4,113.4 L135.7,109.8 L137.1,106.2 L138.8,102.6 L140.6,99.0 L142.7,95.4 L144.9,91.9 L147.2,88.5 L149.8,85.1 L152.5,81.7 L155.4,78.5 L158.5,75.3 L161.7,72.3 L165.0,69.3 L168.6,66.5 L172.3,63.8 L176.1,61.3 L180.1,58.9 L184.2,56.7 L188.5,54.7 L192.9,52.8 L197.5,51.2 L202.1,49.7 L207.0,48.5 L211.9,47.6 L217.0,46.8 L217.0,46.8 L215.5,44.4 L213.9,42.2 L212.3,40.2 L210.6,38.5 L208.9,36.9 L207.3,35.6 L205.7,34.5 L204.2,33.6 L202.8,32.8 L201.6,32.3 L200.6,32.0 L199.8,31.8 L199.3,31.9 L199.1,32.1 L199.2,32.5 L199.6,33.1 L199.6,33.1 L196.6,33.0 L193.5,33.1 L190.4,33.4 L187.3,34.0 L184.2,34.8 L181.0,35.8 L177.9,37.0 L174.8,38.4 L171.7,40.0 L168.6,41.8 L165.6,43.7 L162.6,45.8 L159.6,48.1 L156.7,50.4 L153.9,53.0 L151.1,55.6 L148.4,58.4 L145.8,61.2 L143.4,64.2 L141.0,67.2 L138.7,70.3 L136.5,73.5 L134.5,76.7 L132.6,80.0 L130.9,83.4 L129.3,86.7 L127.8,90.1 L126.6,93.5 L125.5,96.9 L124.5,100.3 L123.8,103.7 L123.3,107.1 L123.0,110.4 L122.9,113.7 L123.0,117.0 L123.3,120.1 L123.9,123.3 L124.7,126.3 L125.8,129.3 L127.1,132.1 L127.1,132.1 L128.7,131.6 L129.8,131.3 L130.4,131.1 L130.8,131.0 L130.9,130.9 L130.9,130.9 Z" fill="#f9aa11"></path><circle cx="150" cy="150" r="34.0" fill="#fff" stroke="#d40000" stroke-width="6.0"></circle><text x="150" y="161.6" text-anchor="middle" font-size="39.1" font-weight="700" fill="#d40000">@</text></svg><b>ORF</b><span class="cx" id="cx">Anmeldung</span></div>
+  <div class="pg"><div class="bar" id="bar" style="width:0%"></div></div>
+
+  <!-- LOGIN -->
+  <section class="sc on" id="s_login">
+    <div class="logohero"><svg width="96" height="96" viewBox="0 0 300 300" id="lgbig"><path d="M150.0,123.0 L152.6,120.8 L155.4,118.7 L158.4,116.7 L161.5,114.8 L164.9,113.1 L168.3,111.4 L171.9,109.9 L175.6,108.5 L179.4,107.3 L183.4,106.2 L187.4,105.3 L191.6,104.5 L195.8,103.9 L200.1,103.5 L204.4,103.2 L208.8,103.2 L213.2,103.3 L217.7,103.6 L222.2,104.1 L226.7,104.8 L231.2,105.7 L235.7,106.8 L240.2,108.2 L244.6,109.8 L249.1,111.6 L253.4,113.7 L257.8,116.0 L262.0,118.5 L266.2,121.4 L270.3,124.4 L270.3,124.4 L271.0,121.7 L271.4,119.0 L271.7,116.4 L271.7,114.0 L271.6,111.7 L271.4,109.6 L271.1,107.7 L270.7,106.0 L270.2,104.5 L269.7,103.3 L269.2,102.4 L268.8,101.7 L268.4,101.4 L268.1,101.4 L267.8,101.7 L267.8,102.4 L267.8,102.4 L265.7,100.2 L263.5,98.1 L261.0,96.1 L258.4,94.3 L255.6,92.7 L252.7,91.2 L249.6,89.8 L246.4,88.6 L243.1,87.6 L239.7,86.6 L236.1,85.9 L232.5,85.2 L228.9,84.7 L225.1,84.3 L221.4,84.1 L217.5,84.0 L213.7,84.1 L209.8,84.3 L206.0,84.6 L202.2,85.1 L198.4,85.7 L194.6,86.4 L190.9,87.2 L187.2,88.2 L183.6,89.3 L180.1,90.6 L176.7,92.0 L173.4,93.5 L170.2,95.1 L167.1,96.9 L164.2,98.8 L161.5,100.8 L158.9,102.9 L156.5,105.1 L154.3,107.5 L152.2,110.0 L150.4,112.6 L148.9,115.4 L147.5,118.2 L146.5,121.2 L146.5,121.2 L148.0,122.0 L149.0,122.5 L149.6,122.8 L149.9,122.9 L150.0,123.0 L150.0,123.0 Z" fill="#ec5916"></path><path d="M169.1,130.9 L172.5,131.2 L176.0,131.7 L179.5,132.4 L183.0,133.3 L186.6,134.4 L190.2,135.7 L193.8,137.1 L197.4,138.8 L201.0,140.6 L204.6,142.7 L208.1,144.9 L211.5,147.2 L214.9,149.8 L218.3,152.5 L221.5,155.4 L224.7,158.5 L227.7,161.7 L230.7,165.0 L233.5,168.6 L236.2,172.3 L238.7,176.1 L241.1,180.1 L243.3,184.2 L245.3,188.5 L247.2,192.9 L248.8,197.5 L250.3,202.1 L251.5,207.0 L252.4,211.9 L253.2,217.0 L253.2,217.0 L255.6,215.5 L257.8,213.9 L259.8,212.3 L261.5,210.6 L263.1,208.9 L264.4,207.3 L265.5,205.7 L266.4,204.2 L267.2,202.8 L267.7,201.6 L268.0,200.6 L268.2,199.8 L268.1,199.3 L267.9,199.1 L267.5,199.2 L266.9,199.6 L266.9,199.6 L267.0,196.6 L266.9,193.5 L266.6,190.4 L266.0,187.3 L265.2,184.2 L264.2,181.0 L263.0,177.9 L261.6,174.8 L260.0,171.7 L258.2,168.6 L256.3,165.6 L254.2,162.6 L251.9,159.6 L249.6,156.7 L247.0,153.9 L244.4,151.1 L241.6,148.4 L238.8,145.8 L235.8,143.4 L232.8,141.0 L229.7,138.7 L226.5,136.5 L223.3,134.5 L220.0,132.6 L216.6,130.9 L213.3,129.3 L209.9,127.8 L206.5,126.6 L203.1,125.5 L199.7,124.5 L196.3,123.8 L192.9,123.3 L189.6,123.0 L186.3,122.9 L183.0,123.0 L179.9,123.3 L176.7,123.9 L173.7,124.7 L170.7,125.8 L167.9,127.1 L167.9,127.1 L168.4,128.7 L168.7,129.8 L168.9,130.4 L169.0,130.8 L169.1,130.9 L169.1,130.9 Z" fill="#f9aa11"></path><path d="M177.0,150.0 L179.2,152.6 L181.3,155.4 L183.3,158.4 L185.2,161.5 L186.9,164.9 L188.6,168.3 L190.1,171.9 L191.5,175.6 L192.7,179.4 L193.8,183.4 L194.7,187.4 L195.5,191.6 L196.1,195.8 L196.5,200.1 L196.8,204.4 L196.8,208.8 L196.7,213.2 L196.4,217.7 L195.9,222.2 L195.2,226.7 L194.3,231.2 L193.2,235.7 L191.8,240.2 L190.2,244.6 L188.4,249.1 L186.3,253.4 L184.0,257.8 L181.5,262.0 L178.6,266.2 L175.6,270.3 L175.6,270.3 L178.3,271.0 L181.0,271.4 L183.6,271.7 L186.0,271.7 L188.3,271.6 L190.4,271.4 L192.3,271.1 L194.0,270.7 L195.5,270.2 L196.7,269.7 L197.6,269.2 L198.3,268.8 L198.6,268.4 L198.6,268.1 L198.3,267.8 L197.6,267.8 L197.6,267.8 L199.8,265.7 L201.9,263.5 L203.9,261.0 L205.7,258.4 L207.3,255.6 L208.8,252.7 L210.2,249.6 L211.4,246.4 L212.4,243.1 L213.4,239.7 L214.1,236.1 L214.8,232.5 L215.3,228.9 L215.7,225.1 L215.9,221.4 L216.0,217.5 L215.9,213.7 L215.7,209.8 L215.4,206.0 L214.9,202.2 L214.3,198.4 L213.6,194.6 L212.8,190.9 L211.8,187.2 L210.7,183.6 L209.4,180.1 L208.0,176.7 L206.5,173.4 L204.9,170.2 L203.1,167.1 L201.2,164.2 L199.2,161.5 L197.1,158.9 L194.9,156.5 L192.5,154.3 L190.0,152.2 L187.4,150.4 L184.6,148.9 L181.8,147.5 L178.8,146.5 L178.8,146.5 L178.0,148.0 L177.5,149.0 L177.2,149.6 L177.1,149.9 L177.0,150.0 L177.0,150.0 Z" fill="#feda00"></path><path d="M169.1,169.1 L168.8,172.5 L168.3,176.0 L167.6,179.5 L166.7,183.0 L165.6,186.6 L164.3,190.2 L162.9,193.8 L161.2,197.4 L159.4,201.0 L157.3,204.6 L155.1,208.1 L152.8,211.5 L150.2,214.9 L147.5,218.3 L144.6,221.5 L141.5,224.7 L138.3,227.7 L135.0,230.7 L131.4,233.5 L127.7,236.2 L123.9,238.7 L119.9,241.1 L115.8,243.3 L111.5,245.3 L107.1,247.2 L102.5,248.8 L97.9,250.3 L93.0,251.5 L88.1,252.4 L83.0,253.2 L83.0,253.2 L84.5,255.6 L86.1,257.8 L87.7,259.8 L89.4,261.5 L91.1,263.1 L92.7,264.4 L94.3,265.5 L95.8,266.4 L97.2,267.2 L98.4,267.7 L99.4,268.0 L100.2,268.2 L100.7,268.1 L100.9,267.9 L100.8,267.5 L100.4,266.9 L100.4,266.9 L103.4,267.0 L106.5,266.9 L109.6,266.6 L112.7,266.0 L115.8,265.2 L119.0,264.2 L122.1,263.0 L125.2,261.6 L128.3,260.0 L131.4,258.2 L134.4,256.3 L137.4,254.2 L140.4,251.9 L143.3,249.6 L146.1,247.0 L148.9,244.4 L151.6,241.6 L154.2,238.8 L156.6,235.8 L159.0,232.8 L161.3,229.7 L163.5,226.5 L165.5,223.3 L167.4,220.0 L169.1,216.6 L170.7,213.3 L172.2,209.9 L173.4,206.5 L174.5,203.1 L175.5,199.7 L176.2,196.3 L176.7,192.9 L177.0,189.6 L177.1,186.3 L177.0,183.0 L176.7,179.9 L176.1,176.7 L175.3,173.7 L174.2,170.7 L172.9,167.9 L172.9,167.9 L171.3,168.4 L170.2,168.7 L169.6,168.9 L169.2,169.0 L169.1,169.1 L169.1,169.1 Z" fill="#f9aa11"></path><path d="M150.0,177.0 L147.4,179.2 L144.6,181.3 L141.6,183.3 L138.5,185.2 L135.1,186.9 L131.7,188.6 L128.1,190.1 L124.4,191.5 L120.6,192.7 L116.6,193.8 L112.6,194.7 L108.4,195.5 L104.2,196.1 L99.9,196.5 L95.6,196.8 L91.2,196.8 L86.8,196.7 L82.3,196.4 L77.8,195.9 L73.3,195.2 L68.8,194.3 L64.3,193.2 L59.8,191.8 L55.4,190.2 L50.9,188.4 L46.6,186.3 L42.2,184.0 L38.0,181.5 L33.8,178.6 L29.7,175.6 L29.7,175.6 L29.0,178.3 L28.6,181.0 L28.3,183.6 L28.3,186.0 L28.4,188.3 L28.6,190.4 L28.9,192.3 L29.3,194.0 L29.8,195.5 L30.3,196.7 L30.8,197.6 L31.2,198.3 L31.6,198.6 L31.9,198.6 L32.2,198.3 L32.2,197.6 L32.2,197.6 L34.3,199.8 L36.5,201.9 L39.0,203.9 L41.6,205.7 L44.4,207.3 L47.3,208.8 L50.4,210.2 L53.6,211.4 L56.9,212.4 L60.3,213.4 L63.9,214.1 L67.5,214.8 L71.1,215.3 L74.9,215.7 L78.6,215.9 L82.5,216.0 L86.3,215.9 L90.2,215.7 L94.0,215.4 L97.8,214.9 L101.6,214.3 L105.4,213.6 L109.1,212.8 L112.8,211.8 L116.4,210.7 L119.9,209.4 L123.3,208.0 L126.6,206.5 L129.8,204.9 L132.9,203.1 L135.8,201.2 L138.5,199.2 L141.1,197.1 L143.5,194.9 L145.7,192.5 L147.8,190.0 L149.6,187.4 L151.1,184.6 L152.5,181.8 L153.5,178.8 L153.5,178.8 L152.0,178.0 L151.0,177.5 L150.4,177.2 L150.1,177.1 L150.0,177.0 L150.0,177.0 Z" fill="#ec5916"></path><path d="M130.9,169.1 L127.5,168.8 L124.0,168.3 L120.5,167.6 L117.0,166.7 L113.4,165.6 L109.8,164.3 L106.2,162.9 L102.6,161.2 L99.0,159.4 L95.4,157.3 L91.9,155.1 L88.5,152.8 L85.1,150.2 L81.7,147.5 L78.5,144.6 L75.3,141.5 L72.3,138.3 L69.3,135.0 L66.5,131.4 L63.8,127.7 L61.3,123.9 L58.9,119.9 L56.7,115.8 L54.7,111.5 L52.8,107.1 L51.2,102.5 L49.7,97.9 L48.5,93.0 L47.6,88.1 L46.8,83.0 L46.8,83.0 L44.4,84.5 L42.2,86.1 L40.2,87.7 L38.5,89.4 L36.9,91.1 L35.6,92.7 L34.5,94.3 L33.6,95.8 L32.8,97.2 L32.3,98.4 L32.0,99.4 L31.8,100.2 L31.9,100.7 L32.1,100.9 L32.5,100.8 L33.1,100.4 L33.1,100.4 L33.0,103.4 L33.1,106.5 L33.4,109.6 L34.0,112.7 L34.8,115.8 L35.8,119.0 L37.0,122.1 L38.4,125.2 L40.0,128.3 L41.8,131.4 L43.7,134.4 L45.8,137.4 L48.1,140.4 L50.4,143.3 L53.0,146.1 L55.6,148.9 L58.4,151.6 L61.2,154.2 L64.2,156.6 L67.2,159.0 L70.3,161.3 L73.5,163.5 L76.7,165.5 L80.0,167.4 L83.4,169.1 L86.7,170.7 L90.1,172.2 L93.5,173.4 L96.9,174.5 L100.3,175.5 L103.7,176.2 L107.1,176.7 L110.4,177.0 L113.7,177.1 L117.0,177.0 L120.1,176.7 L123.3,176.1 L126.3,175.3 L129.3,174.2 L132.1,172.9 L132.1,172.9 L131.6,171.3 L131.3,170.2 L131.1,169.6 L131.0,169.2 L130.9,169.1 L130.9,169.1 Z" fill="#f9aa11"></path><path d="M123.0,150.0 L120.8,147.4 L118.7,144.6 L116.7,141.6 L114.8,138.5 L113.1,135.1 L111.4,131.7 L109.9,128.1 L108.5,124.4 L107.3,120.6 L106.2,116.6 L105.3,112.6 L104.5,108.4 L103.9,104.2 L103.5,99.9 L103.2,95.6 L103.2,91.2 L103.3,86.8 L103.6,82.3 L104.1,77.8 L104.8,73.3 L105.7,68.8 L106.8,64.3 L108.2,59.8 L109.8,55.4 L111.6,50.9 L113.7,46.6 L116.0,42.2 L118.5,38.0 L121.4,33.8 L124.4,29.7 L124.4,29.7 L121.7,29.0 L119.0,28.6 L116.4,28.3 L114.0,28.3 L111.7,28.4 L109.6,28.6 L107.7,28.9 L106.0,29.3 L104.5,29.8 L103.3,30.3 L102.4,30.8 L101.7,31.2 L101.4,31.6 L101.4,31.9 L101.7,32.2 L102.4,32.2 L102.4,32.2 L100.2,34.3 L98.1,36.5 L96.1,39.0 L94.3,41.6 L92.7,44.4 L91.2,47.3 L89.8,50.4 L88.6,53.6 L87.6,56.9 L86.6,60.3 L85.9,63.9 L85.2,67.5 L84.7,71.1 L84.3,74.9 L84.1,78.6 L84.0,82.5 L84.1,86.3 L84.3,90.2 L84.6,94.0 L85.1,97.8 L85.7,101.6 L86.4,105.4 L87.2,109.1 L88.2,112.8 L89.3,116.4 L90.6,119.9 L92.0,123.3 L93.5,126.6 L95.1,129.8 L96.9,132.9 L98.8,135.8 L100.8,138.5 L102.9,141.1 L105.1,143.5 L107.5,145.7 L110.0,147.8 L112.6,149.6 L115.4,151.1 L118.2,152.5 L121.2,153.5 L121.2,153.5 L122.0,152.0 L122.5,151.0 L122.8,150.4 L122.9,150.1 L123.0,150.0 L123.0,150.0 Z" fill="#feda00"></path><path d="M130.9,130.9 L131.2,127.5 L131.7,124.0 L132.4,120.5 L133.3,117.0 L134.4,113.4 L135.7,109.8 L137.1,106.2 L138.8,102.6 L140.6,99.0 L142.7,95.4 L144.9,91.9 L147.2,88.5 L149.8,85.1 L152.5,81.7 L155.4,78.5 L158.5,75.3 L161.7,72.3 L165.0,69.3 L168.6,66.5 L172.3,63.8 L176.1,61.3 L180.1,58.9 L184.2,56.7 L188.5,54.7 L192.9,52.8 L197.5,51.2 L202.1,49.7 L207.0,48.5 L211.9,47.6 L217.0,46.8 L217.0,46.8 L215.5,44.4 L213.9,42.2 L212.3,40.2 L210.6,38.5 L208.9,36.9 L207.3,35.6 L205.7,34.5 L204.2,33.6 L202.8,32.8 L201.6,32.3 L200.6,32.0 L199.8,31.8 L199.3,31.9 L199.1,32.1 L199.2,32.5 L199.6,33.1 L199.6,33.1 L196.6,33.0 L193.5,33.1 L190.4,33.4 L187.3,34.0 L184.2,34.8 L181.0,35.8 L177.9,37.0 L174.8,38.4 L171.7,40.0 L168.6,41.8 L165.6,43.7 L162.6,45.8 L159.6,48.1 L156.7,50.4 L153.9,53.0 L151.1,55.6 L148.4,58.4 L145.8,61.2 L143.4,64.2 L141.0,67.2 L138.7,70.3 L136.5,73.5 L134.5,76.7 L132.6,80.0 L130.9,83.4 L129.3,86.7 L127.8,90.1 L126.6,93.5 L125.5,96.9 L124.5,100.3 L123.8,103.7 L123.3,107.1 L123.0,110.4 L122.9,113.7 L123.0,117.0 L123.3,120.1 L123.9,123.3 L124.7,126.3 L125.8,129.3 L127.1,132.1 L127.1,132.1 L128.7,131.6 L129.8,131.3 L130.4,131.1 L130.8,131.0 L130.9,130.9 L130.9,130.9 Z" fill="#f9aa11"></path><circle cx="150" cy="150" r="34.0" fill="#fff" stroke="#d40000" stroke-width="6.0"></circle><text x="150" y="161.6" text-anchor="middle" font-size="39.1" font-weight="700" fill="#d40000">@</text></svg></div>
+    <h3 style="text-align:center;">Willkommen beim Personal UK Trainer</h3>
+    <p class="su" style="text-align:center;">Gib deinen persönlichen Zugangscode ein. Er wurde anonym vergeben – niemand kann ihn dir zuordnen.</p>
+    <div class="codebox">
+      <input maxlength="1" value="K"><input maxlength="1" value="7"><input maxlength="1" value="F">
+      <input maxlength="1" value="Q"><input maxlength="1" value="3"><input maxlength="1" value="9">
+    </div>
+    <div class="anonbadge">🔒 <span><b>Vollständig anonym.</b> Kein Name, keine E-Mail, keine Personaldaten. Deine Antworten sind nur für dich sichtbar.</span></div>
+    <button class="bt pr" onclick="G(&#39;s_e1&#39;)">Anmelden →</button>
+    <p class="su" style="text-align:center;margin-top:10px;font-size:11px;">Code verloren? Nutze deinen Reserve-Code.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sc" id="s_e1">
+    <div class="exp o"><div class="kicker">Unsere Vision</div>
+      <h2>Wir bauen einen ORF, in dem sich Menschen gegenseitig stärken.</h2>
+      <p>Gemeinsam gestalten wir einen ORF für alle Menschen in Österreich – getragen von einer Kultur, in der jede:r Verantwortung übernimmt und füreinander einsteht.</p>
+    </div>
+    <div class="dots"><i class="on"></i><i></i><i></i></div>
+    <button class="bt pr" onclick="G(&#39;s_e2&#39;)">Weiter →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_login&#39;)">← Abmelden</a><a onclick="G(&#39;s_zielbild&#39;)">Überspringen →</a></div>
+  </section>
+  <section class="sc" id="s_e2">
+    <div class="exp a"><div class="kicker">Warum das zählt</div>
+      <div class="big">🇦🇹</div>
+      <h2>Vom Leitbild zur gelebten Kultur.</h2>
+      <p>Der ORF ist das Leitmedium des Landes – unabhängig, vielfältig, verbindend. All das entsteht aus der Art, <b>wie wir miteinander arbeiten</b>: ob wir Wissen teilen, Feedback geben, Verantwortung tragen.</p>
+    </div>
+    <div class="dots"><i></i><i class="on"></i><i></i></div>
+    <button class="bt pr" onclick="G(&#39;s_e3&#39;)">Weiter →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_e1&#39;)">← Zurück</a><a onclick="G(&#39;s_zielbild&#39;)">Überspringen →</a></div>
+  </section>
+  <section class="sc" id="s_e3">
+    <div class="exp w"><div class="kicker">Deine Rolle</div>
+      <div class="big">✺</div>
+      <h2>Kultur beginnt bei dir.</h2>
+      <p>Dieser Trainer hilft dir, deine Stärken zu sehen, Blind Spots zu entdecken und Woche für Woche kleine, konkrete Schritte zu gehen. <b>Für dich – und für einen ORF, der zusammenhält.</b></p>
+    </div>
+    <div class="dots"><i></i><i></i><i class="on"></i></div>
+    <button class="bt pr" onclick="G(&#39;s_zielbild&#39;)">Los geht's →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_e2&#39;)">← Zurück</a></div>
+  </section>
+
+  <!-- ZIELBILD -->
+  <section class="sc" id="s_zielbild">
+    <h3>Das Zielbild deiner Kultur</h3>
+    <p class="su">Sieben Handlungsfelder – tippe ein Blütenblatt an oder starte direkt den Self-Check.</p>
+    <svg class="fl" id="fl_zielbild" viewBox="0 0 300 300"><g class="pet"><path d="M150,126 C192.2971802599127,109.15408781701096 262.94687675607355,88.92985155537664 228.28700648590456,33.934739842294164 C174.49987500634836,23.959069645319943 118.6668749670411,100.24384183169923 150,126 Z" fill="#feda00"></path><text x="166.1" y="71.8" text-anchor="middle" class="hint" font-size="10.5">Prozess-</text><text x="166.1" y="83.8" text-anchor="middle" class="hint" font-size="10.5">mgmt.</text></g><g class="pet"><path d="M168.76395557923271,135.03624475539038 C208.30648061422139,157.60225745311396 268.16779050220964,200.2288093411132 289.5546245741467,138.84174028044865 C263.81818964412105,90.56953890356488 169.36504698422186,94.48031920751994 168.76395557923271,135.03624475539038 Z" fill="#ec5916"></path><text x="219.2" y="112.9" text-anchor="middle" class="hint" font-size="10.5">Führung &amp;</text><text x="219.2" y="124.9" text-anchor="middle" class="hint" font-size="10.5">Leadership</text></g><g class="pet"><path d="M173.39826989236377,155.34050241495154 C180.40981183056925,200.32577216923124 184.40594781654045,273.7044492120049 245.73476396250481,252.15113787444312 C267.42908601191726,201.93235752790105 205.48094364731404,130.52424861517372 173.39826989236377,155.34050241495154 Z" fill="#f9aa11"></path><text x="220.2" y="180.0" text-anchor="middle" class="hint" font-size="10.5">Weiterent-</text><text x="220.2" y="192.0" text-anchor="middle" class="hint" font-size="10.5">wicklung</text></g><g class="pet"><path d="M160.4132097388214,171.62325282965804 C129.6139344913846,205.15295398324955 74.73572467158388,254.02811571536023 129.8246734538028,288.53864514551276 C182.6134854959239,274.189051706691 199.81855813897693,181.23381604852946 160.4132097388214,171.62325282965804 Z" fill="#f9aa11"></path><text x="168.3" y="222.7" text-anchor="middle" class="hint" font-size="10.5">Koopera-</text><text x="168.3" y="234.7" text-anchor="middle" class="hint" font-size="10.5">tion</text></g><g class="pet"><path d="M139.5867902611786,171.62325282965804 C94.16918028013922,168.44883653264895 21.741035960348853,156.01648929820976 29.10701533604768,220.60372694866322 C73.23926520763524,252.92885695535654 156.64178223860296,208.42368294360583 139.5867902611786,171.62325282965804 Z" fill="#ec5916"></path><text x="102.7" y="208.7" text-anchor="middle" class="hint" font-size="10.5">Feedback &amp;</text><text x="102.7" y="220.7" text-anchor="middle" class="hint" font-size="9">Fehlerkultur</text></g><g class="pet"><path d="M126.60173010763623,155.34050241495154 C100.76617205912206,117.85236888528138 65.32796317703914,53.47432372549176 19.424240437720158,99.50276230590741 C21.667443851631532,154.16113355059125 108.46360884489391,191.61932495620303 126.60173010763623,155.34050241495154 Z" fill="#feda00"></path><text x="72.6" y="148.7" text-anchor="middle" class="hint" font-size="10.5">Kommuni-</text><text x="72.6" y="160.7" text-anchor="middle" class="hint" font-size="10.5">kation</text></g><g class="pet"><path d="M131.23604442076729,135.03624475539038 C144.43724046465078,91.46372315946391 172.67466111620465,23.6179611524435 108.06767574987322,16.42724760273063 C66.73265478242261,52.25999171057538 91.56318517894917,143.47476639726875 131.23604442076729,135.03624475539038 Z" fill="#f9aa11"></path><text x="100.9" y="93.7" text-anchor="middle" class="hint" font-size="10.5">Wissen</text></g><circle cx="150" cy="150" r="30" fill="#fff" stroke="#d40000" stroke-width="3.5"></circle><text x="150" y="158" text-anchor="middle" font-size="24" font-weight="700" fill="#d40000">@</text></svg>
+    <p class="lg2">Im Zentrum verbindet alles: <b>wir@ORF</b></p>
+    <button class="bt pr" onclick="startCheck()">Self-Check starten →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_e3&#39;)">← Vision</a></div>
+  </section>
+
+  <!-- SELF-CHECK (dynamisch gerendert) -->
+  <section class="sc" id="s_check">
+    <div id="check_content"></div>
+  </section>
+
+  <!-- GAMIFICATION REWARD -->
+  <section class="sc" id="s_reward">
+    <div class="conf" id="conf"></div>
+    <div class="reward">
+      <div class="face" id="reward_face">🎉</div>
+      <h3 style="margin-top:14px;" id="reward_title"></h3>
+      <p class="su" style="margin:8px 0 0;" id="reward_msg"></p>
+    </div>
+    <div class="scn" style="text-align:center;margin-top:14px;" id="reward_sub"></div>
+    <button class="bt pr" onclick="continueAfterReward()">Weiter →</button>
+  </section>
+
+
+  <!-- ZWISCHENAUSWERTUNG -->
+  <section class="sc" id="s_between">
+    <h3 id="bw_title">Zwischenauswertung</h3>
+    <p class="su" id="bw_sub"></p>
+    <svg class="fl" id="fl_between" viewBox="0 0 300 300" style="height:240px;"></svg>
+    <div id="bw_bars" style="margin:10px 0;"></div>
+    <div id="bw_insight" style="margin-top:8px;"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;">
+      <button class="bt gh" style="flex:1;" onclick="continueAfterReward()">Weiter →</button>
+      <button class="bt pr" style="flex:1;" onclick="showBetweenDetail()">Zwischenauswertung</button>
+    </div>
+  </section>
+
+  <!-- ZWISCHENAUSWERTUNG DETAIL -->
+  <section class="sc" id="s_between_detail">
+    <h3 id="bwd_title">Handlungsfeld-Auswertung</h3>
+    <p class="su" id="bwd_sub"></p>
+    <div id="bwd_bars" style="margin:12px 0;"></div>
+    <div id="bwd_blindspot" style="margin-top:8px;"></div>
+    <div class="ctxbox" id="bwd_bias"></div>
+    <button class="bt pr" onclick="continueAfterReward()">Weiter mit Self-Check →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_between&#39;)">← Zurück</a></div>
+  </section>
+
+  <!-- ERGEBNIS / KULTURBLÜTE -->
+  <section class="sc" id="s_ergebnis">
+    <h3>Deine Kultur-Blüte</h3>
+    <p class="su">Je größer ein Blütenblatt, desto stärker lebst du dieses Feld. Kleine Blätter zeigen dein Potenzial.</p>
+    <svg class="fl" id="fl_ergebnis" viewBox="0 0 300 300" style="height:288px;"></svg>
+    <div class="legendrow">
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#ec5916"></circle></svg> stark</span>
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#f9aa11"></circle></svg> solide</span>
+      <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#feda00"></circle></svg> Potenzial</span>
+    </div>
+    <div id="ergebnis_insights" style="margin-top:14px;"></div>
+    <button class="bt pr" onclick="G(&#39;s_goal&#39;)">Mein Ziel festlegen →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_zielbild&#39;)">← Zielbild</a></div>
+  </section>
+
+  <!-- ZIELWAHL -->
+  <section class="sc" id="s_goal">
+    <h3>Was möchtest du dir vornehmen?</h3>
+    <p class="su">Wähle ein Feld, an dem du mit dem Companion arbeiten willst. Du kannst es jederzeit ändern.</p>
+    <div id="goal_options"></div>
+    <div class="ctxbox"><b>Dein Ziel wird an den Companion übergeben.</b> Er begleitet dich wöchentlich genau dort – mit konkreten Impulsen für deinen Alltag.</div>
+    <button class="bt pr" id="goalBtn" disabled="" onclick="G(&#39;s_companion&#39;)">Ziel an Companion übergeben →</button>
+    <div class="nv"><a class="m" onclick="G(&#39;s_ergebnis&#39;)">← Blüte</a></div>
+  </section>
+
+  <!-- COMPANION -->
+  <section class="sc" id="s_companion">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><h3 style="margin:0;">Companion</h3><span class="lk">🔒 anonym</span></div>
+    <p class="su">Woche 1 · <span id="comp_goal_label">dein Ziel</span></p>
+    <div class="goalbanner"><b>🎯 Dein Ziel:</b> <span id="goal_text"></span></div>
+    <div class="ct" id="chat_messages"></div>
+    <div id="impulse_box" style="display:none;" class="im">
+      <div class="l">🎯 Dein Impuls für nächste Woche</div>
+      <p id="impulse_text"></p>
+      <div class="r">
+        <button class="ia" onclick="acceptImpulse()">Nehme ich an</button>
+        <button class="ib" onclick="smallerImpulse()">Kleiner machen</button>
+      </div>
+    </div>
+    <div id="typing_indicator" style="display:none;" class="m b">
+      <span id="typing_dots">●●●</span>
+    </div>
+    <div class="cp" id="chat_input_area">
+      <textarea id="chat_input" rows="1" style="flex:1;border:1px solid #d3d1c7;border-radius:18px;padding:10px 15px;font-size:12.5px;color:var(--ink);font-family:inherit;resize:none;outline:none;" placeholder="Erzähl von deiner Woche … (keine Namen)" onkeydown="if(event.key===&#39;Enter&#39;&amp;&amp;!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
+      <button class="s" onclick="sendMessage()">➤</button>
+    </div>
+    <div class="nv"><a class="m" onclick="G(&#39;s_goal&#39;)">← Ziel</a><a onclick="G(&#39;s_login&#39;)">Neu starten ↻</a></div>
+  </section>
+
+  <!-- DONE -->
+  <section class="sc" id="s_done">
+    <div style="text-align:center;padding:28px 6px;">
+      <div style="width:64px;height:64px;border-radius:50%;background:var(--ab);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px;">🎯</div>
+      <h3>Impuls übernommen</h3>
+      <p class="su" style="margin:8px 0 18px;">Klein, konkret, machbar. Nächste Woche schauen wir, wie es gelaufen ist – und bauen darauf auf.</p>
+      <div class="scn" style="text-align:left;"><b>So entsteht Veränderung:</b> Woche für Woche ein kleiner WENN-DANN-Schritt. Der Recheck in Woche 13 zeigt, wie deine Kultur-Blüte gewachsen ist.</div>
+      <button class="bt pr" onclick="G(&#39;s_login&#39;)">Von vorne starten ↻</button>
+      <button class="bt gh" onclick="G(&#39;s_companion&#39;)">Nochmal in den Chat</button>
+    </div>
+  </section>
+</div>
+
+<script>
+// ============================================================
+// SCHICHT 1: DATENSCHICHT – 70 Fragen, 7 × 10
+// ============================================================
+// Fragetypen: 'sj' = Situational Judgment, 'bs_scale' = Blind Spot Skala,
+// 'bs_scenario' = Blind Spot Verhalten, 'sob' = Second Order Belief, 'yn' = Ja/Nein
+// Scoring:
+//   sj/bs_scenario: scores[] pro Option (0|1|2), paired_with für BS-Paare
+//   bs_scale/sob: Skala 1-7, normiert
+//   yn: yn_score (1 = Ja gut, -1 = Ja schlecht/Gegenfrage)
+
+var QUESTIONS = {
+  hf1: {
+    title: "Prozessmanagement & Effizienz",
+    short: "Prozesse",
+    bias: "Status Quo Bias",
+    color: "#feda00",
+    questions: [
+      { id:"hf1_sj1", type:"sj", hf:"hf1",
+        label:"Abkürzung oder Prozess?",
+        context:"Prozesse schützen Qualität – auch wenn sie manchmal unbequem sind.",
+        text:"Du möchtest für ein redaktionelles Projekt mit einer anderen Redaktion bereichsübergreifend zusammenarbeiten. Der offizielle Freigabeprozess dauert 3 Tage, aber die Geschichte ist zeitkritisch. Eine erfahrene Kollegin sagt: «Schick es einfach direkt, das machen alle so.»",
+        options:[
+          {k:"A", text:"Ich halte mich an den Prozess, auch wenn es länger dauert", score:2},
+          {k:"B", text:"Ich umgehe den Prozess – Geschwindigkeit geht vor", score:0},
+          {k:"C", text:"Ich frage meine Führungskraft, wie ich vorgehen soll", score:1},
+          {k:"D", text:"Ich nutze den Prozess, schlage aber vor, ihn zu vereinfachen", score:2}
+        ]
+      },
+      { id:"hf1_sj2", type:"sj", hf:"hf1",
+        label:"Freitag, 16:30",
+        context:"Verhalten unter Druck zeigt, wie tief ein Wert wirklich verankert ist.",
+        text:"Freitag, 16:30. Ein dringendes Thema muss aufbereitet werden. Du hast zwei Optionen: Den bewährten Workflow mit allen Checks (dauert 90 Min.) oder eine Abkürzung (dauert 45 Min., aber ohne Gegencheck).",
+        options:[
+          {k:"A", text:"Bewährter Workflow, auch wenn es knapp wird", score:2},
+          {k:"B", text:"Abkürzung – die Qualität reicht", score:0},
+          {k:"C", text:"Abkürzung, aber ich bitte eine:n Kolleg:in, kurz drüberzuschauen", score:1},
+          {k:"D", text:"Ich melde zurück, dass 16:30 zu spät ist für saubere Aufbereitung", score:2}
+        ]
+      },
+      { id:"hf1_bs1a", type:"bs_scale", hf:"hf1", paired_with:"hf1_bs1b",
+        label:"Selbstbild Prozesstreue",
+        context:"Wie du dich selbst siehst – und wie du dich tatsächlich verhältst – kann sehr unterschiedlich sein. Das ist dein Blind Spot.",
+        text:"Wie konsequent halte ich mich an bestehende Prozesse und Abläufe – auch wenn es mühsam ist?",
+        scale_low:"gar nicht", scale_high:"immer"
+      },
+      { id:"hf1_bs1b", type:"bs_scenario", hf:"hf1", paired_with:"hf1_bs1a",
+        label:"Verhalten: Formular-Szenario",
+        context:"",
+        text:"Du bist mitten in einer Produktion. Du merkst, dass ein Formular falsch ausgefüllt wurde. Es neu auszufüllen dauert 20 Minuten und verzögert alles.",
+        options:[
+          {k:"A", text:"Ich fülle es korrekt aus – Prozesse haben einen Grund", score:2},
+          {k:"B", text:"Ich lasse es so und hoffe, es fällt nicht auf", score:0},
+          {k:"C", text:"Ich frage jemanden, ob es wirklich nötig ist", score:1},
+          {k:"D", text:"Ich fülle es korrekt aus und schlage vor, es künftig zu vereinfachen", score:2}
+        ]
+      },
+      { id:"hf1_bs2a", type:"bs_scale", hf:"hf1", paired_with:"hf1_bs2b",
+        label:"Selbstbild Effizienz",
+        context:"Ressourcen bewusst einzusetzen bedeutet auch, Nein sagen zu können.",
+        text:"Wie gut nutze ich meine Ressourcen (Zeit, Budget, Energie) zielgerichtet?",
+        scale_low:"gar nicht", scale_high:"sehr gut"
+      },
+      { id:"hf1_bs2b", type:"bs_scenario", hf:"hf1", paired_with:"hf1_bs2a",
+        label:"Verhalten: Drei Deadlines",
+        context:"",
+        text:"Du hast in der nächsten Woche drei dringende Deadlines. Zusätzlich kommt eine interessante, aber nicht priorisierte Aufgabe auf dich zu.",
+        options:[
+          {k:"A", text:"Ich nehme die neue Aufgabe an – Abwechslung hilft mir", score:0},
+          {k:"B", text:"Ich lehne höflich ab und erkläre die Gründe", score:2},
+          {k:"C", text:"Ich nehme sie an, mache sie aber nach den Deadlines", score:1},
+          {k:"D", text:"Ich spreche mit meiner Führungskraft, welche Priorität gilt", score:2}
+        ]
+      },
+      { id:"hf1_sob", type:"sob", hf:"hf1",
+        label:"Fremdbild: Führungskraft",
+        context:"Oft wissen andere mehr über unser Verhalten als wir selbst.",
+        text:"Was würde deine Führungskraft sagen: Wie strukturiert und prozessorientiert arbeite ich?",
+        scale_low:"gar nicht", scale_high:"sehr strukturiert"
+      },
+      { id:"hf1_jn1", type:"yn", hf:"hf1", yn_score:1,
+        label:"Verbesserungsvorschlag",
+        context:"Aktive Mitgestaltung ist ein Zeichen von Ownership – nicht nur Befolgen.",
+        text:"Hast du in den letzten 4 Wochen einen bestehenden Prozess aktiv hinterfragt und einen Verbesserungsvorschlag eingebracht?"
+      },
+      { id:"hf1_jn2", type:"yn", hf:"hf1", yn_score:-1,
+        label:"Prozess umgangen?",
+        context:"Ehrliche Selbstreflexion – nicht Selbstkritik, sondern Bewusstsein.",
+        text:"Gab es in den letzten 4 Wochen eine Situation, in der du einen Prozess bewusst umgangen hast – auch wenn es schneller war?"
+      },
+      { id:"hf1_jn3", type:"yn", hf:"hf1", yn_score:1,
+        label:"Kapazitäten gesteuert",
+        context:"Nein sagen können ist eine Kernkompetenz im Ressourcenmanagement.",
+        text:"Hast du in den letzten 4 Wochen eine Aufgabe abgelehnt oder zurückgestellt, weil deine Kapazitäten bereits ausgelastet waren?"
+      }
+    ]
+  },
+  hf2: {
+    title: "Wissensmanagement & Generationenwechsel",
+    short: "Wissen",
+    bias: "Endowment Effect",
+    color: "#f9aa11",
+    questions: [
+      { id:"hf2_sj1", type:"sj", hf:"hf2",
+        label:"Dein Wissen ist gefragt",
+        context:"Wissen gehört dem ORF, nicht einzelnen Personen – das ist die Grundlage einer lernenden Organisation.",
+        text:"Du hast über Jahre ein spezielles Fachwissen aufgebaut, das dich im Haus einzigartig macht. Dein Bereich wird gerade umstrukturiert. Eine jüngere Kollegin bittet dich, ihr dein Know-how zu zeigen.",
+        options:[
+          {k:"A", text:"Ich zeige ihr alles – Wissen gehört dem ORF, nicht mir", score:2},
+          {k:"B", text:"Ich zeige ihr die Grundlagen, behalte aber die entscheidenden Details", score:0},
+          {k:"C", text:"Ich bin grundsätzlich bereit, aber mir fehlt gerade die Zeit", score:1},
+          {k:"D", text:"Ich schlage vor, dass wir gemeinsam eine Dokumentation erstellen", score:2}
+        ]
+      },
+      { id:"hf2_sj2", type:"sj", hf:"hf2",
+        label:"Archivwissen retten",
+        context:"Kritisches Wissen zu sichern ist eine Investition in die Zukunft des ORF.",
+        text:"Eine Kollegin, die bald in Pension geht, hat kritisches Archivwissen. Du selbst hast gerade drei dringende Projekte. HR bittet dich, die Wissensdokumentation zu koordinieren.",
+        options:[
+          {k:"A", text:"Ich übernehme es – auch wenn es stressig wird", score:2},
+          {k:"B", text:"Ich sage, dass ich gerade keine Kapazität habe", score:0},
+          {k:"C", text:"Ich delegiere es an jemand anderen", score:1},
+          {k:"D", text:"Ich schlage ein reduziertes Format vor – lieber etwas als nichts", score:2}
+        ]
+      },
+      { id:"hf2_bs1a", type:"bs_scale", hf:"hf2", paired_with:"hf2_bs1b",
+        label:"Selbstbild Wissen teilen",
+        context:"Wer Wissen teilt, verliert es nicht – im Gegenteil: es multipliziert sich.",
+        text:"Wie aktiv teile ich mein Wissen mit Kolleg:innen – auch über meinen Bereich hinaus?",
+        scale_low:"gar nicht", scale_high:"sehr aktiv"
+      },
+      { id:"hf2_bs1b", type:"bs_scenario", hf:"hf2", paired_with:"hf2_bs1a",
+        label:"Verhalten: Neues Tool der Jüngeren",
+        context:"",
+        text:"Ein:e neue:r Kolleg:in, Mitte 20, schlägt für deine Redaktion ein neues digitales Tool vor. Du arbeitest seit 15 Jahren erfolgreich mit der bisherigen Methode.",
+        options:[
+          {k:"A", text:"Ich bin offen und probiere es aus", score:2},
+          {k:"B", text:"Ich höre zu, bleibe aber bei meiner Methode", score:0},
+          {k:"C", text:"Ich sage: «Gute Idee, aber bei uns läuft das anders»", score:0},
+          {k:"D", text:"Ich schlage einen Pilotversuch vor – paralleler Test beider Methoden", score:2}
+        ]
+      },
+      { id:"hf2_bs2a", type:"bs_scale", hf:"hf2", paired_with:"hf2_bs2b",
+        label:"Selbstbild Lernen von anderen",
+        context:"Von anderen zu lernen erfordert Offenheit – unabhängig von Alter oder Erfahrung.",
+        text:"Wie offen bin ich dafür, von jüngeren oder weniger erfahrenen Kolleg:innen zu lernen?",
+        scale_low:"gar nicht", scale_high:"sehr offen"
+      },
+      { id:"hf2_bs2b", type:"bs_scenario", hf:"hf2", paired_with:"hf2_bs2a",
+        label:"Verhalten: Vorschlag des Praktikanten",
+        context:"",
+        text:"In einem Meeting schlägt ein Praktikant eine Arbeitsweise vor, die du noch nicht kennst.",
+        options:[
+          {k:"A", text:"Ich frage nach – mich interessiert, was dahintersteckt", score:2},
+          {k:"B", text:"Ich nicke höflich, aber tue es nicht weiter", score:0},
+          {k:"C", text:"Ich weise darauf hin, dass wir das schon anders versucht haben", score:0},
+          {k:"D", text:"Ich bitte ihn, es in der nächsten Teambesprechung kurz vorzustellen", score:2}
+        ]
+      },
+      { id:"hf2_sob", type:"sob", hf:"hf2",
+        label:"Fremdbild: Jüngere Kolleg:in",
+        context:"",
+        text:"Was würde ein:e jüngere:r Kolleg:in sagen: Wie zugänglich und teilungsbereit bin ich mit meinem Wissen?",
+        scale_low:"gar nicht", scale_high:"sehr zugänglich"
+      },
+      { id:"hf2_jn1", type:"yn", hf:"hf2", yn_score:1,
+        label:"Wissen dokumentiert?",
+        context:"Dokumentation ist der nachhaltigste Weg, Wissen zu teilen.",
+        text:"Hast du in den letzten 4 Wochen aktiv Wissen dokumentiert oder aufbereitet, damit andere es nutzen können?"
+      },
+      { id:"hf2_jn2", type:"yn", hf:"hf2", yn_score:-1,
+        label:"Wissen nur bei mir?",
+        context:"Wissensisolation ist ein Risiko – für dich und den ORF.",
+        text:"Gibt es Wissen in deinem Bereich, das im Moment nur bei dir liegt – und das du noch nicht weitergegeben hast?"
+      },
+      { id:"hf2_jn3", type:"yn", hf:"hf2", yn_score:1,
+        label:"Von anderen gelernt?",
+        context:"Lernen ist keine Einbahnstraße.",
+        text:"Hast du in den letzten 4 Wochen etwas von einer Kollegin oder einem Kollegen gelernt und es bewusst in deine Arbeit eingebaut?"
+      }
+    ]
+  },
+  hf3: {
+    title: "Führung & Leadership",
+    short: "Führung",
+    bias: "Verantwortungsdiffusion",
+    color: "#ec5916",
+    questions: [
+      { id:"hf3_sj1", type:"sj", hf:"hf3",
+        label:"Das gescheiterte Projekt",
+        context:"Verantwortung zu übernehmen schafft Vertrauen – mehr als jede Erfolgsgeschichte.",
+        text:"Ein Projekt deines Teams ist gescheitert. Du hattest dich maßgeblich für die Durchführung des Projekts eingesetzt. In einem Meeting mit der Geschäftsführung wird nach den Gründen gefragt.",
+        options:[
+          {k:"A", text:"Ich sage klar: «Ich habe dieses Projekt aktiv vorangetrieben – die Verantwortung liegt bei mir»", score:2},
+          {k:"B", text:"Ich erkläre die äußeren Umstände, die zum Scheitern geführt haben", score:0},
+          {k:"C", text:"Ich verweise auf die Teamentscheidung – es war eine gemeinsame Sache", score:0},
+          {k:"D", text:"Ich analysiere sachlich, was schiefgelaufen ist, und benenne meinen Anteil klar", score:2}
+        ]
+      },
+      { id:"hf3_sj2", type:"sj", hf:"hf3",
+        label:"Die große Unsicherheit",
+        context:"Ehrliche Führung bedeutet, auch Unsicherheit transparent zu machen – statt falsche Sicherheit zu verkaufen.",
+        text:"Dein Team ist verunsichert wegen einer bevorstehenden Umstrukturierung. Du selbst weißt auch nicht mehr als Gerüchte. Deine Mitarbeitenden fragen dich direkt.",
+        options:[
+          {k:"A", text:"Ich sage ehrlich: «Ich weiß es auch noch nicht – aber ich halte euch auf dem Laufenden»", score:2},
+          {k:"B", text:"Ich beruhige: «Macht euch keine Sorgen, es wird schon»", score:0},
+          {k:"C", text:"Ich sage nichts, bis ich Sicherheit habe", score:0},
+          {k:"D", text:"Ich gebe weiter, was ich als Gerücht gehört habe – Transparenz ist wichtig", score:1}
+        ]
+      },
+      { id:"hf3_bs1a", type:"bs_scale", hf:"hf3", paired_with:"hf3_bs1b",
+        label:"Selbstbild Orientierung geben",
+        context:"Orientierung geben ist eine Kernaufgabe von Führung – auf jeder Ebene.",
+        text:"Wie klar gebe ich meinem Umfeld Orientierung – auch wenn ich selbst unsicher bin?",
+        scale_low:"gar nicht", scale_high:"sehr klar"
+      },
+      { id:"hf3_bs1b", type:"bs_scenario", hf:"hf3", paired_with:"hf3_bs1a",
+        label:"Verhalten: Teamkonflikt",
+        context:"",
+        text:"Zwei Teammitglieder haben einen heftigen Konflikt. Die Arbeit leidet. Gleichzeitig läuft eine Großproduktion mit engem Zeitplan.",
+        options:[
+          {k:"A", text:"Ich spreche beide sofort an und kläre den Konflikt", score:2},
+          {k:"B", text:"Ich priorisiere die Produktion – der Konflikt muss warten", score:0},
+          {k:"C", text:"Ich trenne die beiden operativ und spreche es nach der Produktion an", score:1},
+          {k:"D", text:"Ich informiere HR und bitte um Unterstützung", score:1}
+        ]
+      },
+      { id:"hf3_bs2a", type:"bs_scale", hf:"hf3", paired_with:"hf3_bs2b",
+        label:"Selbstbild Verantwortung übernehmen",
+        context:"",
+        text:"Wie konsequent übernehme ich Verantwortung für Entscheidungen – auch wenn sie sich als falsch herausstellen?",
+        scale_low:"gar nicht", scale_high:"immer"
+      },
+      { id:"hf3_bs2b", type:"bs_scenario", hf:"hf3", paired_with:"hf3_bs2a",
+        label:"Verhalten: Kollege wird kritisiert",
+        context:"",
+        text:"Du hast einem Kollegen grünes Licht für ein Konzept gegeben. Es kommt schlecht an. Der Kollege wird intern kritisiert.",
+        options:[
+          {k:"A", text:"Ich stelle klar, dass die Entscheidung meine war", score:2},
+          {k:"B", text:"Ich halte mich raus – er hat es umgesetzt", score:0},
+          {k:"C", text:"Ich erkläre den Kontext, ohne Schuld zuzuweisen", score:1},
+          {k:"D", text:"Ich spreche zuerst mit dem Kollegen und klären gemeinsam das weitere Vorgehen", score:2}
+        ]
+      },
+      { id:"hf3_sob", type:"sob", hf:"hf3",
+        label:"Fremdbild: Teammitglieder",
+        context:"",
+        text:"Was würden deine Teammitglieder sagen: Wie klar und verlässlich gebe ich Orientierung, wenn es darauf ankommt?",
+        scale_low:"gar nicht", scale_high:"sehr klar"
+      },
+      { id:"hf3_jn1", type:"yn", hf:"hf3", yn_score:1,
+        label:"Unpopuläre Entscheidung",
+        context:"Unbequeme Entscheidungen zu treffen und dazu zu stehen ist ein Zeichen echter Führung.",
+        text:"Hast du in den letzten 4 Wochen eine Entscheidung getroffen, die unpopulär war – und dazu gestanden?"
+      },
+      { id:"hf3_jn2", type:"yn", hf:"hf3", yn_score:-1,
+        label:"Entscheidung vermieden?",
+        context:"",
+        text:"Gab es in den letzten 4 Wochen eine Situation, in der du eine Entscheidung vermieden oder aufgeschoben hast, obwohl sie nötig gewesen wäre?"
+      },
+      { id:"hf3_jn3", type:"yn", hf:"hf3", yn_score:1,
+        label:"Orientierung gegeben",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen jemandem aus deinem Umfeld aktiv Orientierung gegeben – auch ohne explizit darum gebeten zu werden?"
+      }
+    ]
+  },
+  hf4: {
+    title: "Weiterentwicklung & Empowerment",
+    short: "Entwicklung",
+    bias: "Fixed Mindset",
+    color: "#f9aa11",
+    questions: [
+      { id:"hf4_sj1", type:"sj", hf:"hf4",
+        label:"Komfortzone oder Neuland?",
+        context:"Ein Growth Mindset bedeutet: Fehler sind kein Zeichen von Schwäche, sondern von Entwicklung.",
+        text:"Du bekommst die Möglichkeit, an einem neuen multimedialen Format mitzuarbeiten. Es liegt außerhalb deiner bisherigen Kompetenzen und du wirst anfangs Fehler machen. Gleichzeitig könntest du ein bewährtes Format weiterführen.",
+        options:[
+          {k:"A", text:"Ich nehme die neue Herausforderung an – Fehler gehören dazu", score:2},
+          {k:"B", text:"Ich bleibe beim Bewährten – dort bin ich am wirksamsten", score:0},
+          {k:"C", text:"Ich frage, ob ich beides parallel machen kann", score:1},
+          {k:"D", text:"Ich sage zu, bitte aber um eine strukturierte Einschulung", score:2}
+        ]
+      },
+      { id:"hf4_sj2", type:"sj", hf:"hf4",
+        label:"Loslassen unter Druck",
+        context:"Echtes Empowerment bedeutet, anderen zu vertrauen – auch wenn es kurzfristig mehr kostet.",
+        text:"Ein:e Mitarbeiter:in zeigt Potenzial, macht aber noch Fehler. Es wäre schneller, die Aufgabe selbst zu erledigen. Die Deadline ist in drei Tagen.",
+        options:[
+          {k:"A", text:"Ich lasse sie/ihn machen und begleite – auch wenn es länger dauert", score:2},
+          {k:"B", text:"Ich mache es selbst – die Qualität muss stimmen", score:0},
+          {k:"C", text:"Ich teile die Aufgabe: den einfacheren Teil sie/er, den kritischen ich", score:1},
+          {k:"D", text:"Ich gebe klares Feedback zu den Fehlern und eine zweite Chance", score:2}
+        ]
+      },
+      { id:"hf4_bs1a", type:"bs_scale", hf:"hf4", paired_with:"hf4_bs1b",
+        label:"Selbstbild eigene Entwicklung",
+        context:"",
+        text:"Wie stark investiere ich aktiv in meine eigene Weiterentwicklung – auch über mein Kerngebiet hinaus?",
+        scale_low:"gar nicht", scale_high:"sehr stark"
+      },
+      { id:"hf4_bs1b", type:"bs_scenario", hf:"hf4", paired_with:"hf4_bs1a",
+        label:"Verhalten: Neue Software",
+        context:"",
+        text:"Dein Team braucht eine neue Software, um effizienter zu arbeiten. Die Einarbeitungszeit beträgt 2 Wochen. Ihr habt gerade einen vollen Produktionsplan.",
+        options:[
+          {k:"A", text:"Wir starten sofort – kurzfristiger Schmerz, langfristiger Gewinn", score:2},
+          {k:"B", text:"Wir verschieben es auf eine ruhigere Phase", score:0},
+          {k:"C", text:"Eine Person lernt es zuerst und gibt es dann weiter", score:1},
+          {k:"D", text:"Ich organisiere ein komprimiertes Training, das sich in den Alltag einbettet", score:2}
+        ]
+      },
+      { id:"hf4_bs2a", type:"bs_scale", hf:"hf4", paired_with:"hf4_bs2b",
+        label:"Selbstbild Andere entwickeln",
+        context:"",
+        text:"Wie bewusst fördere ich die Entwicklung von Kolleg:innen – auch wenn es kurzfristig mehr Aufwand bedeutet?",
+        scale_low:"gar nicht", scale_high:"sehr bewusst"
+      },
+      { id:"hf4_bs2b", type:"bs_scenario", hf:"hf4", paired_with:"hf4_bs2a",
+        label:"Verhalten: 30 oder 90 Minuten",
+        context:"",
+        text:"Eine Kollegin bittet dich, ihr bei einem Projekt zu helfen, das sie noch nicht kennt. Du könntest es in 30 Minuten selbst erledigen oder ihr in 90 Minuten erklären.",
+        options:[
+          {k:"A", text:"Ich erkläre es ihr – der Lerneffekt ist wichtiger als die Zeit", score:2},
+          {k:"B", text:"Ich mache es schnell selbst und erkläre ihr das Ergebnis", score:0},
+          {k:"C", text:"Ich erkläre die wichtigsten Schritte und lasse sie den Rest selbst versuchen", score:1},
+          {k:"D", text:"Ich frage sie, wie viel sie schon weiß, und setze dort an", score:2}
+        ]
+      },
+      { id:"hf4_sob", type:"sob", hf:"hf4",
+        label:"Fremdbild: Kollegin",
+        context:"",
+        text:"Was würde eine Kollegin sagen, die dich gut kennt: Wie offen bin ich für neue Wege – auch wenn sie unbequem sind?",
+        scale_low:"gar nicht", scale_high:"sehr offen"
+      },
+      { id:"hf4_jn1", type:"yn", hf:"hf4", yn_score:1,
+        label:"Neues ausprobiert?",
+        context:"Wer regelmäßig Neues ausprobiert, trainiert aktiv sein Growth Mindset.",
+        text:"Hast du in den letzten 4 Wochen etwas Neues ausprobiert – eine Methode, ein Tool, eine Arbeitsweise – die du vorher nicht kanntest?"
+      },
+      { id:"hf4_jn2", type:"yn", hf:"hf4", yn_score:-1,
+        label:"Lernen aufgeschoben?",
+        context:"",
+        text:"Gibt es eine Fähigkeit oder ein Thema, das du seit mehr als 6 Monaten lernen wolltest – und es noch nicht angegangen bist?"
+      },
+      { id:"hf4_jn3", type:"yn", hf:"hf4", yn_score:1,
+        label:"Kolleg:in begleitet?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen aktiv Zeit investiert, um eine Kollegin oder einen Kollegen weiterzuentwickeln – nicht nur eine Aufgabe zu delegieren, sondern zu begleiten?"
+      }
+    ]
+  },
+  hf5: {
+    title: "Kommunikation & Transparenz",
+    short: "Kommunikation",
+    bias: "Transparenz-Illusion",
+    color: "#ec5916",
+    questions: [
+      { id:"hf5_sj1", type:"sj", hf:"hf5",
+        label:"Die unbequeme Botschaft",
+        context:"Ehrliche Kommunikation bedeutet nicht, alles gutzuheißen – aber alles Relevante zu teilen.",
+        text:"Du weißt, dass eine Entscheidung der Geschäftsführung in deinem Team schlecht ankommen wird. Du verstehst die Gründe, teilst die Entscheidung aber nicht vollständig. Dein Team erwartet deine Einschätzung.",
+        options:[
+          {k:"A", text:"Ich kommuniziere die Entscheidung und die Gründe – auch wenn ich sie nicht vollständig teile", score:2},
+          {k:"B", text:"Ich kommuniziere die Entscheidung und sage offen, dass ich sie kritisch sehe", score:2},
+          {k:"C", text:"Ich kommuniziere nur das Nötigste und vermeide Diskussion", score:0},
+          {k:"D", text:"Ich warte, bis die offizielle Kommunikation kommt", score:1}
+        ]
+      },
+      { id:"hf5_sj2", type:"sj", hf:"hf5",
+        label:"Projekt läuft schief",
+        context:"Transparenz unter Druck ist der echte Test – wenn es bequem ist, ist es keine Leistung.",
+        text:"In einem Projekt läuft etwas schief. Du könntest es noch unter dem Radar korrigieren – niemand würde es merken. Oder du sprichst es offen an, was Verzögerung und unangenehme Diskussionen bedeutet.",
+        options:[
+          {k:"A", text:"Ich spreche es offen an – Transparenz geht vor", score:2},
+          {k:"B", text:"Ich korrigiere es still – das Ergebnis zählt", score:0},
+          {k:"C", text:"Ich spreche es im kleinen Kreis an, nicht öffentlich", score:1},
+          {k:"D", text:"Ich dokumentiere es und spreche es im nächsten Jour fixe an", score:1}
+        ]
+      },
+      { id:"hf5_bs1a", type:"bs_scale", hf:"hf5", paired_with:"hf5_bs1b",
+        label:"Selbstbild Transparenz",
+        context:"",
+        text:"Wie transparent kommuniziere ich – auch wenn die Nachricht unangenehm ist?",
+        scale_low:"gar nicht", scale_high:"sehr transparent"
+      },
+      { id:"hf5_bs1b", type:"bs_scenario", hf:"hf5", paired_with:"hf5_bs1a",
+        label:"Verhalten: Vertrauliche Information",
+        context:"",
+        text:"Ein:e neue:r Kolleg:in aus einem anderen Bereich kommt mit einer vertraulichen Information zu dir: In deren Abteilung gibt es ein gravierendes Problem. Die Person bittet dich um Rat.",
+        options:[
+          {k:"A", text:"Ich höre zu, berate – und behalte es für mich", score:1},
+          {k:"B", text:"Ich höre zu und empfehle, es offiziell zu melden", score:2},
+          {k:"C", text:"Ich informiere meine Führungskraft – das muss eskaliert werden", score:1},
+          {k:"D", text:"Ich frage zuerst: «Darf ich das weitergeben? Wenn nicht, respektiere ich das»", score:2}
+        ]
+      },
+      { id:"hf5_bs2a", type:"bs_scale", hf:"hf5", paired_with:"hf5_bs2b",
+        label:"Selbstbild Informationsfluss",
+        context:"",
+        text:"Wie aktiv sorge ich dafür, dass relevante Informationen in meinem Umfeld ankommen – auch ohne explizit darum gebeten zu werden?",
+        scale_low:"gar nicht", scale_high:"sehr aktiv"
+      },
+      { id:"hf5_bs2b", type:"bs_scenario", hf:"hf5", paired_with:"hf5_bs2a",
+        label:"Verhalten: Relevante Info für andere",
+        context:"",
+        text:"Du erfährst in einem internen Meeting von einer Entwicklung, die für eine andere Abteilung sehr relevant wäre. Es ist nicht deine Aufgabe, sie zu informieren.",
+        options:[
+          {k:"A", text:"Ich informiere sie trotzdem – der ORF profitiert davon", score:2},
+          {k:"B", text:"Ich denke, die werden das schon erfahren", score:0},
+          {k:"C", text:"Ich erwähne es beiläufig beim nächsten Kontakt", score:1},
+          {k:"D", text:"Ich schicke eine kurze Mail mit dem Hinweis", score:2}
+        ]
+      },
+      { id:"hf5_sob", type:"sob", hf:"hf5",
+        label:"Fremdbild: Direkte Kolleg:innen",
+        context:"",
+        text:"Was würden deine direkten Kolleg:innen sagen: Wie offen und ehrlich kommuniziere ich – auch wenn es unbequem ist?",
+        scale_low:"gar nicht", scale_high:"sehr offen"
+      },
+      { id:"hf5_jn1", type:"yn", hf:"hf5", yn_score:1,
+        label:"Unangenehmes kommuniziert?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen eine unangenehme Information aktiv kommuniziert, anstatt sie zurückzuhalten?"
+      },
+      { id:"hf5_jn2", type:"yn", hf:"hf5", yn_score:-1,
+        label:"Information zurückgehalten?",
+        context:"",
+        text:"Gab es in den letzten 4 Wochen eine Information, die du bewusst zurückgehalten hast – weil der Zeitpunkt nicht passte oder du Reaktionen vermeiden wolltest?"
+      },
+      { id:"hf5_jn3", type:"yn", hf:"hf5", yn_score:1,
+        label:"Kommunikation überprüft?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen aktiv nachgefragt, ob deine Kommunikation bei anderen ankam und verstanden wurde?"
+      }
+    ]
+  },
+  hf6: {
+    title: "Feedback & Fehlerkultur",
+    short: "Feedback",
+    bias: "Loss Aversion",
+    color: "#feda00",
+    questions: [
+      { id:"hf6_sj1", type:"sj", hf:"hf6",
+        label:"Ehrlichkeit vs. Harmonie",
+        context:"Loss Aversion: Die Angst, eine Beziehung zu gefährden, wiegt oft schwerer als der Nutzen durch ehrliches Feedback.",
+        text:"Eine Kollegin, mit der du gut auskommst, hat einen Beitrag produziert, den du fachlich schwach findest. Sie trifft dich am Gang und fragt: «Wie hat dir mein Beitrag gefallen?»",
+        options:[
+          {k:"A", text:"Ich sage ehrlich, was ich verbessern würde – auch wenn es unangenehm ist", score:2},
+          {k:"B", text:"Ich sage «Gut gemacht!» – die Beziehung ist mir wichtiger", score:0},
+          {k:"C", text:"Ich sage «Interessant» und wechsle das Thema", score:0},
+          {k:"D", text:"Ich sage: «Lass uns einen Kaffee trinken, ich hab ein paar Gedanken dazu»", score:2}
+        ]
+      },
+      { id:"hf6_sj2", type:"sj", hf:"hf6",
+        label:"Fehler unter Druck",
+        context:"Eine offene Fehlerkultur beginnt damit, dass jede:r den Mut hat, eigene Fehler anzusprechen.",
+        text:"Dir ist ein Fehler unterlaufen, der eine Nachproduktion erfordert. Der Fehler ist dir selbst aufgefallen – niemandem sonst. Die Korrektur kostet einen halben Tag.",
+        options:[
+          {k:"A", text:"Ich melde den Fehler sofort und organisiere die Nachproduktion", score:2},
+          {k:"B", text:"Ich korrigiere es still, wenn sich eine Gelegenheit ergibt", score:0},
+          {k:"C", text:"Ich wäge ab: Ist der Fehler wirklich relevant für das Ergebnis?", score:1},
+          {k:"D", text:"Ich melde den Fehler und schlage gleichzeitig die Lösung vor", score:2}
+        ]
+      },
+      { id:"hf6_bs1a", type:"bs_scale", hf:"hf6", paired_with:"hf6_bs1b",
+        label:"Selbstbild Feedback geben",
+        context:"",
+        text:"Wie offen gebe ich Feedback – auch wenn es kritisch ist und die Beziehung belasten könnte?",
+        scale_low:"gar nicht", scale_high:"sehr offen"
+      },
+      { id:"hf6_bs1b", type:"bs_scenario", hf:"hf6", paired_with:"hf6_bs1a",
+        label:"Verhalten: Feedback von der Führungskraft",
+        context:"",
+        text:"Deine Führungskraft gibt dir Feedback: «Deine letzte Präsentation war nicht auf dem Niveau, das ich von dir gewohnt bin.» Du bist überrascht – du fandest sie gut.",
+        options:[
+          {k:"A", text:"Ich frage nach konkreten Beispielen – ich will es verstehen", score:2},
+          {k:"B", text:"Ich erkläre, warum ich die Präsentation für gelungen halte", score:0},
+          {k:"C", text:"Ich nehme es an, aber innerlich denke ich: «Stimmt nicht»", score:0},
+          {k:"D", text:"Ich bedanke mich und reflektiere es später in Ruhe – mit offenem Ergebnis", score:2}
+        ]
+      },
+      { id:"hf6_bs2a", type:"bs_scale", hf:"hf6", paired_with:"hf6_bs2b",
+        label:"Selbstbild Fehler zugeben",
+        context:"",
+        text:"Wie leicht fällt es mir, eigene Fehler offen anzusprechen – auch wenn niemand sie bemerkt hat?",
+        scale_low:"sehr schwer", scale_high:"sehr leicht"
+      },
+      { id:"hf6_bs2b", type:"bs_scenario", hf:"hf6", paired_with:"hf6_bs2a",
+        label:"Verhalten: Eigener Vorschlag hat Problem verursacht",
+        context:"",
+        text:"In einer Teambesprechung merkst du, dass ein Vorschlag, den du letzte Woche gemacht hast, zu einem Problem geführt hat. Noch hat niemand den Zusammenhang hergestellt.",
+        options:[
+          {k:"A", text:"Ich spreche es aktiv an: «Ich glaube, mein Vorschlag hat das verursacht»", score:2},
+          {k:"B", text:"Ich warte, ob es jemand anderes bemerkt", score:0},
+          {k:"C", text:"Ich erwähne es nach dem Meeting unter vier Augen", score:1},
+          {k:"D", text:"Ich spreche es an und schlage direkt eine Lösung vor", score:2}
+        ]
+      },
+      { id:"hf6_sob", type:"sob", hf:"hf6",
+        label:"Fremdbild: Regelmäßige Kolleg:innen",
+        context:"",
+        text:"Was würden Kolleg:innen sagen, die regelmäßig mit dir arbeiten: Wie ehrlich und direkt ist mein Feedback – auch wenn es unangenehm ist?",
+        scale_low:"gar nicht", scale_high:"sehr direkt"
+      },
+      { id:"hf6_jn1", type:"yn", hf:"hf6", yn_score:1,
+        label:"Kritisches Feedback gegeben?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen jemandem kritisches Feedback gegeben – direkt und persönlich, nicht nur indirekt?"
+      },
+      { id:"hf6_jn2", type:"yn", hf:"hf6", yn_score:-1,
+        label:"Feedback zurückgehalten?",
+        context:"",
+        text:"Gab es in den letzten 4 Wochen eine Situation, in der du kritisches Feedback zurückgehalten hast – weil du Konflikte vermeiden wolltest?"
+      },
+      { id:"hf6_jn3", type:"yn", hf:"hf6", yn_score:1,
+        label:"Aktiv Feedback eingeholt?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen aktiv nach Feedback zu deiner eigenen Arbeit gefragt – nicht gewartet, bis es kam?"
+      }
+    ]
+  },
+  hf7: {
+    title: "Kooperation & Zusammenarbeit",
+    short: "Kooperation",
+    bias: "In-Group Bias",
+    color: "#f9aa11",
+    questions: [
+      { id:"hf7_sj1", type:"sj", hf:"hf7",
+        label:"Der Hilferuf von nebenan",
+        context:"In-Group Bias: Wir identifizieren uns stärker mit dem eigenen Bereich als mit dem Gesamtunternehmen.",
+        text:"Ein anderer Bereich braucht dringend Unterstützung für ein zeitkritisches Projekt. Es passt thematisch zu deiner Arbeit, aber du hast selbst genug zu tun. Deine Führungskraft sagt: «Das ist nicht unser Problem.»",
+        options:[
+          {k:"A", text:"Ich helfe trotzdem – der ORF ist wichtiger als mein Bereich", score:2},
+          {k:"B", text:"Ich folge meiner Führungskraft – sie setzt die Prioritäten", score:0},
+          {k:"C", text:"Ich biete informell an, punktuell zu unterstützen", score:1},
+          {k:"D", text:"Ich schlage vor, es offiziell als bereichsübergreifendes Projekt aufzusetzen", score:2}
+        ]
+      },
+      { id:"hf7_sj2", type:"sj", hf:"hf7",
+        label:"Budget-Konkurrenz",
+        context:"Echte Kooperation übersteht auch Konkurrenzsituationen – das ist der härteste Test.",
+        text:"Dein Bereich und ein anderer bewerben sich intern um dasselbe Budget. Der andere Bereich fragt dich nach Informationen, die auch für deren Antrag nützlich wären.",
+        options:[
+          {k:"A", text:"Ich teile offen – Konkurrenz darf Kooperation nicht verhindern", score:2},
+          {k:"B", text:"Ich teile nichts – das wäre naiv", score:0},
+          {k:"C", text:"Ich teile Allgemeines, aber nicht Strategisches", score:1},
+          {k:"D", text:"Ich schlage vor, einen gemeinsamen Antrag zu stellen", score:2}
+        ]
+      },
+      { id:"hf7_bs1a", type:"bs_scale", hf:"hf7", paired_with:"hf7_bs1b",
+        label:"Selbstbild bereichsübergreifend",
+        context:"",
+        text:"Wie stark denke und handle ich über meinen eigenen Bereich hinaus – im Sinne des gesamten ORF?",
+        scale_low:"gar nicht", scale_high:"sehr stark"
+      },
+      { id:"hf7_bs1b", type:"bs_scenario", hf:"hf7", paired_with:"hf7_bs1a",
+        label:"Verhalten: Erfolg wird nur eigenem Team zugeschrieben",
+        context:"",
+        text:"Ein gemeinsames Projekt mit einem anderen Bereich war erfolgreich. Die Geschäftsführung lobt öffentlich «dein Team». Der andere Bereich hat mindestens die Hälfte der Arbeit geleistet.",
+        options:[
+          {k:"A", text:"Ich stelle sofort klar, dass es eine gemeinsame Leistung war", score:2},
+          {k:"B", text:"Ich nehme das Lob an – der andere Bereich weiß, dass er mitgewirkt hat", score:0},
+          {k:"C", text:"Ich erwähne den anderen Bereich beiläufig", score:1},
+          {k:"D", text:"Ich schreibe eine Mail an beide Teams und würdige alle Beteiligten öffentlich", score:2}
+        ]
+      },
+      { id:"hf7_bs2a", type:"bs_scale", hf:"hf7", paired_with:"hf7_bs2b",
+        label:"Selbstbild Reziprozität",
+        context:"",
+        text:"Wie proaktiv teile ich Informationen, Ressourcen oder Ideen mit anderen Bereichen – auch ohne direkten Nutzen für mich?",
+        scale_low:"gar nicht", scale_high:"sehr proaktiv"
+      },
+      { id:"hf7_bs2b", type:"bs_scenario", hf:"hf7", paired_with:"hf7_bs2a",
+        label:"Verhalten: Paralleles Projekt entdeckt",
+        context:"",
+        text:"Du erfährst, dass ein anderer Bereich gerade an einem ähnlichen Thema arbeitet wie du – ohne davon zu wissen. Eine Zusammenarbeit würde beiden helfen, kostet aber Zeit.",
+        options:[
+          {k:"A", text:"Ich nehme sofort Kontakt auf und schlage Zusammenarbeit vor", score:2},
+          {k:"B", text:"Ich warte – sie werden es schon selbst merken", score:0},
+          {k:"C", text:"Ich erwähne es beim nächsten zufälligen Kontakt", score:1},
+          {k:"D", text:"Ich informiere meine Führungskraft und bitte um eine offizielle Abstimmung", score:1}
+        ]
+      },
+      { id:"hf7_sob", type:"sob", hf:"hf7",
+        label:"Fremdbild: Andere Bereiche",
+        context:"",
+        text:"Was würde eine Kollegin aus einem anderen Bereich sagen: Wie offen und kooperativ bin ich, wenn es darauf ankommt?",
+        scale_low:"gar nicht", scale_high:"sehr kooperativ"
+      },
+      { id:"hf7_jn1", type:"yn", hf:"hf7", yn_score:1,
+        label:"Zusammenarbeit initiiert?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen aktiv eine Zusammenarbeit mit einem anderen Bereich initiiert – nicht nur darauf gewartet, dass jemand auf dich zukommt?"
+      },
+      { id:"hf7_jn2", type:"yn", hf:"hf7", yn_score:-1,
+        label:"Infos für sich behalten?",
+        context:"",
+        text:"Gab es in den letzten 4 Wochen eine Situation, in der du Informationen für dich behalten hast, obwohl ein anderer Bereich davon hätte profitieren können?"
+      },
+      { id:"hf7_jn3", type:"yn", hf:"hf7", yn_score:1,
+        label:"Erfolg anderer anerkannt?",
+        context:"",
+        text:"Hast du in den letzten 4 Wochen den Erfolg einer bereichsübergreifenden Zusammenarbeit öffentlich anerkannt – die Leistung anderer sichtbar gemacht?"
+      }
+    ]
+  }
+};
+
+// ============================================================
+// SCHICHT 2: SCORING-LOGIK
+// ============================================================
+var answers = {};
+var scores = {};
+var blindspots = {};
+
+function computeScores() {
+  Object.keys(QUESTIONS).forEach(function(hf) {
+    blindspots[hf] = [];
+    scores[hf] = computeHFScore(hf);
+  });
+}
+
+// ============================================================
+// SCHICHT 3: UI-LOGIK
+// ============================================================
+var CX = 150, CY = 150;
+var currentQ = 0;
+var allQuestions = [];
+var rewardAfter = null;
+var chosenGoal = '';
+var TOTAL_SCREENS = 80; // Login+Exp+Zielbild+70 Fragen+Ergebnis+Ziel+Companion+Done
+
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return arr;
+}
+
+function buildAllQuestions() {
+  allQuestions = [];
+  // Handlungsfelder randomisieren
+  var hfKeys = shuffleArray(Object.keys(QUESTIONS).slice());
+  hfKeys.forEach(function(hf) {
+    // Innerhalb jedes HF: Fragen-Typen in sinnvoller Reihenfolge halten
+    // (bs_scale immer VOR bs_scenario des gleichen Paares)
+    // aber SJ-Reihenfolge und JN-Reihenfolge randomisieren
+    var qs = QUESTIONS[hf].questions.slice();
+    var sj = shuffleArray(qs.filter(function(q){ return q.type === 'sj'; }));
+    var pairs = [];
+    qs.filter(function(q){ return q.type === 'bs_scale'; }).forEach(function(scale) {
+      var scenario = qs.find(function(q){ return q.id === scale.paired_with; });
+      if (scenario) pairs.push([scale, scenario]);
+    });
+    var shuffledPairs = shuffleArray(pairs.slice());
+    var sob = qs.filter(function(q){ return q.type === 'sob'; });
+    var jn = shuffleArray(qs.filter(function(q){ return q.type === 'yn'; }));
+    // Reihenfolge: SJ zuerst, dann Paare, dann SOB, dann JN
+    var ordered = [];
+    sj.forEach(function(q){ ordered.push(q); });
+    shuffledPairs.forEach(function(p){ ordered.push(p[0]); ordered.push(p[1]); });
+    sob.forEach(function(q){ ordered.push(q); });
+    jn.forEach(function(q){ ordered.push(q); });
+    ordered.forEach(function(q){ allQuestions.push(q); });
+  });
+}
+
+function startCheck() {
+  buildAllQuestions();
+  currentQ = 0;
+  answers = {};
+  scores = {};
+  blindspots = {};
+  renderQuestion();
+  G('s_check');
+}
+
+function renderQuestion() {
+  if (currentQ >= allQuestions.length) {
+    computeScores();
+    renderErgebnis();
+    G('s_ergebnis');
+    return;
+  }
+  var q = allQuestions[currentQ];
+  var hfData = QUESTIONS[q.hf];
+  var progress = Math.round((currentQ / allQuestions.length) * 100);
+  document.getElementById('bar').style.width = progress + '%';
+  document.getElementById('cx').textContent = hfData.short + ' · ' + (currentQ + 1) + '/70';
+
+  var html = '';
+  // Header
+  html += '<div class="hfbadge">' + hfData.title + '</div>';
+  html += '<div class="qtype">' + typeLabel(q.type) + '</div>';
+  html += '<p class="qtitle">' + q.text + '</p>';
+
+  if (q.type === 'sj' || q.type === 'bs_scenario') {
+    q.options.forEach(function(opt, i) {
+      html += '<button class="op" id="opt_'+i+'" onclick="selectOption('+i+')">' +
+              '<span class="k">'+opt.k+')</span>' + opt.text + '</button>';
+    });
+  }
+  else if (q.type === 'bs_scale' || q.type === 'sob') {
+    html += '<div class="ends"><span>' + q.scale_low + '</span><span>' + q.scale_high + '</span></div>';
+    html += '<div class="scale">';
+    for (var i = 0; i < 7; i++) {
+      html += '<button id="sc_'+i+'" onclick="selectScale('+i+')">' + (i+1) + '</button>';
+    }
+    html += '</div>';
+    if (q.type === 'sob') {
+      html += '<div class="persona"><div class="av">👥</div><div class="tx">Stell dir eine Person vor, die dich gut kennt und regelmäßig mit dir arbeitet.</div></div>';
+    }
+  }
+  else if (q.type === 'yn') {
+    html += '<div class="yn">' +
+            '<button id="yn_0" onclick="selectYN(0)"><span class="ic">👍</span>Ja</button>' +
+            '<button id="yn_1" onclick="selectYN(1)"><span class="ic">👎</span>Nein</button>' +
+            '</div>';
+  }
+
+  if (q.context) {
+    html += '<div class="ctxbox"><b>Warum das zählt:</b> ' + q.context + '</div>';
+  }
+
+  html += '<button class="nxt" id="nxt_btn" onclick="nextQuestion()">Weiter →</button>';
+
+  // Navigation
+  html += '<div class="nv">';
+  if (currentQ > 0) html += '<a class="m" onclick="prevQuestion()">← Zurück</a>';
+  else html += '<span></span>';
+  html += '<a onclick="G(\'s_zielbild\')">Abbrechen</a></div>';
+
+  document.getElementById('check_content').innerHTML = html;
+
+  // Vorherige Antwort wiederherstellen
+  var prev = answers[q.id];
+  if (prev !== undefined && prev !== null) {
+    restoreAnswer(q, prev);
+    document.getElementById('nxt_btn').classList.add('ready');
+  }
+}
+
+function typeLabel(t) {
+  if (t === 'sj') return 'Situation · Was würdest du tun?';
+  if (t === 'bs_scale') return 'Selbstbild · Skala 1–7';
+  if (t === 'bs_scenario') return 'Verhalten · Wie reagierst du?';
+  if (t === 'sob') return 'Fremdbild · Second Order Belief';
+  if (t === 'yn') return 'Schnell & ehrlich · Ja oder Nein';
+  return '';
+}
+
+function restoreAnswer(q, val) {
+  if (q.type === 'sj' || q.type === 'bs_scenario') {
+    var btn = document.getElementById('opt_' + val);
+    if (btn) btn.classList.add('sel');
+  } else if (q.type === 'bs_scale' || q.type === 'sob') {
+    var sb = document.getElementById('sc_' + val);
+    if (sb) sb.classList.add('sel');
+  } else if (q.type === 'yn') {
+    var yb = document.getElementById('yn_' + val);
+    if (yb) yb.classList.add('sel');
+  }
+}
+
+function selectOption(i) {
+  document.querySelectorAll('.op').forEach(function(b){ b.classList.remove('sel'); });
+  document.getElementById('opt_' + i).classList.add('sel');
+  answers[allQuestions[currentQ].id] = i;
+  document.getElementById('nxt_btn').classList.add('ready');
+}
+
+function selectScale(i) {
+  document.querySelectorAll('.scale button').forEach(function(b){ b.classList.remove('sel'); });
+  document.getElementById('sc_' + i).classList.add('sel');
+  answers[allQuestions[currentQ].id] = i;
+  document.getElementById('nxt_btn').classList.add('ready');
+}
+
+function selectYN(i) {
+  document.querySelectorAll('.yn button').forEach(function(b){ b.classList.remove('sel'); });
+  document.getElementById('yn_' + i).classList.add('sel');
+  answers[allQuestions[currentQ].id] = i;
+  setTimeout(nextQuestion, 300);
+}
+
+function nextQuestion() {
+  var q = allQuestions[currentQ];
+  if (answers[q.id] === undefined || answers[q.id] === null) return;
+
+  // Gamification: nach jedem 10. = Ende eines Handlungsfelds
+  if ((currentQ + 1) % 10 === 0 && currentQ < allQuestions.length - 1) {
+    var hfIdx = Math.floor(currentQ / 10);
+    var hfKey = Object.keys(QUESTIONS)[hfIdx];
+    // Schnell-Score für dieses HF
+    var qs = QUESTIONS[hfKey].questions;
+    var pts = 0, max = 0;
+    qs.forEach(function(fq) {
+      var ans = answers[fq.id];
+      if (fq.type === 'sj' && ans !== undefined) { pts += fq.options[ans].score; max += 2; }
+    });
+    var pct = max > 0 ? pts / max : 0.5;
+    rewardAfter = currentQ + 1;
+    showReward(QUESTIONS[hfKey], pct);
+    currentQ++;
+    return;
+  }
+
+  currentQ++;
+  renderQuestion();
+}
+
+function prevQuestion() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+
+var currentRewardHF = null;
+
+function showReward(hfData, pct) {
+  currentRewardHF = hfData;
+  confetti();
+  var face, title, msg;
+  if (pct >= 0.8) {
+    face = '🌟'; title = 'Stark! ' + hfData.title + ' ist eine echte Stärke.';
+    msg = 'Du bewegst dich hier sehr nah am Kulturziel des ORF. Deine Haltung trägt andere mit.';
+  } else if (pct >= 0.5) {
+    face = '💪'; title = hfData.title + ': solide Basis, mit Potenzial.';
+    msg = 'Du hast eine gute Grundhaltung. Besonders unter Druck gibt es noch Entwicklungsmöglichkeiten.';
+  } else {
+    face = '🔍'; title = hfData.title + ': hier liegt dein Entwicklungsfeld.';
+    msg = 'Der Companion begleitet dich genau hier – mit kleinen, konkreten Schritten.';
+  }
+  document.getElementById('reward_face').textContent = face;
+  document.getElementById('reward_title').textContent = title;
+  document.getElementById('reward_msg').textContent = msg;
+
+  // Zwischen-Blüte aufbauen
+  var hfKeys = Object.keys(QUESTIONS);
+  var doneHFs = hfKeys.filter(function(hf) {
+    return QUESTIONS[hf].questions.every(function(q){ return answers[q.id] !== undefined; });
+  });
+  var partialDefs = [];
+  hfKeys.forEach(function(hf, i) {
+    var ang = -90 + i*(360/7);
+    var isDone = doneHFs.indexOf(hf) >= 0;
+    var s = isDone ? (computeHFScore(hf)) : 0;
+    var col = !isDone ? '#e8e6df' : (s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00'));
+    var len = !isDone ? 30 : (38 + s*9);
+    partialDefs.push({ang:ang, len:len, wide:isDone ? (28+s*2) : 18, col:col,
+                      label:[QUESTIONS[hf].short]});
+  });
+  buildFlower(document.getElementById('fl_between'), partialDefs, null);
+
+  // Balken der abgeschlossenen HFs
+  var barsHtml = '<div class="barchart">';
+  doneHFs.forEach(function(hf) {
+    var s = computeHFScore(hf);
+    var col = s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00');
+    var bs = blindspots[hf] && blindspots[hf].length > 0;
+    barsHtml += '<div class="barrow"><div class="top"><span><b>' + QUESTIONS[hf].short + '</b>' +
+                (bs ? ' <span class="bslabel">Blind Spot</span>' : '') +
+                '</span><span style="font-weight:600;">' + s.toFixed(1) + '/10</span></div>' +
+                '<div class="track"><div class="fill" style="width:' + (s*10) + '%;background:'+col+'"></div></div></div>';
+  });
+  barsHtml += '</div>';
+
+  var remaining = hfKeys.length - doneHFs.length;
+  document.getElementById('bw_title').textContent = face + ' ' + title;
+  document.getElementById('bw_sub').textContent = msg + ' Noch ' + remaining + ' Handlungsfelder offen.';
+  document.getElementById('bw_bars').innerHTML = barsHtml;
+  G('s_between');
+}
+
+function showBetweenDetail() {
+  if (!currentRewardHF) return;
+  var hf = null;
+  Object.keys(QUESTIONS).forEach(function(k){ if(QUESTIONS[k] === currentRewardHF) hf = k; });
+  if (!hf) return;
+  var s = computeHFScore(hf);
+  var col = s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00');
+
+  document.getElementById('bwd_title').textContent = currentRewardHF.title;
+  document.getElementById('bwd_sub').textContent = 'Dein Score in diesem Handlungsfeld: ' + s.toFixed(1) + ' von 10 Punkten.';
+
+  // Detaillierte Balken
+  var qs = currentRewardHF.questions;
+  var html = '<div class="scorebig">' + s.toFixed(1) + '<span style="font-size:16px;color:var(--g);">/10</span></div>';
+  html += '<div class="barchart">';
+
+  // SJ-Ergebnisse
+  qs.filter(function(q){return q.type==='sj';}).forEach(function(q){
+    var ans = answers[q.id];
+    if (ans === undefined) return;
+    var sc = q.options[ans].score;
+    html += '<div class="barrow"><div class="top"><span>' + q.label + '</span>' +
+            '<span style="font-weight:600;">' + sc + '/2</span></div>' +
+            '<div class="track"><div class="fill" style="width:' + (sc/2*100) + '%;background:'+col+'"></div></div>' +
+            '<div class="sub">Antwort ' + q.options[ans].k + ': «' + q.options[ans].text.substring(0,60) + '…»</div></div>';
+  });
+
+  // BS-Verhalten
+  qs.filter(function(q){return q.type==='bs_scenario';}).forEach(function(q){
+    var ans = answers[q.id];
+    if (ans === undefined) return;
+    var sc = q.options[ans].score;
+    html += '<div class="barrow"><div class="top"><span>' + q.label + '</span>' +
+            '<span style="font-weight:600;">' + sc + '/2</span></div>' +
+            '<div class="track"><div class="fill" style="width:' + (sc/2*100) + '%;background:'+col+'"></div></div></div>';
+  });
+  html += '</div>';
+  document.getElementById('bwd_bars').innerHTML = html;
+
+  // Blind Spot
+  var bsHtml = '';
+  if (blindspots[hf] && blindspots[hf].length > 0) {
+    bsHtml = '<div class="blindspot">🔍 <b>Blind Spot erkannt:</b> Dein Selbstbild liegt deutlich über deinem Verhalten. ' +
+             'Das ist kein Problem – es ist die wertvollste Erkenntnis für deine Entwicklung.</div>';
+  } else {
+    bsHtml = '<div class="insight good"><b>✓ Kein Blind Spot</b> – Selbstbild und Verhalten stimmen gut überein.</div>';
+  }
+  document.getElementById('bwd_blindspot').innerHTML = bsHtml;
+  document.getElementById('bwd_bias').innerHTML = '<b>Zentraler Bias in diesem Feld: ' + currentRewardHF.bias + '</b><br>' +
+    'Dieser Mechanismus erklärt, warum Verhalten und Absicht manchmal auseinanderfallen.';
+
+  G('s_between_detail');
+}
+
+function computeHFScore(hf) {
+  var qs = QUESTIONS[hf].questions;
+  var sj_pts=0, sj_max=0, bs_pts=0, bs_max=0, sob_val=0, sob_c=0, jn_pts=0, jn_c=0;
+  var bs_pairs = {};
+  qs.forEach(function(q) {
+    var ans = answers[q.id];
+    if (ans===undefined||ans===null) return;
+    if (q.type==='sj'){sj_pts+=q.options[ans].score; sj_max+=2;}
+    else if (q.type==='bs_scenario'){bs_pts+=q.options[ans].score; bs_max+=2;
+      if(q.paired_with){if(!bs_pairs[q.paired_with])bs_pairs[q.paired_with]={};
+        bs_pairs[q.paired_with].behavior=(q.options[ans].score/2)*10;}}
+    else if (q.type==='bs_scale'){var n=((ans+1)-1)/6*10;
+      if(!bs_pairs[q.id])bs_pairs[q.id]={};bs_pairs[q.id].self=n;}
+    else if (q.type==='sob'){sob_val+=((ans+1)-1)/6*2; sob_c++;}
+    else if (q.type==='yn'){
+      if(q.yn_score===1) jn_pts+=(ans===0?1:0);
+      else jn_pts+=(ans===1?1:0); jn_c++;}
+  });
+  // Blind Spots
+  blindspots[hf] = blindspots[hf] || [];
+  Object.keys(bs_pairs).forEach(function(k){
+    var p=bs_pairs[k];
+    if(p.self!==undefined&&p.behavior!==undefined&&p.self-p.behavior>3){
+      if(!blindspots[hf].find(function(b){return b.key===k;}))
+        blindspots[hf].push({key:k,delta:p.self-p.behavior});
+    }
+  });
+  var sc = (sj_max>0?(sj_pts/sj_max)*4:0) + (bs_max>0?(bs_pts/bs_max)*3:0) +
+           (sob_c>0?(sob_val/sob_c):0) + (jn_c>0?(jn_pts/jn_c)*1:0);
+  return Math.min(10, Math.max(0, sc));
+}
+
+function continueAfterReward() {
+  renderQuestion();
+  G('s_check');
+}
+
+// Ergebnis-Blüte
+function renderErgebnis() {
+  document.getElementById('bar').style.width = '95%';
+  var hfKeys = Object.keys(QUESTIONS);
+
+  // Blüte aufbauen
+  var defs = [];
+  hfKeys.forEach(function(hf, i) {
+    var s = scores[hf] || 0;
+    var ang = -90 + i * (360/7);
+    var col = s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00');
+    var len = 38 + s * 9;
+    defs.push({ang:ang, len:len, wide:28+s*2, col:col, label:[QUESTIONS[hf].short]});
+  });
+  buildFlower(document.getElementById('fl_ergebnis'), defs, null);
+
+  // Sortierte Scores
+  var sorted = hfKeys.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
+  var best = sorted.slice(0,2);
+  var worst = sorted.slice(-2);
+  var mid = sorted.slice(2,5);
+  var allBS = hfKeys.filter(function(hf){ return blindspots[hf] && blindspots[hf].length > 0; });
+  var avgScore = hfKeys.reduce(function(s,hf){ return s+(scores[hf]||0); },0) / hfKeys.length;
+
+  var html = '';
+
+  // Gesamt-Überblick
+  html += '<div style="background:var(--bg);border-radius:14px;padding:14px;margin-bottom:12px;">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+          '<div><p style="font-size:12px;color:var(--g);margin:0;">Dein Gesamt-Score</p>' +
+          '<div class="scorebig">' + avgScore.toFixed(1) + '<span style="font-size:16px;color:var(--g);">/10</span></div></div>' +
+          '<div style="text-align:right;"><p style="font-size:12px;color:var(--g);">70 Fragen · 7 Felder</p>' +
+          '<p style="font-size:12px;color:var(--orange);font-weight:600;">' + allBS.length + ' Blind Spot' + (allBS.length!==1?'s':'') + ' erkannt</p></div>' +
+          '</div></div>';
+
+  // Balkendiagramm alle HFs
+  html += '<p style="font-size:11.5px;font-weight:600;color:var(--g);margin-bottom:8px;">Alle 7 Handlungsfelder im Überblick</p>';
+  html += '<div class="barchart">';
+  sorted.forEach(function(hf) {
+    var s = scores[hf] || 0;
+    var col = s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00');
+    var bs = blindspots[hf] && blindspots[hf].length > 0;
+    var isB = best.indexOf(hf) >= 0;
+    var isW = worst.indexOf(hf) >= 0;
+    html += '<div class="barrow">' +
+            '<div class="top"><span><b>' + QUESTIONS[hf].short + '</b>' +
+            (bs ? ' <span class="bslabel">Blind Spot</span>' : '') +
+            (isB ? ' <span style="font-size:10px;color:#ec5916;">★</span>' : '') +
+            '</span><span style="font-weight:600;">' + s.toFixed(1) + '</span></div>' +
+            '<div class="track"><div class="fill" style="width:' + (s*10) + '%;background:'+col+'"></div></div>' +
+            '</div>';
+  });
+  html += '</div>';
+
+  // Stärken
+  html += '<div class="insight good" style="margin-top:14px;"><b>★ Deine Stärken – baue darauf auf</b>';
+  best.forEach(function(hf) {
+    var s = scores[hf] || 0;
+    html += '<div style="margin-top:6px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
+            '<p style="margin:2px 0 0;font-size:11.5px;">Zentraler Bias hier: <i>' + QUESTIONS[hf].bias + '</i> – du überwindest ihn gut. ' +
+            'Diese Stärke ist ansteckend: wenn du sie lebst, senkt das die Hemmschwelle für andere.</p></div>';
+  });
+  html += '</div>';
+
+  // Potenzial
+  html += '<div class="insight pot" style="margin-top:8px;"><b>↗ Dein größtes Entwicklungsfeld</b>';
+  worst.forEach(function(hf) {
+    var s = scores[hf] || 0;
+    html += '<div style="margin-top:6px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
+            '<p style="margin:2px 0 0;font-size:11.5px;">Der zentrale Bias: <i>' + QUESTIONS[hf].bias + '</i>. ' +
+            'Das erklärt, warum Absicht und Handeln hier auseinanderfallen. ' +
+            'Der Companion setzt genau hier mit kleinen, machbaren Impulsen an.</p></div>';
+  });
+  html += '</div>';
+
+  // Blind Spots
+  if (allBS.length > 0) {
+    html += '<div class="blindspot" style="margin-top:8px;">🔍 <b>Blind Spot' + (allBS.length>1?'s':'') + ' erkannt bei:</b> ';
+    html += allBS.map(function(hf){ return '<b>'+QUESTIONS[hf].short+'</b>'; }).join(', ');
+    html += '<p style="margin:5px 0 0;font-size:11.5px;">Dein Selbstbild liegt deutlich über deinem tatsächlichen Verhalten in diesen Feldern. ' +
+            'Das ist die wertvollste Erkenntnis: nicht wo du denkst, dass du stark bist – sondern wo die Lücke am größten ist. ' +
+            'Genau dort beginnt echte Entwicklung.</p></div>';
+  } else {
+    html += '<div class="insight good" style="margin-top:8px;"><b>✓ Keine Blind Spots</b>' +
+            '<p style="margin:2px 0 0;font-size:11.5px;">Dein Selbstbild und dein Verhalten stimmen gut überein. Das ist ein Zeichen hoher Selbstreflexion.</p></div>';
+  }
+
+  // Was das für den ORF bedeutet
+  html += '<div style="background:#fff;border:1px solid var(--bd);border-radius:13px;padding:13px;margin-top:10px;font-size:12.5px;line-height:1.5;">' +
+          '<b style="color:var(--orange);">Was das für den ORF bedeutet</b><br>' +
+          'Dein Durchschnittswert von <b>' + avgScore.toFixed(1) + '/10</b> zeigt: ';
+  if (avgScore >= 7) {
+    html += 'Du lebst die ORF-Zielkultur bereits sehr stark. Deine Haltung trägt die Organisation – und macht es anderen leichter, nachzufolgen.';
+  } else if (avgScore >= 5) {
+    html += 'Du bist auf einem guten Weg. In manchen Feldern lebst du die Zielkultur bereits stark – in anderen gibt es klares Potenzial. Der Companion begleitet dich dort.';
+  } else {
+    html += 'Es gibt konkrete Entwicklungsfelder. Das ist kein Problem – es ist der Ausgangspunkt. Wer seinen Blind Spot kennt, kann ihn verändern.';
+  }
+  html += '</div>';
+
+  document.getElementById('ergebnis_insights').innerHTML = html;
+
+  // Goal options mit Scores
+  var goalsHtml = '';
+  sorted.forEach(function(hf) {
+    var s = scores[hf] || 0;
+    var isBest = best.indexOf(hf) >= 0;
+    var isBS = allBS.indexOf(hf) >= 0;
+    var sub = isBS ? '🔍 Blind Spot – besonders lohnend' : (isBest ? '★ Stärke weiter ausbauen' : '↗ Potenzial entwickeln');
+    var col = isBS ? 'color:#854f0b;' : (isBest ? 'color:#ec5916;' : 'color:var(--g);');
+    goalsHtml += '<button class="goalopt" data-goal="' + QUESTIONS[hf].title +
+                 '" data-hf="' + hf + '" onclick="setGoal(this)">' +
+                 '<span class="dot"></span><span><b>' + QUESTIONS[hf].title + '</b>' +
+                 ' <span style="font-size:11px;color:var(--g);">' + s.toFixed(1) + '/10</span>' +
+                 '<br><span style="font-size:11.5px;'+col+'">' + sub + '</span></span></button>';
+  });
+  document.getElementById('goal_options').innerHTML = goalsHtml;
+}
+
+function setGoal(el) {
+  document.querySelectorAll('.goalopt').forEach(function(b){
+    b.classList.remove('sel'); b.querySelector('.dot').textContent = '';
+  });
+  el.classList.add('sel'); el.querySelector('.dot').textContent = '✓';
+  chosenGoal = el.getAttribute('data-goal');
+  var hf = el.getAttribute('data-hf');
+  document.getElementById('goalBtn').disabled = false;
+
+  // Companion vorbereiten
+  document.getElementById('goal_text').textContent = chosenGoal;
+  // KI-Companion übernimmt Intro und Impulse
+  // KI-Companion wird beim Öffnen initialisiert
+}
+
+// SVG-Funktionen
+function bez(p0,p1,p2,p3,n){var a=[];for(var i=0;i<=n;i++){var t=i/n,u=1-t;
+  a.push([u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],
+          u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]]);}return a;}
+
+function petalPath(ang,len,wide){
+  var swirl=34, inner=24, outer=inner+len, halfW=wide;
+  function P(r,da){var a=(ang+da)*Math.PI/180;return (CX+Math.cos(a)*r)+','+(CY+Math.sin(a)*r);}
+  var base=P(inner,0), tip=P(outer,swirl);
+  var cA1=P(inner+len*0.30, halfW), cA2=P(outer-len*0.10, swirl+halfW*0.6);
+  var cB1=P(outer-len*0.10, swirl-halfW*0.5), cB2=P(inner+len*0.30, -halfW*0.7);
+  return 'M'+base+' C'+cA1+' '+cA2+' '+tip+' C'+cB1+' '+cB2+' '+base+' Z';
+}
+
+function buildFlower(el, defs, click) {
+  var svg = '';
+  defs.forEach(function(p) {
+    svg += '<g class="pet"' + (click ? ' onclick="G(\''+click+'\')"' : '') + '>' +
+           '<path d="' + petalPath(p.ang, p.len, p.wide) + '" fill="' + p.col + '"/>';
+    if (p.label) {
+      var rad = (p.ang + 12) * Math.PI / 180, lr = 24 + p.len * 0.46;
+      var lx = CX + Math.cos(rad)*lr, ly = CY + Math.sin(rad)*lr;
+      var lh = 12, sy = ly - (p.label.length-1)*lh/2;
+      p.label.forEach(function(t,j) {
+        var fs = t.length > 11 ? 9 : 10.5;
+        svg += '<text x="'+lx.toFixed(1)+'" y="'+(sy+j*lh+3.5).toFixed(1)+'" text-anchor="middle" class="hint" font-size="'+fs+'">'+t+'</text>';
+      });
+    }
+    svg += '</g>';
+  });
+  svg += '<circle cx="150" cy="150" r="30" fill="#fff" stroke="#d40000" stroke-width="3.5"/>';
+  svg += '<text x="150" y="158" text-anchor="middle" font-size="24" font-weight="700" fill="#d40000">@</text>';
+  el.innerHTML = svg;
+}
+
+function logoSVG(cx, cy, scale) {
+  function pol(r,da,ang){var aa=(ang+da)*Math.PI/180;return [cx+Math.cos(aa)*r*scale, cy+Math.sin(aa)*r*scale];}
+  function petal(ang){
+    var length=102,w_in=7,w_out=33,swirl=66,inner=27,outer=inner+length;
+    var base=pol(inner,0,ang),tip=pol(outer,swirl,ang);
+    var f1=pol(inner+length*0.28,w_in+20,ang),f2=pol(inner+length*0.70,w_out+swirl*0.32,ang);
+    var fe=pol(outer-6,swirl+12,ang),fe2=pol(outer-2,swirl+2,ang);
+    var b1=pol(outer-length*0.08,swirl-w_out*0.5,ang),b2=pol(inner+length*0.42,swirl*0.22-w_in,ang),b3=pol(inner+2,-w_in,ang);
+    var pts=bez(base,f1,f2,fe,30).concat(bez(fe,pol(outer+2,swirl+6,ang),tip,fe2,16))
+            .concat(bez(fe2,b1,b2,b3,40)).concat(bez(b3,base,base,base,6));
+    var d='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
+    for(var i=1;i<pts.length;i++) d+=' L'+pts[i][0].toFixed(1)+','+pts[i][1].toFixed(1);
+    return d+' Z';
+  }
+  var cols=['#ec5916','#f9aa11','#feda00','#f9aa11','#ec5916','#f9aa11','#feda00','#f9aa11'];
+  var s=''; for(var i=0;i<8;i++){var ang=-90+i*45; s+='<path d="'+petal(ang)+'" fill="'+cols[i]+'"/>';}
+  var cr=34*scale;
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+cr.toFixed(1)+'" fill="#fff" stroke="#d40000" stroke-width="'+(6*scale).toFixed(1)+'"/>';
+  s+='<text x="'+cx+'" y="'+(cy+cr*0.34).toFixed(1)+'" text-anchor="middle" font-size="'+(cr*1.15).toFixed(1)+'" font-weight="700" fill="#d40000">@</text>';
+  return s;
+}
+
+function confetti() {
+  var box = document.getElementById('conf'); if(!box) return; box.innerHTML='';
+  var cols = ['#ec5916','#f9aa11','#feda00','#d40000'];
+  for(var i=0;i<30;i++){var s=document.createElement('span');
+    s.style.left=(10+Math.random()*80)+'%'; s.style.background=cols[i%4];
+    s.style.animationDelay=(Math.random()*0.3)+'s'; box.appendChild(s);}
+}
+
+// Navigation
+var screenSteps = {
+  s_login:0, s_e1:1, s_e2:2, s_e3:3, s_zielbild:4,
+  s_check:5, s_reward:5, s_ergebnis:90, s_goal:95, s_companion:98, s_done:100
+};
+var screenTitles = {
+  s_login:'Anmeldung', s_e1:'Vision', s_e2:'Vision', s_e3:'Vision',
+  s_zielbild:'Personal UK Trainer', s_check:'Self-Check',
+  s_reward:'Self-Check', s_ergebnis:'Meine Kultur-Blüte',
+  s_goal:'Mein Ziel', s_companion:'Companion', s_done:'Companion'
+};
+
+function G(id) {
+  document.querySelectorAll('.sc').forEach(function(s){ s.classList.remove('on'); });
+  document.getElementById(id).classList.add('on');
+  document.getElementById('cx').textContent = screenTitles[id] || id;
+  var pct = screenSteps[id] || 0;
+  document.getElementById('bar').style.width = pct + '%';
+  if(id==='s_companion') setTimeout(initCompanion, 120);
+    window.scrollTo({top:0, behavior:'smooth'});
+}
+
+
+// ============================================================
+// SCHICHT 4: ECHTER KI-COMPANION-DIALOG
+// ============================================================
+
+var chatHistory = [];
+var companionHF = null;
+var companionProfile = null;
+var awaitingImpulse = false;
+var currentImpulse = '';
+var typingInterval = null;
+
+function buildSystemPrompt() {
+  var hfKeys = Object.keys(QUESTIONS);
+  var sorted = hfKeys.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
+  var best = sorted.slice(0,2).map(function(h){ return QUESTIONS[h].title + ' (' + (scores[h]||0).toFixed(1) + '/10)'; });
+  var worst = sorted.slice(-2).map(function(h){ return QUESTIONS[h].title + ' (' + (scores[h]||0).toFixed(1) + '/10)'; });
+  var allBS = hfKeys.filter(function(h){ return blindspots[h] && blindspots[h].length > 0; })
+                    .map(function(h){ return QUESTIONS[h].title; });
+  var avgScore = hfKeys.reduce(function(s,h){ return s+(scores[h]||0); },0) / hfKeys.length;
+
+  return 'Du bist der Cultural Companion des ORF – ein persönlicher Reflexionsbegleiter für Unternehmenskultur.' +
+  '\n\nDEINE IDENTITÄT:' +
+  '\n- Name: Companion (kein menschlicher Name)' +
+  '\n- Rolle: Sparring-Partner auf Augenhöhe' +
+  '\n- Du bist KEIN Coach, KEIN Vorgesetzter, KEIN Therapeut' +
+  '\n- Du bewertest nicht. Du spiegelst, fragst, bietest Perspektiven.' +
+  '\n- Du sprichst per Du, in österreichischem Deutsch.' +
+  '\n- Du bist kurz und prägnant – nie mehr als 3-4 Sätze, dann eine Frage.' +
+  '\n- Der User soll mehr reden als du.' +
+  '\n\nDAS PROFIL DIESER PERSON:' +
+  '\n- Gesamt-Score: ' + avgScore.toFixed(1) + '/10' +
+  '\n- Stärken: ' + best.join(', ') +
+  '\n- Entwicklungsfelder: ' + worst.join(', ') +
+  (allBS.length > 0 ? '\n- Blind Spots: ' + allBS.join(', ') : '\n- Keine Blind Spots erkannt') +
+  '\n- Gewähltes Entwicklungsziel: ' + chosenGoal +
+  '\n- Zentraler Bias in diesem Feld: ' + (companionHF ? QUESTIONS[companionHF].bias : '') +
+  '\n\nDEIN VERHALTEN IN DIESER SESSION:' +
+  '\n1. Starte mit einer offenen Frage zum gewählten Entwicklungsziel.' +
+  '\n2. Höre zu. Spiegle die Situation. Benenne das Verhaltensmuster.' +
+  '\n3. Erkläre den verhaltensökonomischen Mechanismus – kurz, verständlich, ohne Fachbegriff-Kauderwelsch.' +
+  '\n4. Biete EINE Alternative – als Möglichkeit, nicht als Korrektur.' +
+  '\n5. Wechsle in die WIR-Perspektive (Führung anderer).' +
+  '\n6. Schließe mit einem konkreten WENN-DANN-Impuls.' +
+  '\n\nWICHTIG für den WENN-DANN-Impuls:' +
+  '\n- Wenn du einen Impuls gibst, formatiere ihn EXAKT so:' +
+  '\n  IMPULS: WENN [konkrete Situation], DANN [konkretes Verhalten].' +
+  '\n- Klein, konkret, machbar – eine einzige Situation.' +
+  '\n\nTONALITÄT:' +
+  '\n- Direkt, warm, auf Augenhöhe. Neugierig, nicht bewertend.' +
+  '\n- Verwende: spannend, interessant, nachvollziehbar.' +
+  '\n- Vermeide: du solltest, du musst, das war falsch.' +
+  '\n\nABSOLUTE GRENZEN:' +
+  '\n- Bei Mobbing, Belästigung, Diskriminierung, psychischer Belastung: SOFORT auf Betriebsrat, Vertrauensperson oder Telefonseelsorge 142 verweisen.' +
+  '\n- Keine Diagnosen. Keine Bewertungen. Nie mit anderen vergleichen.' +
+  '\n- Keine Namen von Kolleg:innen speichern oder erwähnen.';
+}
+
+function initCompanion() {
+  // companionHF aus chosenGoal ableiten
+  Object.keys(QUESTIONS).forEach(function(hf) {
+    if (QUESTIONS[hf].title === chosenGoal) companionHF = hf;
+  });
+  chatHistory = [];
+  awaitingImpulse = false;
+  document.getElementById('chat_messages').innerHTML = '';
+  document.getElementById('impulse_box').style.display = 'none';
+  document.getElementById('comp_goal_label').textContent = chosenGoal;
+
+  // Erste Nachricht vom Companion laden
+  var openingQuestion = getOpeningQuestion();
+  addMessage('bot', openingQuestion);
+  chatHistory.push({role:'assistant', content: openingQuestion});
+}
+
+function getOpeningQuestion() {
+  var openers = {
+    hf1: 'Schön, dass du dabei bist! Du hast dir Prozessmanagement vorgenommen. Gab es diese Woche eine Situation, in der du einen Prozess umgehen wolltest – oder versucht warst, eine Abkürzung zu nehmen?',
+    hf2: 'Schön, dass du dabei bist! Wissensmanagement ist dein Ziel. Gab es diese Woche eine Situation, in der du Wissen hättest teilen können – es aber nicht getan hast? Was hat dich zurückgehalten?',
+    hf3: 'Schön, dass du dabei bist! Du hast dir Führung & Leadership vorgenommen. Gab es diese Woche eine Entscheidung, die du getroffen hast – oder eine, die du vermieden hast?',
+    hf4: 'Schön, dass du dabei bist! Weiterentwicklung ist dein Ziel. Gab es diese Woche einen Moment, in dem du etwas Neues hättest ausprobieren können – aber beim Vertrauten geblieben bist?',
+    hf5: 'Schön, dass du dabei bist! Kommunikation & Transparenz liegt dir am Herzen. Gab es diese Woche eine Information, die du zurückgehalten hast – bewusst oder unbewusst?',
+    hf6: 'Schön, dass du dabei bist! Feedback & Fehlerkultur ist dein Entwicklungsfeld. Gab es diese Woche eine Situation, in der du Feedback hättest geben können – und es nicht getan hast?',
+    hf7: 'Schön, dass du dabei bist! Kooperation über Bereichsgrenzen liegt dir am Herzen. Gab es diese Woche einen Moment, in dem ein anderer Bereich etwas von dir gebraucht hätte – und wie bist du damit umgegangen?'
+  };
+  return (companionHF && openers[companionHF]) ? openers[companionHF] : 'Schön, dass du dabei bist! Erzähl mir: Was hat dich diese Woche beschäftigt – in Bezug auf ' + chosenGoal + '?';
+}
+
+async function sendMessage() {
+  var input = document.getElementById('chat_input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.style.height = 'auto';
+
+  addMessage('user', text);
+  chatHistory.push({role:'user', content: text});
+
+  showTyping();
+
+  try {
+    var sysPrompt = buildSystemPrompt();
+    var response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: sysPrompt,
+        messages: chatHistory
+      })
+    });
+    var data = await response.json();
+    hideTyping();
+
+    if (data.content && data.content[0] && data.content[0].text) {
+      var reply = data.content[0].text;
+      chatHistory.push({role:'assistant', content: reply});
+
+      // Impuls aus Antwort extrahieren
+      var impulseMatch = reply.match(/IMPULS:\s*(WENN[\s\S]+?)(?:\n|$)/i);
+      if (impulseMatch) {
+        var cleanReply = reply.replace(/IMPULS:[\s\S]+/, '').trim();
+        addMessage('bot', cleanReply);
+        showImpulse(impulseMatch[1].trim());
+      } else {
+        addMessage('bot', reply);
+      }
+    } else {
+      hideTyping();
+      addMessage('bot', 'Entschuldigung, da ist etwas schiefgelaufen. Kannst du das nochmal versuchen?');
+    }
+  } catch(e) {
+    hideTyping();
+    addMessage('bot', 'Ich bin gerade nicht erreichbar. Bitte versuche es in einem Moment nochmal.');
+    console.error('Companion API error:', e);
+  }
+
+  scrollChat();
+}
+
+function addMessage(role, text) {
+  var div = document.createElement('div');
+  div.className = 'm ' + (role === 'user' ? 'u' : 'b');
+  // Fettdruck für **text** und für WENN/DANN
+  var formatted = text
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+    .replace(/(WENN)/g, '<b>WENN</b>')
+    .replace(/(DANN)/g, '<b>DANN</b>');
+  div.innerHTML = formatted;
+  document.getElementById('chat_messages').appendChild(div);
+  scrollChat();
+}
+
+function showTyping() {
+  document.getElementById('typing_indicator').style.display = 'block';
+  document.getElementById('typing_indicator').innerHTML =
+    '<span class="dot1">●</span><span class="dot2">●</span><span class="dot3">●</span>';
+  scrollChat();
+}
+
+function hideTyping() {
+  document.getElementById('typing_indicator').style.display = 'none';
+}
+
+function showImpulse(impulseText) {
+  currentImpulse = impulseText;
+  document.getElementById('impulse_text').innerHTML =
+    impulseText.replace(/(WENN)/g,'<b>WENN</b>').replace(/(DANN)/g,'<b>DANN</b>');
+  document.getElementById('impulse_box').style.display = 'block';
+  awaitingImpulse = true;
+  // Chat-Input ausblenden wenn Impuls vorhanden
+  document.getElementById('chat_input_area').style.opacity = '0.5';
+  scrollChat();
+}
+
+function acceptImpulse() {
+  document.getElementById('impulse_box').style.display = 'none';
+  document.getElementById('chat_input_area').style.opacity = '1';
+  awaitingImpulse = false;
+  addMessage('user', 'Nehme ich an. ✓');
+  chatHistory.push({role:'user', content:'Ich nehme den Impuls an.'});
+  G('s_done');
+}
+
+function smallerImpulse() {
+  document.getElementById('impulse_box').style.display = 'none';
+  document.getElementById('chat_input_area').style.opacity = '1';
+  awaitingImpulse = false;
+  var smaller = 'Den Impuls möchte ich kleiner machen – der fühlt sich noch zu groß an. Was wäre ein noch kleinerer erster Schritt?';
+  addMessage('user', 'Der Impuls ist mir noch zu groß. Können wir ihn kleiner machen?');
+  chatHistory.push({role:'user', content: smaller});
+  // Direkt neue KI-Antwort anfragen
+  document.getElementById('chat_input').value = smaller;
+  sendMessage();
+  document.getElementById('chat_input').value = '';
+}
+
+function scrollChat() {
+  var el = document.getElementById('chat_messages');
+  setTimeout(function(){ el.scrollTop = el.scrollHeight; }, 50);
+}
+
+// Auto-resize Textarea
+document.addEventListener('DOMContentLoaded', function() {
+  var ta = document.getElementById('chat_input');
+  if (ta) {
+    ta.addEventListener('input', function(){
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+    });
+  }
+});
+
+// Init
+document.getElementById('lg').innerHTML = logoSVG(150,150,1);
+document.getElementById('lgbig').innerHTML = logoSVG(150,150,1);
+
+// Zielbild-Blüte
+var zCols = ['#feda00','#ec5916','#f9aa11','#f9aa11','#ec5916','#feda00','#f9aa11'];
+var zLabels = [['Prozess-','mgmt.'],['Führung &','Leadership'],['Weiterent-','wicklung'],
+               ['Koopera-','tion'],['Feedback &','Fehlerkultur'],['Kommuni-','kation'],['Wissen']];
+var zDefs = [];
+for(var i=0;i<7;i++){var ang=-90+i*(360/7);
+  zDefs.push({ang:ang, len:116, wide:46, col:zCols[i], label:zLabels[i]});}
+buildFlower(document.getElementById('fl_zielbild'), zDefs, null);
+
+G('s_login');
+</script>
+
+
+</body></html>
