@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0061)file:///Users/fehradvice/Downloads/UK_Trainer_Prototyp_3.html -->
+<!-- saved from url=(0061)file:///Users/fehradvice/Downloads/UK_Trainer_Prototyp_5.html -->
 <html lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -140,7 +140,15 @@
       <input maxlength="1" value="Q"><input maxlength="1" value="3"><input maxlength="1" value="9">
     </div>
     <div class="anonbadge">🔒 <span><b>Vollständig anonym.</b> Kein Name, keine E-Mail, keine Personaldaten. Deine Antworten sind nur für dich sichtbar.</span></div>
-    <button class="bt pr" onclick="G(&#39;s_e1&#39;)">Anmelden →</button>
+    <div style="margin:14px 0 4px;">
+      <p style="font-size:11.5px;color:var(--g);margin-bottom:6px;text-align:center;">API-Schlüssel (für den KI-Companion)</p>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="password" id="api_key_input" placeholder="sk-ant-..." style="flex:1;border:1.5px solid var(--bd);border-radius:11px;padding:11px 14px;font-size:13px;color:var(--ink);outline:none;" oninput="checkLoginReady()" onfocus="this.style.borderColor=&#39;var(--orange)&#39;" onblur="this.style.borderColor=&#39;var(--bd)&#39;">
+        <button onclick="toggleKeyVisibility()" id="eye_btn" style="border:1.5px solid var(--bd);background:var(--bg);border-radius:11px;padding:10px 13px;cursor:pointer;font-size:16px;">👁</button>
+      </div>
+      <p style="font-size:10.5px;color:var(--g);margin-top:5px;text-align:center;">Der Schlüssel wird nur lokal im Browser gespeichert und nie weitergegeben.</p>
+    </div>
+    <button class="bt pr" id="login_btn" onclick="doLogin()" style="opacity:.4;" disabled="">Anmelden →</button>
     <p class="su" style="text-align:center;margin-top:10px;font-size:11px;">Code verloren? Nutze deinen Reserve-Code.</p>
   </section>
 
@@ -212,8 +220,11 @@
     <div id="bw_insight" style="margin-top:8px;"></div>
     <div style="display:flex;gap:10px;margin-top:14px;">
       <button class="bt gh" style="flex:1;" onclick="continueAfterReward()">Weiter →</button>
-      <button class="bt pr" style="flex:1;" onclick="showBetweenDetail()">Zwischenauswertung</button>
+      <button class="bt pr" style="flex:1;" onclick="showBetweenDetail()">Details</button>
     </div>
+    <button class="bt pr" style="margin-top:8px;background:#cf4a16;" onclick="goToGoalFromBetween()">
+      🎯 Hier Ziel setzen &amp; zum Companion →
+    </button>
   </section>
 
   <!-- ZWISCHENAUSWERTUNG DETAIL -->
@@ -224,6 +235,9 @@
     <div id="bwd_blindspot" style="margin-top:8px;"></div>
     <div class="ctxbox" id="bwd_bias"></div>
     <button class="bt pr" onclick="continueAfterReward()">Weiter mit Self-Check →</button>
+    <button class="bt pr" style="margin-top:8px;background:#cf4a16;" onclick="goToGoalFromBetween()">
+      🎯 Hier Ziel setzen &amp; zum Companion →
+    </button>
     <div class="nv"><a class="m" onclick="G(&#39;s_between&#39;)">← Zurück</a></div>
   </section>
 
@@ -1453,6 +1467,92 @@ function confetti() {
     s.style.animationDelay=(Math.random()*0.3)+'s'; box.appendChild(s);}
 }
 
+
+function goToGoalFromBetween() {
+  // Nur abgeschlossene Handlungsfelder als Zieloptionen anbieten
+  var hfKeys = Object.keys(QUESTIONS);
+  var doneHFs = hfKeys.filter(function(hf) {
+    return QUESTIONS[hf].questions.every(function(q){ return answers[q.id] !== undefined; });
+  });
+
+  // Scores der abgeschlossenen HFs berechnen
+  doneHFs.forEach(function(hf){ scores[hf] = computeHFScore(hf); });
+
+  var sorted = doneHFs.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
+  var allBS = doneHFs.filter(function(hf){ return blindspots[hf] && blindspots[hf].length > 0; });
+
+  // Blüte mit bisher abgeschlossenen Feldern
+  var defs = [];
+  hfKeys.forEach(function(hf, i) {
+    var ang = -90 + i*(360/7);
+    var isDone = doneHFs.indexOf(hf) >= 0;
+    var s = isDone ? (scores[hf]||0) : 0;
+    var col = !isDone ? '#e8e6df' : (s >= 7 ? '#ec5916' : (s >= 5 ? '#f9aa11' : '#feda00'));
+    var len = !isDone ? 30 : (38 + s*9);
+    defs.push({ang:ang, len:len, wide:isDone?(28+s*2):18, col:col, label:[QUESTIONS[hf].short]});
+  });
+  buildFlower(document.getElementById('fl_ergebnis'), defs, null);
+
+  // Insights für abgeschlossene Felder
+  var avgScore = doneHFs.length > 0
+    ? doneHFs.reduce(function(s,hf){ return s+(scores[hf]||0); },0) / doneHFs.length
+    : 0;
+
+  var html = '';
+
+  // Hinweis dass Test noch nicht vollständig
+  var remaining = hfKeys.length - doneHFs.length;
+  if (remaining > 0) {
+    html += '<div style="background:#fff3cd;border:1px solid var(--yellow);border-radius:12px;' +
+            'padding:11px 13px;margin-bottom:12px;font-size:12.5px;color:#6a5500;">' +
+            '⚡ <b>Zwischenergebnis</b> – du hast ' + doneHFs.length + ' von 7 Feldern abgeschlossen. ' +
+            'Du kannst jetzt ein Ziel setzen und loslegen. Den vollständigen Test kannst du jederzeit nachholen.' +
+            '</div>';
+  }
+
+  // Balkendiagramm abgeschlossener Felder
+  html += '<p style="font-size:11.5px;font-weight:600;color:var(--g);margin-bottom:8px;">' +
+          'Abgeschlossene Felder (' + doneHFs.length + '/7)</p>';
+  html += '<div class="barchart">';
+  sorted.forEach(function(hf) {
+    var s = scores[hf]||0;
+    var col = s>=7?'#ec5916':(s>=5?'#f9aa11':'#feda00');
+    var bs = blindspots[hf] && blindspots[hf].length > 0;
+    html += '<div class="barrow">' +
+            '<div class="top"><span><b>' + QUESTIONS[hf].short + '</b>' +
+            (bs ? ' <span class="bslabel">Blind Spot</span>' : '') +
+            '</span><span style="font-weight:600;">' + s.toFixed(1) + '</span></div>' +
+            '<div class="track"><div class="fill" style="width:'+(s*10)+'%;background:'+col+'"></div></div></div>';
+  });
+  html += '</div>';
+
+  if (allBS.length > 0) {
+    html += '<div class="blindspot" style="margin-top:10px;">🔍 <b>Blind Spot erkannt bei: </b>' +
+            allBS.map(function(hf){ return QUESTIONS[hf].short; }).join(', ') + '</div>';
+  }
+
+  document.getElementById('ergebnis_insights').innerHTML = html;
+
+  // Goal-Optionen nur aus abgeschlossenen Feldern
+  var goalsHtml = '';
+  sorted.forEach(function(hf) {
+    var s = scores[hf]||0;
+    var isBS = allBS.indexOf(hf) >= 0;
+    var isBest = sorted.indexOf(hf) < 2;
+    var sub = isBS ? '🔍 Blind Spot – besonders lohnend' :
+              (isBest ? '★ Stärke weiter ausbauen' : '↗ Potenzial entwickeln');
+    var col = isBS ? 'color:#854f0b;' : (isBest ? 'color:#ec5916;' : 'color:var(--g);');
+    goalsHtml += '<button class="goalopt" data-goal="' + QUESTIONS[hf].title +
+                 '" data-hf="' + hf + '" onclick="setGoal(this)">' +
+                 '<span class="dot"></span><span><b>' + QUESTIONS[hf].title + '</b>' +
+                 ' <span style="font-size:11px;color:var(--g);">' + s.toFixed(1) + '/10</span>' +
+                 '<br><span style="font-size:11.5px;'+col+'">' + sub + '</span></span></button>';
+  });
+  document.getElementById('goal_options').innerHTML = goalsHtml;
+
+  G('s_ergebnis');
+}
+
 // Navigation
 var screenSteps = {
   s_login:0, s_e1:1, s_e2:2, s_e3:3, s_zielbild:4,
@@ -1475,6 +1575,53 @@ function G(id) {
     window.scrollTo({top:0, behavior:'smooth'});
 }
 
+
+
+// ============================================================
+// API-KEY MANAGEMENT
+// ============================================================
+var ANTHROPIC_KEY = '';
+
+function checkLoginReady() {
+  var key = document.getElementById('api_key_input').value.trim();
+  var btn = document.getElementById('login_btn');
+  var ready = key.startsWith('sk-ant-') && key.length > 20;
+  btn.disabled = !ready;
+  btn.style.opacity = ready ? '1' : '0.4';
+}
+
+function toggleKeyVisibility() {
+  var inp = document.getElementById('api_key_input');
+  var btn = document.getElementById('eye_btn');
+  if (inp.type === 'password') {
+    inp.type = 'text'; btn.textContent = '🙈';
+  } else {
+    inp.type = 'password'; btn.textContent = '👁';
+  }
+}
+
+function doLogin() {
+  var key = document.getElementById('api_key_input').value.trim();
+  if (!key.startsWith('sk-ant-') || key.length < 20) return;
+  ANTHROPIC_KEY = key;
+  // Key im Session-Storage zwischenspeichern (weg beim Tab-Schließen)
+  try { sessionStorage.setItem('orf_uk_key', key); } catch(e) {}
+  G('s_e1');
+}
+
+// Key aus Session-Storage wiederherstellen falls vorhanden
+(function() {
+  try {
+    var saved = sessionStorage.getItem('orf_uk_key');
+    if (saved && saved.startsWith('sk-ant-')) {
+      ANTHROPIC_KEY = saved;
+      document.addEventListener('DOMContentLoaded', function() {
+        var inp = document.getElementById('api_key_input');
+        if (inp) { inp.value = saved; checkLoginReady(); }
+      });
+    }
+  } catch(e) {}
+})();
 
 // ============================================================
 // SCHICHT 4: ECHTER KI-COMPANION-DIALOG
@@ -1582,7 +1729,9 @@ async function sendMessage() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'anthropic-dangerous-direct-browser-access': 'true'
+        'anthropic-dangerous-direct-browser-access': 'true',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
@@ -1607,13 +1756,20 @@ async function sendMessage() {
       } else {
         addMessage('bot', reply);
       }
+    } else if (data.error) {
+      hideTyping();
+      if (data.error.type === 'authentication_error') {
+        addMessage('bot', '🔑 Der API-Schlüssel ist ungültig oder abgelaufen. Bitte geh zurück zum Login und gib einen gültigen Schlüssel ein.');
+      } else {
+        addMessage('bot', 'Da ist etwas schiefgelaufen: ' + (data.error.message || 'Unbekannter Fehler') + '. Bitte nochmal versuchen.');
+      }
     } else {
       hideTyping();
       addMessage('bot', 'Entschuldigung, da ist etwas schiefgelaufen. Kannst du das nochmal versuchen?');
     }
   } catch(e) {
     hideTyping();
-    addMessage('bot', 'Ich bin gerade nicht erreichbar. Bitte versuche es in einem Moment nochmal.');
+    addMessage('bot', 'Ich bin gerade nicht erreichbar – bitte Internetverbindung prüfen und nochmal versuchen.');
     console.error('Companion API error:', e);
   }
 
