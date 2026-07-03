@@ -123,6 +123,32 @@
   .scorecard{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:12px;}
   .scorecard .val{font-size:22px;font-weight:700;color:var(--orange);}
   .scorecard .lbl{color:var(--g);font-size:11px;margin-top:2px;}
+
+  /* Aha-Karte: Kontext erst NACH der Antwort */
+  .aha{animation:ahain .45s ease;background:#fff8e6;border:1.5px solid var(--yellow);}
+  @keyframes ahain{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  /* Bias-Sammelkarte */
+  .biascard{background:linear-gradient(135deg,#fff,#fff8e6);border:1.5px solid var(--yellow);border-radius:14px;padding:13px 14px;margin-top:10px;animation:ahain .5s ease;}
+  .biascard .bcicon{font-size:28px;}
+  .biascard .bcname{font-weight:700;font-size:14px;}
+  .biascard .bcen{font-size:10.5px;color:var(--g);}
+  .biascard .bctext{font-size:12px;line-height:1.5;margin-top:7px;}
+  .biascard .bctrick{font-size:12px;line-height:1.5;margin-top:7px;background:var(--bg);border-radius:9px;padding:8px 10px;}
+  .biascard .bccount{font-size:11px;color:var(--g);text-align:right;margin-top:5px;}
+  .bcgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+  .bcmini{background:#fff;border:1.5px solid var(--yellow);border-radius:12px;padding:9px 10px;font-size:11px;line-height:1.4;}
+  .bcmini .n{font-weight:700;font-size:11.5px;}
+
+  /* Selbst-Wette */
+  .wette{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:14px 0;}
+  .wette button{border:1.5px solid var(--bd);background:#fff;border-radius:9px;padding:10px 0;font-size:13px;cursor:pointer;font-family:inherit;transition:all .12s;}
+  .wette button.sel{background:var(--orange);color:#fff;border-color:var(--orange);font-weight:700;transform:scale(1.12);}
+  .wettebox{background:var(--bg);border-radius:13px;padding:12px 13px;margin-top:10px;font-size:12.5px;line-height:1.55;animation:ahain .5s ease;}
+
+  /* Tipp-Karte */
+  .tipcard{background:#fff;border:1.5px solid var(--bd);border-left:4px solid var(--orange);border-radius:13px;padding:12px 13px;margin-top:10px;font-size:12.5px;line-height:1.55;}
+  .tipcard .haken{color:var(--g);font-style:italic;margin-top:7px;font-size:12px;}
 </style>
 </head>
 <body>
@@ -244,7 +270,7 @@
   <!-- ERGEBNIS / KULTURBLÜTE -->
   <section class="sc" id="s_ergebnis">
     <h3>Deine Kultur-Blüte</h3>
-    <p class="su">Je größer ein Blütenblatt, desto stärker lebst du dieses Feld. Kleine Blätter zeigen dein Potenzial.</p>
+    <p class="su">Je größer ein Blütenblatt, desto stärker lebst du dieses Feld. Die gestrichelte Linie zeigt, wohin deine Blüte bis Woche 13 wachsen kann.</p>
     <svg class="fl" id="fl_ergebnis" viewBox="0 0 300 300" style="height:288px;"></svg>
     <div class="legendrow">
       <span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#ec5916"></circle></svg> stark</span>
@@ -411,7 +437,7 @@ var QUESTIONS = {
         context:"Wissen gehört dem ORF, nicht einzelnen Personen – das ist die Grundlage einer lernenden Organisation.",
         text:"Du hast über Jahre ein spezielles Fachwissen aufgebaut, das dich im Haus einzigartig macht. Dein Bereich wird gerade umstrukturiert. Eine jüngere Kollegin bittet dich, ihr dein Know-how zu zeigen.",
         options:[
-          {k:"A", text:"Ich zeige ihr alles – Wissen gehört dem ORF, nicht mir", score:2},
+          {k:"A", text:"Ich zeige ihr alles – auch wenn es mich einen halben Tag kostet", score:2},
           {k:"B", text:"Ich zeige ihr die Grundlagen, behalte aber die entscheidenden Details", score:0},
           {k:"C", text:"Ich bin grundsätzlich bereit, aber mir fehlt gerade die Zeit", score:1},
           {k:"D", text:"Ich schlage vor, dass wir gemeinsam eine Dokumentation erstellen", score:2}
@@ -711,7 +737,7 @@ var QUESTIONS = {
         context:"",
         text:"Du erfährst in einem internen Meeting von einer Entwicklung, die für eine andere Abteilung sehr relevant wäre. Es ist nicht deine Aufgabe, sie zu informieren.",
         options:[
-          {k:"A", text:"Ich informiere sie trotzdem – der ORF profitiert davon", score:2},
+          {k:"A", text:"Ich informiere sie – auch wenn es streng genommen nicht mein Job ist", score:2},
           {k:"B", text:"Ich denke, die werden das schon erfahren", score:0},
           {k:"C", text:"Ich erwähne es beiläufig beim nächsten Kontakt", score:1},
           {k:"D", text:"Ich schicke eine kurze Mail mit dem Hinweis", score:2}
@@ -836,7 +862,7 @@ var QUESTIONS = {
         context:"In-Group Bias: Wir identifizieren uns stärker mit dem eigenen Bereich als mit dem Gesamtunternehmen.",
         text:"Ein anderer Bereich braucht dringend Unterstützung für ein zeitkritisches Projekt. Es passt thematisch zu deiner Arbeit, aber du hast selbst genug zu tun. Deine Führungskraft sagt: «Das ist nicht unser Problem.»",
         options:[
-          {k:"A", text:"Ich helfe trotzdem – der ORF ist wichtiger als mein Bereich", score:2},
+          {k:"A", text:"Ich helfe trotzdem – auch wenn meine eigene Liste dafür liegen bleibt", score:2},
           {k:"B", text:"Ich folge meiner Führungskraft – sie setzt die Prioritäten", score:0},
           {k:"C", text:"Ich biete informell an, punktuell zu unterstützen", score:1},
           {k:"D", text:"Ich schlage vor, es offiziell als bereichsübergreifendes Projekt aufzusetzen", score:2}
@@ -847,7 +873,7 @@ var QUESTIONS = {
         context:"Echte Kooperation übersteht auch Konkurrenzsituationen – das ist der härteste Test.",
         text:"Dein Bereich und ein anderer bewerben sich intern um dasselbe Budget. Der andere Bereich fragt dich nach Informationen, die auch für deren Antrag nützlich wären.",
         options:[
-          {k:"A", text:"Ich teile offen – Konkurrenz darf Kooperation nicht verhindern", score:2},
+          {k:"A", text:"Ich teile offen – auch auf die Gefahr, dass ihr Antrag dadurch stärker wird", score:2},
           {k:"B", text:"Ich teile nichts – das wäre naiv", score:0},
           {k:"C", text:"Ich teile Allgemeines, aber nicht Strategisches", score:1},
           {k:"D", text:"Ich schlage vor, einen gemeinsamen Antrag zu stellen", score:2}
@@ -913,6 +939,136 @@ var QUESTIONS = {
 };
 
 // ============================================================
+// SCHICHT 1b: DENKFALLEN (Biases eingedeutscht) + TIPP-TEXTE
+// ============================================================
+var BIAS_INFO = {
+  hf1: { de:"Die Gewohnheitsfalle", en:"Status Quo Bias", icon:"🔄",
+    example:"Der bekannte Weg fühlt sich automatisch sicherer an – auch wenn er es nicht ist. Darum überlebt der umständliche Workflow seit Jahren jede Reform.",
+    trick:"Frag nicht «Warum ändern?», sondern: «Würden wir es heute neu erfinden – genau so?»" },
+  hf2: { de:"Der Mein-Schatz-Effekt", en:"Endowment Effect", icon:"💎",
+    example:"Was uns gehört, fühlt sich wertvoller an. Bei Wissen heißt das: Teilen fühlt sich wie Verlieren an – ist aber das Gegenteil.",
+    trick:"Dreh es um: Geteiltes Wissen macht dich nicht ersetzbar, sondern sichtbar." },
+  hf3: { de:"Der Irgendwer-macht's-schon-Effekt", en:"Verantwortungsdiffusion", icon:"🫥",
+    example:"Je mehr Menschen zuständig sind, desto weniger fühlt sich jede:r Einzelne zuständig. Darum bleiben Mails an fünf Empfänger:innen unbeantwortet.",
+    trick:"Ersetze «man müsste» durch Name und Datum: Wer macht was bis wann?" },
+  hf4: { de:"Die Bin-ich-halt-nicht-Denke", en:"Fixed Mindset", icon:"🧱",
+    example:"«Technik ist nichts für mich» klingt wie Selbsterkenntnis – ist aber meist die Angst, als Anfänger:in dazustehen.",
+    trick:"Häng ein «noch» dran: Aus «kann ich nicht» wird «kann ich noch nicht»." },
+  hf5: { de:"Die Das-wissen-doch-eh-alle-Falle", en:"Transparenz-Illusion", icon:"🫧",
+    example:"Was in deinem Kopf glasklar ist, fühlt sich mitgeteilt an – ist es aber nicht. Darum sind andere «schlecht informiert», obwohl du «alles gesagt» hast.",
+    trick:"Sag es einmal öfter, als sich nötig anfühlt – und frag nach, was angekommen ist." },
+  hf6: { de:"Die Verlust-Angst", en:"Loss Aversion", icon:"⚖️",
+    example:"Ein möglicher Schaden wiegt im Kopf doppelt so schwer wie der gleiche Gewinn. Darum schweigen wir lieber, als ehrlich zu sein.",
+    trick:"Rechne beide Seiten: Was kostet das Feedback jetzt – und was kostet das Schweigen in sechs Monaten?" },
+  hf7: { de:"Der Wir-zuerst-Reflex", en:"In-Group Bias", icon:"🏰",
+    example:"Das Gehirn behandelt den eigenen Bereich wie Familie und den Rest wie Nachbarn – darum ist «die da drüben» schneller gedacht als gesagt.",
+    trick:"Zoom raus: Nicht «mein Team gegen deins», sondern «wir alle gegen das Problem»." }
+};
+
+// Tipp-Formel: spiegel (dein Ergebnis konkret) → warum (Denkfalle im Alltag)
+// → move (EIN Wenn-Dann für diese Woche) → haken (Neugier-Frage)
+var TIPS = {
+  hf1: {
+    high: { spiegel:"Du hältst Prozesse auch dann ein, wenn es eng wird – und denkst sie trotzdem weiter. Genau diese Kombination ist selten.",
+      warum:"Die Gewohnheitsfalle erwischt dich kaum – du unterscheidest zwischen «bewährt» und «nur gewohnt».",
+      move:"WENN dich diese Woche ein Prozess nervt, DANN schreib in einem Satz auf, wie er besser ginge – und schick ihn an die Person, die ihn ändern kann.",
+      haken:"Stärke zeigt sich nicht im Befolgen, sondern im Verbessern." },
+    mid: { spiegel:"Im Normalbetrieb bist du prozesstreu – aber unter Zeitdruck wird die Abkürzung verlockend.",
+      warum:"Das ist die Gewohnheitsfalle unter Stress: Dein Gehirn greift automatisch zum schnellsten Weg, nicht zum besten.",
+      move:"WENN du diese Woche eine Abkürzung nehmen willst, DANN sprich es vorher laut aus – einmal aussprechen reicht oft, um es zu überdenken.",
+      haken:"Wetten, dass es genau am Freitagnachmittag passiert?" },
+    low: { spiegel:"Prozesse fühlen sich für dich eher wie Bremsen an als wie Leitplanken.",
+      warum:"Verständlich – aber jede stille Abkürzung macht sie für alle anderen ein Stück normaler. So kippt Qualität: leise.",
+      move:"WENN du diese Woche einen Prozess umgehen willst, DANN frag dich zuerst: Würde ich das auch tun, wenn mein Team zuschaut?",
+      haken:"Klein anfangen: Eine einzige Situation diese Woche reicht." }
+  },
+  hf2: {
+    high: { spiegel:"Du teilst Wissen, ohne es als Verlust zu sehen – genau das macht dich für andere so wertvoll.",
+      warum:"Der Mein-Schatz-Effekt hat bei dir wenig Macht: Du hast verstanden, dass geteiltes Wissen zurückkommt.",
+      move:"WENN dich diese Woche jemand etwas fragt, das du gut kannst, DANN zeig nicht nur die Lösung, sondern den Weg dorthin.",
+      haken:"Dein Wissen wächst, wenn du es verschenkst. Klingt falsch, stimmt aber." },
+    mid: { spiegel:"Du teilst gern – solange es nicht dein Spezialgebiet betrifft. Da wirst du wählerisch.",
+      warum:"Das ist der Mein-Schatz-Effekt: Was uns einzigartig macht, geben wir ungern her – es fühlt sich wie Machtverlust an.",
+      move:"WENN dich jemand nach deinem Spezialwissen fragt, DANN blockier noch am selben Tag 30 Minuten dafür im Kalender – statt «später mal».",
+      haken:"Was wäre, wenn dein Wissen ab morgen niemand mehr abrufen könnte?" },
+    low: { spiegel:"Dein Wissen liegt gerade vor allem bei dir – und genau das macht es verletzlich.",
+      warum:"Der Mein-Schatz-Effekt flüstert: «Das versteht eh niemand so wie ich.» Das stimmt – solange du es nie zeigst.",
+      move:"WENN du diese Woche jemandem etwas erklärst, DANN schreib die Antwort einmal auf – dort, wo andere sie finden.",
+      haken:"Erste Doku: 10 Minuten. Mehr nicht. Versprochen." }
+  },
+  hf3: {
+    high: { spiegel:"Du stehst hin, wenn es unbequem wird – auch für Fehler. Das ist selten und es fällt auf.",
+      warum:"Verantwortungsdiffusion funktioniert bei dir nicht: Wo andere auf «die Gruppe» zeigen, sagst du «ich».",
+      move:"WENN diese Woche eine Entscheidung im Raum liegen bleibt, DANN sprich aus, wer sie bis wann trifft – auch wenn du es nicht bist.",
+      haken:"Orientierung ist ansteckend. Beobachte, was passiert." },
+    mid: { spiegel:"Du übernimmst Verantwortung – aber bei Gegenwind wird daraus manchmal eine «Teamentscheidung».",
+      warum:"Der Irgendwer-macht's-schon-Effekt: Je mehr Leute zuständig sind, desto weniger fühlt sich jede:r Einzelne zuständig.",
+      move:"WENN du diese Woche «wir sollten mal» denkst, DANN ersetz es durch «ich mache bis».",
+      haken:"Zähl mal mit, wie oft du diese Woche «man müsste» hörst." },
+    low: { spiegel:"Entscheidungen aufzuschieben fühlt sich sicherer an – ist es aber selten.",
+      warum:"Verantwortungsdiffusion schützt kurzfristig: Wer nicht entscheidet, macht keine Fehler. Aber dein Umfeld wartet auf Orientierung.",
+      move:"WENN diese Woche eine Entscheidung ansteht, die du vermeiden willst, DANN triff sie in der kleinsten möglichen Version – heute.",
+      haken:"Eine vermiedene Entscheidung ist auch eine – meistens die schlechteste." }
+  },
+  hf4: {
+    high: { spiegel:"Du gehst ins Neuland, obwohl du weißt, dass du dort Fehler machen wirst. Das ist Growth Mindset in echt.",
+      warum:"Die Bin-ich-halt-nicht-Denke hat bei dir wenig Chance – du behandelst Können als Zwischenstand, nicht als Urteil.",
+      move:"WENN du diese Woche etwas Neues lernst, DANN erzähl einer Kollegin davon – inklusive dem, was schiefging.",
+      haken:"Dein sichtbares Lernen gibt anderen die Erlaubnis, auch anzufangen." },
+    mid: { spiegel:"Du entwickelst dich gern weiter – wenn der Kalender es zulässt. Tut er selten, oder?",
+      warum:"Die Bin-ich-halt-nicht-Denke in der Zeitvariante: «Dafür habe ich keine Zeit» ist oft «Dabei könnte ich scheitern» in Verkleidung.",
+      move:"WENN du diese Woche «keine Zeit zum Lernen» denkst, DANN nimm dir genau 15 Minuten – Timer stellen, anfangen.",
+      haken:"Was wolltest du eigentlich seit sechs Monaten lernen?" },
+    low: { spiegel:"Beim Bewährten bist du stark – und genau das hält dich gerade fest.",
+      warum:"Die Bin-ich-halt-nicht-Denke fühlt sich wie Selbsterkenntnis an. Ist sie aber nicht – sie ist nur bequemer als Anfängersein.",
+      move:"WENN diese Woche etwas Neues auftaucht, DANN sag einmal «zeig mir das» statt «das ist nichts für mich».",
+      haken:"Du musst es nicht können. Nur anschauen." }
+  },
+  hf5: {
+    high: { spiegel:"Du sagst auch das Unbequeme – und prüfst nach, ob es wirklich ankommt. Beides zusammen ist die Kunst.",
+      warum:"Die Das-wissen-doch-eh-alle-Falle schnappt bei dir selten zu – du verlässt dich nicht darauf, dass Information sich selbst verbreitet.",
+      move:"WENN du diese Woche etwas Wichtiges kommunizierst, DANN frag eine Person danach: «Was ist bei dir angekommen?»",
+      haken:"Die Antwort überrascht öfter, als du denkst." },
+    mid: { spiegel:"Du kommunizierst offen – aber unbequeme Infos warten bei dir gern auf den «richtigen Moment».",
+      warum:"Die Das-wissen-doch-eh-alle-Falle: Wir glauben, andere wüssten längst, was wir wissen. Meistens: nein.",
+      move:"WENN du diese Woche eine Info zurückhältst, DANN frag dich ehrlich: Schütze ich damit die anderen – oder mich?",
+      haken:"Der richtige Moment war meistens gestern." },
+    low: { spiegel:"Informationen bleiben bei dir öfter hängen, als sie bei anderen ankommen.",
+      warum:"Das ist selten Absicht – es ist die Transparenz-Illusion: Was du weißt, fühlt sich automatisch «bekannt» an.",
+      move:"WENN du diese Woche aus einem Meeting kommst, DANN schick einer Person, die nicht dabei war, drei Sätze dazu.",
+      haken:"Drei Sätze. Mehr braucht es nicht." }
+  },
+  hf6: {
+    high: { spiegel:"Du gibst ehrliches Feedback, auch wenn es die Harmonie kurz stört – und holst dir selbst welches. Stark.",
+      warum:"Die Verlust-Angst hält dich nicht auf: Du hast erlebt, dass ehrliche Worte Beziehungen selten kosten – meistens vertiefen.",
+      move:"WENN dir diese Woche gute Arbeit auffällt, DANN sag es genauso direkt wie Kritik – konkret, nicht nur «super».",
+      haken:"Ehrliches, konkretes Lob ist das seltenste Feedback von allen." },
+    mid: { spiegel:"Du weißt oft genau, was du sagen müsstest – aber die Beziehung fühlt sich wichtiger an.",
+      warum:"Das ist die Verlust-Angst: Ein möglicher Schaden wiegt im Kopf doppelt so schwer wie der mögliche Gewinn. Das ist Mathematik im Gehirn – keine Wahrheit.",
+      move:"WENN du diese Woche Feedback zurückhalten willst, DANN starte mit: «Darf ich dir was Ehrliches sagen?»",
+      haken:"Fast niemand sagt Nein. Probier es aus." },
+    low: { spiegel:"Kritisches Feedback vermeidest du gerade eher – verständlich, aber auf Dauer teuer für beide Seiten.",
+      warum:"Die Verlust-Angst rechnet falsch: Sie zählt nur, was das Gespräch kosten könnte – nie, was das Schweigen kostet.",
+      move:"WENN du diese Woche Feedback geben willst, DANN üb an der kleinsten Sache – eine Formulierung, ein Detail.",
+      haken:"Feedback ist ein Muskel. Er wächst nur, wenn du ihn benutzt." }
+  },
+  hf7: {
+    high: { spiegel:"Du denkst in ORF, nicht in Abteilung – und machst die Leistung anderer sichtbar. Genau so entsteht Vertrauen im Haus.",
+      warum:"Der Wir-zuerst-Reflex ist bei dir gut trainiert: Du behandelst andere Bereiche wie Verstärkung, nicht wie Konkurrenz.",
+      move:"WENN diese Woche ein gemeinsamer Erfolg gefeiert wird, DANN nenn die Beteiligten aus anderen Bereichen zuerst.",
+      haken:"Wer andere sichtbar macht, wird selbst sichtbarer." },
+    mid: { spiegel:"Du kooperierst gern – solange dein Bereich nicht draufzahlt. Genau da entscheidet sich echte Kooperation.",
+      warum:"Der Wir-zuerst-Reflex: Dein Gehirn behandelt den eigenen Bereich wie Familie und den Rest wie Nachbarn.",
+      move:"WENN dich diese Woche ein anderer Bereich um etwas bittet, DANN antworte innerhalb eines Tages – auch wenn es nur «Ja, aber erst Donnerstag» ist.",
+      haken:"Kooperation beginnt bei der Antwortzeit." },
+    low: { spiegel:"Andere Bereiche sind für dich gerade eher Konkurrenz als Verstärkung.",
+      warum:"Das ist der Wir-zuerst-Reflex – uralt und nützlich, wenn man ein Dorf verteidigt. Weniger nützlich in einem Haus mit gemeinsamem Auftrag.",
+      move:"WENN du diese Woche an einem Thema arbeitest, DANN frag dich einmal: Wer im Haus arbeitet vielleicht gerade am selben Problem?",
+      haken:"Die Antwort kennt oft niemand – genau das ist das Problem." }
+  }
+};
+
+// ============================================================
 // SCHICHT 2: SCORING-LOGIK
 // ============================================================
 var answers = {};
@@ -934,6 +1090,7 @@ var currentQ = 0;
 var allQuestions = [];
 var rewardAfter = null;
 var chosenGoal = '';
+var predictions = {}; // Selbst-Wette: Prognose pro Handlungsfeld (1-10)
 var TOTAL_SCREENS = 80; // Login+Exp+Zielbild+70 Fragen+Ergebnis+Ziel+Companion+Done
 
 function shuffleArray(arr) {
@@ -978,8 +1135,34 @@ function startCheck() {
   answers = {};
   scores = {};
   blindspots = {};
+  predictions = {};
   renderQuestion();
   G('s_check');
+}
+
+// Selbst-Wette: vor dem ersten Q eines Handlungsfelds die eigene Prognose abgeben
+function renderPrediction(hf) {
+  var hfData = QUESTIONS[hf];
+  document.getElementById('cx').textContent = hfData.short + ' · Deine Wette';
+  var html = '';
+  html += '<div class="hfbadge">' + hfData.title + '</div>';
+  html += '<div class="qtype">🎲 Deine Wette · Bevor es losgeht</div>';
+  html += '<p class="qtitle">Wie gut lebst du dieses Feld – ehrlich geschätzt?</p>';
+  html += '<p class="su" style="margin-top:-4px;">Gib einen Tipp von 1 bis 10 ab. Nach den 10 Fragen siehst du, wie gut du dich wirklich kennst.</p>';
+  html += '<div class="wette">';
+  for (var i = 1; i <= 10; i++) {
+    html += '<button id="wt_' + i + '" onclick="selectWette(\'' + hf + '\',' + i + ')">' + i + '</button>';
+  }
+  html += '</div>';
+  html += '<div class="ctxbox">🃏 Am Ende dieses Felds wird ausgewertet – und du schaltest eine neue <b>Denkfallen-Karte</b> frei.</div>';
+  document.getElementById('check_content').innerHTML = html;
+}
+
+function selectWette(hf, val) {
+  predictions[hf] = val;
+  document.querySelectorAll('.wette button').forEach(function(b){ b.classList.remove('sel'); });
+  document.getElementById('wt_' + val).classList.add('sel');
+  setTimeout(renderQuestion, 350); // kurze Bestätigung, dann erste Frage
 }
 
 function renderQuestion() {
@@ -990,6 +1173,11 @@ function renderQuestion() {
     return;
   }
   var q = allQuestions[currentQ];
+  // Feldstart ohne abgegebene Wette? → erst Prognose einholen
+  if (currentQ % 10 === 0 && predictions[q.hf] === undefined) {
+    renderPrediction(q.hf);
+    return;
+  }
   var hfData = QUESTIONS[q.hf];
   var progress = Math.round((currentQ / allQuestions.length) * 100);
   document.getElementById('bar').style.width = progress + '%';
@@ -1025,8 +1213,9 @@ function renderQuestion() {
             '</div>';
   }
 
+  // Aha-Karte: wird erst NACH der Antwort eingeblendet – erst entscheiden, dann die Auflösung
   if (q.context) {
-    html += '<div class="ctxbox"><b>Warum das zählt:</b> ' + q.context + '</div>';
+    html += '<div class="ctxbox aha" id="aha_box" style="display:none;"><b>💡 Aha:</b> ' + q.context + '</div>';
   }
 
   html += '<button class="nxt" id="nxt_btn" onclick="nextQuestion()">Weiter →</button>';
@@ -1043,6 +1232,7 @@ function renderQuestion() {
   var prev = answers[q.id];
   if (prev !== undefined && prev !== null) {
     restoreAnswer(q, prev);
+    revealAha();
     document.getElementById('nxt_btn').classList.add('ready');
   }
 }
@@ -1051,7 +1241,7 @@ function typeLabel(t) {
   if (t === 'sj') return 'Situation · Was würdest du tun?';
   if (t === 'bs_scale') return 'Selbstbild · Skala 1–7';
   if (t === 'bs_scenario') return 'Verhalten · Wie reagierst du?';
-  if (t === 'sob') return 'Fremdbild · Second Order Belief';
+  if (t === 'sob') return 'Fremdbild · Wie sehen dich andere?';
   if (t === 'yn') return 'Schnell & ehrlich · Ja oder Nein';
   return '';
 }
@@ -1069,10 +1259,16 @@ function restoreAnswer(q, val) {
   }
 }
 
+function revealAha() {
+  var box = document.getElementById('aha_box');
+  if (box && box.style.display === 'none') box.style.display = 'block';
+}
+
 function selectOption(i) {
   document.querySelectorAll('.op').forEach(function(b){ b.classList.remove('sel'); });
   document.getElementById('opt_' + i).classList.add('sel');
   answers[allQuestions[currentQ].id] = i;
+  revealAha();
   document.getElementById('nxt_btn').classList.add('ready');
 }
 
@@ -1080,6 +1276,7 @@ function selectScale(i) {
   document.querySelectorAll('.scale button').forEach(function(b){ b.classList.remove('sel'); });
   document.getElementById('sc_' + i).classList.add('sel');
   answers[allQuestions[currentQ].id] = i;
+  revealAha();
   document.getElementById('nxt_btn').classList.add('ready');
 }
 
@@ -1087,7 +1284,13 @@ function selectYN(i) {
   document.querySelectorAll('.yn button').forEach(function(b){ b.classList.remove('sel'); });
   document.getElementById('yn_' + i).classList.add('sel');
   answers[allQuestions[currentQ].id] = i;
-  setTimeout(nextQuestion, 300);
+  // Mit Aha-Karte: kurz lesen lassen, dann selbst weiterklicken. Ohne: direkt weiter.
+  if (document.getElementById('aha_box')) {
+    revealAha();
+    document.getElementById('nxt_btn').classList.add('ready');
+  } else {
+    setTimeout(nextQuestion, 300);
+  }
 }
 
 function nextQuestion() {
@@ -1095,19 +1298,10 @@ function nextQuestion() {
   if (answers[q.id] === undefined || answers[q.id] === null) return;
 
   // Gamification: nach jedem 10. = Ende eines Handlungsfelds
+  // (HF direkt aus der Frage nehmen – die Feld-Reihenfolge ist randomisiert!)
   if ((currentQ + 1) % 10 === 0 && currentQ < allQuestions.length - 1) {
-    var hfIdx = Math.floor(currentQ / 10);
-    var hfKey = Object.keys(QUESTIONS)[hfIdx];
-    // Schnell-Score für dieses HF
-    var qs = QUESTIONS[hfKey].questions;
-    var pts = 0, max = 0;
-    qs.forEach(function(fq) {
-      var ans = answers[fq.id];
-      if (fq.type === 'sj' && ans !== undefined) { pts += fq.options[ans].score; max += 2; }
-    });
-    var pct = max > 0 ? pts / max : 0.5;
     rewardAfter = currentQ + 1;
-    showReward(QUESTIONS[hfKey], pct);
+    showReward(q.hf);
     currentQ++;
     return;
   }
@@ -1122,20 +1316,29 @@ function prevQuestion() {
 
 var currentRewardHF = null;
 
-function showReward(hfData, pct) {
+// Wenn-Dann fett hervorheben (für Tipp-Karten)
+function fmtWD(t) {
+  return t.replace(/WENN/g, '<b>WENN</b>').replace(/DANN/g, '<b>DANN</b>');
+}
+
+function tierOf(s) { return s >= 7 ? 'high' : (s >= 5 ? 'mid' : 'low'); }
+
+function showReward(hfKey) {
+  var hfData = QUESTIONS[hfKey];
   currentRewardHF = hfData;
   confetti();
-  var face, title, msg;
-  if (pct >= 0.8) {
+  var s = computeHFScore(hfKey);
+  var tier = tierOf(s);
+  var tip = TIPS[hfKey][tier];
+  var face, title;
+  if (tier === 'high') {
     face = '🌟'; title = 'Stark! ' + hfData.title + ' ist eine echte Stärke.';
-    msg = 'Du bewegst dich hier sehr nah am Kulturziel des ORF. Deine Haltung trägt andere mit.';
-  } else if (pct >= 0.5) {
-    face = '💪'; title = hfData.title + ': solide Basis, mit Potenzial.';
-    msg = 'Du hast eine gute Grundhaltung. Besonders unter Druck gibt es noch Entwicklungsmöglichkeiten.';
+  } else if (tier === 'mid') {
+    face = '💪'; title = hfData.title + ': solide Basis – mit einem Kipppunkt.';
   } else {
-    face = '🔍'; title = hfData.title + ': hier liegt dein Entwicklungsfeld.';
-    msg = 'Der Companion begleitet dich genau hier – mit kleinen, konkreten Schritten.';
+    face = '🔍'; title = hfData.title + ': hier steckt dein größter Hebel.';
   }
+  var msg = tip.spiegel;
   document.getElementById('reward_face').textContent = face;
   document.getElementById('reward_title').textContent = title;
   document.getElementById('reward_msg').textContent = msg;
@@ -1155,7 +1358,7 @@ function showReward(hfData, pct) {
     partialDefs.push({ang:ang, len:len, wide:isDone ? (28+s*2) : 18, col:col,
                       label:[QUESTIONS[hf].short]});
   });
-  buildFlower(document.getElementById('fl_between'), partialDefs, null);
+  buildFlower(document.getElementById('fl_between'), partialDefs, null, true);
 
   // Balken der abgeschlossenen HFs
   var barsHtml = '<div class="barchart">';
@@ -1170,10 +1373,37 @@ function showReward(hfData, pct) {
   });
   barsHtml += '</div>';
 
-  var remaining = hfKeys.length - doneHFs.length;
   document.getElementById('bw_title').textContent = face + ' ' + title;
-  document.getElementById('bw_sub').textContent = msg + ' Noch ' + remaining + ' Handlungsfelder offen.';
+  document.getElementById('bw_sub').textContent = msg + ' 🌸 ' + doneHFs.length + ' von 7 Blütenblättern zum Leuchten gebracht.';
   document.getElementById('bw_bars').innerHTML = barsHtml;
+
+  // Wette-Reveal + Tipp der Woche + Denkfallen-Karte
+  var ih = '';
+  if (predictions[hfKey] !== undefined) {
+    var p = predictions[hfKey], diff = s - p;
+    var verdict;
+    if (Math.abs(diff) <= 1) {
+      verdict = '🎯 <b>Treffer!</b> Du kennst dich hier richtig gut – das ist seltener, als du denkst.';
+    } else if (diff < 0) {
+      verdict = '😮 Dein Selbstbild liegt <b>' + Math.abs(diff).toFixed(1) + ' Punkte über</b> deinem Ergebnis. Kein Grund zur Sorge – aber genau hier wird es spannend.';
+    } else {
+      verdict = '🙌 Du bist <b>' + diff.toFixed(1) + ' Punkte besser</b>, als du dachtest. Du verkaufst dich hier unter Wert.';
+    }
+    ih += '<div class="wettebox"><b>🎲 Deine Wette: ' + p + '/10 · Dein Ergebnis: ' + s.toFixed(1) + '/10</b><br>' + verdict + '</div>';
+  }
+  ih += '<div class="tipcard"><b>💡 Warum:</b> ' + tip.warum +
+        '<br><br><b style="color:var(--orange);">🎯 Probier diese Woche:</b> ' + fmtWD(tip.move) +
+        '<div class="haken">' + tip.haken + '</div></div>';
+  var bi = BIAS_INFO[hfKey];
+  ih += '<div class="biascard">' +
+        '<div style="display:flex;gap:11px;align-items:center;">' +
+        '<span class="bcicon">' + bi.icon + '</span>' +
+        '<div><div class="bcname">Denkfalle entlarvt: ' + bi.de + '</div>' +
+        '<div class="bcen">' + bi.en + '</div></div></div>' +
+        '<div class="bctext">' + bi.example + '</div>' +
+        '<div class="bctrick"><b>Gegen-Trick:</b> ' + bi.trick + '</div>' +
+        '<div class="bccount">🃏 ' + doneHFs.length + ' von 7 Denkfallen-Karten gesammelt</div></div>';
+  document.getElementById('bw_insight').innerHTML = ih;
   G('s_between');
 }
 
@@ -1219,14 +1449,16 @@ function showBetweenDetail() {
   // Blind Spot
   var bsHtml = '';
   if (blindspots[hf] && blindspots[hf].length > 0) {
-    bsHtml = '<div class="blindspot">🔍 <b>Blind Spot erkannt:</b> Dein Selbstbild liegt deutlich über deinem Verhalten. ' +
-             'Das ist kein Problem – es ist die wertvollste Erkenntnis für deine Entwicklung.</div>';
+    bsHtml = '<div class="blindspot">🔍 <b>Blind Spot erkannt:</b> Du hast dich auf der Skala deutlich stärker eingeschätzt, als du dich in den Situationen entschieden hast. ' +
+             'Kein Grund zur Sorge – das ist die wertvollste Entdeckung im ganzen Check.</div>';
   } else {
-    bsHtml = '<div class="insight good"><b>✓ Kein Blind Spot</b> – Selbstbild und Verhalten stimmen gut überein.</div>';
+    bsHtml = '<div class="insight good"><b>✓ Kein Blind Spot</b> – Selbstbild und Verhalten erzählen hier dieselbe Geschichte.</div>';
   }
   document.getElementById('bwd_blindspot').innerHTML = bsHtml;
-  document.getElementById('bwd_bias').innerHTML = '<b>Zentraler Bias in diesem Feld: ' + currentRewardHF.bias + '</b><br>' +
-    'Dieser Mechanismus erklärt, warum Verhalten und Absicht manchmal auseinanderfallen.';
+  var biD = BIAS_INFO[hf];
+  document.getElementById('bwd_bias').innerHTML =
+    '<b>' + biD.icon + ' Die Denkfalle in diesem Feld: ' + biD.de + '</b> <span style="font-size:10.5px;color:var(--g);">(' + biD.en + ')</span><br>' +
+    biD.example + '<br><b>Gegen-Trick:</b> ' + biD.trick;
 
   G('s_between_detail');
 }
@@ -1282,7 +1514,7 @@ function renderErgebnis() {
     var len = 38 + s * 9;
     defs.push({ang:ang, len:len, wide:28+s*2, col:col, label:[QUESTIONS[hf].short]});
   });
-  buildFlower(document.getElementById('fl_ergebnis'), defs, null);
+  buildFlower(document.getElementById('fl_ergebnis'), defs, null, true);
 
   // Sortierte Scores
   var sorted = hfKeys.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
@@ -1322,24 +1554,41 @@ function renderErgebnis() {
   });
   html += '</div>';
 
-  // Stärken
+  // Selbst-Wette: Wie gut kennst du dich?
+  var pHFs = hfKeys.filter(function(hf){ return predictions[hf] !== undefined; });
+  if (pHFs.length > 0) {
+    var sumDelta = 0;
+    pHFs.forEach(function(hf){ sumDelta += Math.abs((scores[hf]||0) - predictions[hf]); });
+    var avgDelta = sumDelta / pHFs.length;
+    var calibText;
+    if (avgDelta <= 1) calibText = '🎯 <b>Beeindruckend:</b> Deine Wetten lagen im Schnitt nur ' + avgDelta.toFixed(1) + ' Punkte daneben. Du kennst dich richtig gut – das ist die halbe Miete für Entwicklung.';
+    else if (avgDelta <= 2) calibText = '👍 Deine Wetten lagen im Schnitt ' + avgDelta.toFixed(1) + ' Punkte daneben – solide Selbstkenntnis, mit ein paar Überraschungen.';
+    else calibText = '😮 Deine Wetten lagen im Schnitt ' + avgDelta.toFixed(1) + ' Punkte daneben. Dein Selbstbild und dein Verhalten erzählen zwei verschiedene Geschichten – genau dafür ist der Companion da.';
+    html += '<div class="wettebox" style="margin-top:14px;"><b>🎲 Wie gut kennst du dich?</b><br>' + calibText + '</div>';
+  }
+
+  // Stärken – mit konkretem Move
   html += '<div class="insight good" style="margin-top:14px;"><b>★ Deine Stärken – baue darauf auf</b>';
   best.forEach(function(hf) {
     var s = scores[hf] || 0;
-    html += '<div style="margin-top:6px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
-            '<p style="margin:2px 0 0;font-size:11.5px;">Zentraler Bias hier: <i>' + QUESTIONS[hf].bias + '</i> – du überwindest ihn gut. ' +
-            'Diese Stärke ist ansteckend: wenn du sie lebst, senkt das die Hemmschwelle für andere.</p></div>';
+    var t = TIPS[hf].high;
+    html += '<div style="margin-top:8px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
+            '<p style="margin:2px 0 0;font-size:11.5px;">' + t.spiegel + '</p>' +
+            '<p style="margin:4px 0 0;font-size:11.5px;">🎯 <b>Mach mehr davon:</b> ' + fmtWD(t.move) + '</p></div>';
   });
   html += '</div>';
 
-  // Potenzial
+  // Potenzial – mit Denkfalle & konkretem erstem Schritt
   html += '<div class="insight pot" style="margin-top:8px;"><b>↗ Dein größtes Entwicklungsfeld</b>';
   worst.forEach(function(hf) {
     var s = scores[hf] || 0;
-    html += '<div style="margin-top:6px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
-            '<p style="margin:2px 0 0;font-size:11.5px;">Der zentrale Bias: <i>' + QUESTIONS[hf].bias + '</i>. ' +
-            'Das erklärt, warum Absicht und Handeln hier auseinanderfallen. ' +
-            'Der Companion setzt genau hier mit kleinen, machbaren Impulsen an.</p></div>';
+    var t = TIPS[hf][tierOf(s)];
+    var bi = BIAS_INFO[hf];
+    html += '<div style="margin-top:8px;"><b>' + QUESTIONS[hf].title + '</b> · ' + s.toFixed(1) + '/10' +
+            '<p style="margin:2px 0 0;font-size:11.5px;">' + t.spiegel + ' Dahinter steckt: <b>' + bi.de + '</b>' +
+            ' <span style="color:var(--g);">(' + bi.en + ')</span>.</p>' +
+            '<p style="margin:4px 0 0;font-size:11.5px;">🎯 <b>Dein erster Schritt:</b> ' + fmtWD(t.move) + '</p>' +
+            '<p style="margin:3px 0 0;font-size:11px;font-style:italic;color:var(--g);">' + t.haken + '</p></div>';
   });
   html += '</div>';
 
@@ -1355,18 +1604,27 @@ function renderErgebnis() {
             '<p style="margin:2px 0 0;font-size:11.5px;">Dein Selbstbild und dein Verhalten stimmen gut überein. Das ist ein Zeichen hoher Selbstreflexion.</p></div>';
   }
 
-  // Was das für den ORF bedeutet
-  html += '<div style="background:#fff;border:1px solid var(--bd);border-radius:13px;padding:13px;margin-top:10px;font-size:12.5px;line-height:1.5;">' +
-          '<b style="color:var(--orange);">Was das für den ORF bedeutet</b><br>' +
-          'Dein Durchschnittswert von <b>' + avgScore.toFixed(1) + '/10</b> zeigt: ';
+  // Deine Denkfallen-Sammlung
+  html += '<div style="margin-top:14px;"><p style="font-size:11.5px;font-weight:600;color:var(--g);margin-bottom:2px;">🃏 Deine Denkfallen-Sammlung · 7/7 entlarvt</p>' +
+          '<div class="bcgrid">';
+  hfKeys.forEach(function(hf) {
+    var bi = BIAS_INFO[hf];
+    html += '<div class="bcmini"><span style="font-size:16px;">' + bi.icon + '</span> <span class="n">' + bi.de + '</span><br>' +
+            '<span style="color:var(--g);">' + bi.trick + '</span></div>';
+  });
+  html += '</div></div>';
+
+  // Was das für dich bedeutet
+  html += '<div style="background:#fff;border:1px solid var(--bd);border-radius:13px;padding:13px;margin-top:12px;font-size:12.5px;line-height:1.5;">' +
+          '<b style="color:var(--orange);">Was das für dich bedeutet</b><br>';
   if (avgScore >= 7) {
-    html += 'Du lebst die ORF-Zielkultur bereits sehr stark. Deine Haltung trägt die Organisation – und macht es anderen leichter, nachzufolgen.';
+    html += 'Du lebst die Zielkultur schon weitgehend – dein nächster Schritt ist nicht mehr, sondern sichtbarer: Wenn andere sehen, wie du es machst, sinkt ihre Hemmschwelle. ';
   } else if (avgScore >= 5) {
-    html += 'Du bist auf einem guten Weg. In manchen Feldern lebst du die Zielkultur bereits stark – in anderen gibt es klares Potenzial. Der Companion begleitet dich dort.';
+    html += 'Du hast eine solide Basis und ein bis zwei Felder, in denen ein kleiner wöchentlicher Schritt viel bewegt. Nicht alles auf einmal – ein Wenn-Dann pro Woche reicht. ';
   } else {
-    html += 'Es gibt konkrete Entwicklungsfelder. Das ist kein Problem – es ist der Ausgangspunkt. Wer seinen Blind Spot kennt, kann ihn verändern.';
+    html += 'Du weißt jetzt, wo deine Hebel liegen – das ist mehr, als die meisten über sich wissen. Ab hier zählt nur eins: ein kleiner, konkreter Schritt pro Woche. ';
   }
-  html += '</div>';
+  html += '<br><br><b style="color:var(--orange);">Und für den ORF:</b> Kultur entsteht nicht im Leitbild, sondern in genau diesen Alltagsmomenten. Jede:r, der sie anders lebt, verändert sie messbar mit.</div>';
 
   document.getElementById('ergebnis_insights').innerHTML = html;
 
@@ -1416,8 +1674,14 @@ function petalPath(ang,len,wide){
   return 'M'+base+' C'+cA1+' '+cA2+' '+tip+' C'+cB1+' '+cB2+' '+base+' Z';
 }
 
-function buildFlower(el, defs, click) {
+function buildFlower(el, defs, click, ghost) {
   var svg = '';
+  // Ghost-Blüte: Ziel-Silhouette (Woche 13) als gestrichelter Umriss hinter der Ist-Blüte
+  if (ghost) {
+    defs.forEach(function(p) {
+      svg += '<path d="' + petalPath(p.ang, 116, 46) + '" fill="none" stroke="#d8d5ca" stroke-width="1.5" stroke-dasharray="4 4"/>';
+    });
+  }
   defs.forEach(function(p) {
     svg += '<g class="pet"' + (click ? ' onclick="G(\''+click+'\')"' : '') + '>' +
            '<path d="' + petalPath(p.ang, p.len, p.wide) + '" fill="' + p.col + '"/>';
@@ -1491,7 +1755,7 @@ function goToGoalFromBetween() {
     var len = !isDone ? 30 : (38 + s*9);
     defs.push({ang:ang, len:len, wide:isDone?(28+s*2):18, col:col, label:[QUESTIONS[hf].short]});
   });
-  buildFlower(document.getElementById('fl_ergebnis'), defs, null);
+  buildFlower(document.getElementById('fl_ergebnis'), defs, null, true);
 
   // Insights für abgeschlossene Felder
   var avgScore = doneHFs.length > 0
@@ -1634,6 +1898,24 @@ var awaitingImpulse = false;
 var currentImpulse = '';
 var typingInterval = null;
 
+// Konkrete Antworten sammeln, die vom Kulturziel abweichen (score 0, dann 1)
+// – damit der Companion an echten Situationen anknüpfen kann statt allgemein zu coachen
+function collectWeakAnswers(hfKey, limit) {
+  var out = [];
+  var qs = QUESTIONS[hfKey] ? QUESTIONS[hfKey].questions : [];
+  [0, 1].forEach(function(targetScore) {
+    qs.forEach(function(q) {
+      if (out.length >= limit) return;
+      if (q.type !== 'sj' && q.type !== 'bs_scenario') return;
+      var ans = answers[q.id];
+      if (ans === undefined || ans === null) return;
+      if (q.options[ans].score !== targetScore) return;
+      out.push({ label: q.label, situation: q.text, chosen: q.options[ans].text });
+    });
+  });
+  return out;
+}
+
 function buildSystemPrompt() {
   var hfKeys = Object.keys(QUESTIONS);
   var sorted = hfKeys.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
@@ -1642,6 +1924,23 @@ function buildSystemPrompt() {
   var allBS = hfKeys.filter(function(h){ return blindspots[h] && blindspots[h].length > 0; })
                     .map(function(h){ return QUESTIONS[h].title; });
   var avgScore = hfKeys.reduce(function(s,h){ return s+(scores[h]||0); },0) / hfKeys.length;
+
+  // Persönliches Material für den Companion
+  var weak = companionHF ? collectWeakAnswers(companionHF, 3) : [];
+  var weakLines = weak.map(function(w) {
+    return '\n  · Situation «' + w.label + '»: ' + w.situation + ' → Antwort: «' + w.chosen + '»';
+  }).join('');
+  var bsDelta = '';
+  if (companionHF && blindspots[companionHF] && blindspots[companionHF].length > 0) {
+    var maxD = 0;
+    blindspots[companionHF].forEach(function(b){ if (b.delta > maxD) maxD = b.delta; });
+    bsDelta = '\n- Blind Spot im Zielfeld: Selbstbild liegt ca. ' + maxD.toFixed(0) + ' Punkte (von 10) über dem tatsächlichen Verhalten.';
+  }
+  var wette = '';
+  if (companionHF && predictions[companionHF] !== undefined) {
+    wette = '\n- Selbsteinschätzung vor dem Check («Wette»): ' + predictions[companionHF] + '/10, tatsächliches Ergebnis: ' + (scores[companionHF]||0).toFixed(1) + '/10.';
+  }
+  var biasInfo = companionHF ? BIAS_INFO[companionHF] : null;
 
   return 'Du bist der Cultural Companion des ORF – ein persönlicher Reflexionsbegleiter für Unternehmenskultur.' +
   '\n\nDEINE IDENTITÄT:' +
@@ -1658,7 +1957,10 @@ function buildSystemPrompt() {
   '\n- Entwicklungsfelder: ' + worst.join(', ') +
   (allBS.length > 0 ? '\n- Blind Spots: ' + allBS.join(', ') : '\n- Keine Blind Spots erkannt') +
   '\n- Gewähltes Entwicklungsziel: ' + chosenGoal +
-  '\n- Zentraler Bias in diesem Feld: ' + (companionHF ? QUESTIONS[companionHF].bias : '') +
+  (biasInfo ? '\n- Die Denkfalle in diesem Feld: ' + biasInfo.de + ' (' + biasInfo.en + '). Nutze im Gespräch den deutschen Namen; erkläre sie alltagsnah: ' + biasInfo.example : '') +
+  bsDelta + wette +
+  (weakLines ? '\n- Konkrete Self-Check-Situationen, in denen diese Person NICHT kulturkonform geantwortet hat:' + weakLines +
+   '\n  Knüpfe an diesen Situationen an – natürlich und beiläufig, nie als Vorwurf oder Aufzählung. Sie sind dein wertvollstes Material für persönliche statt allgemeine Fragen.' : '') +
   '\n\nDEIN VERHALTEN IN DIESER SESSION:' +
   '\n1. Starte mit einer offenen Frage zum gewählten Entwicklungsziel.' +
   '\n2. Höre zu. Spiegle die Situation. Benenne das Verhaltensmuster.' +
@@ -1698,16 +2000,23 @@ function initCompanion() {
 }
 
 function getOpeningQuestion() {
+  // Persönlicher Einstieg: an einer echten Self-Check-Antwort anknüpfen
+  var weak = companionHF ? collectWeakAnswers(companionHF, 1) : [];
+  if (weak.length > 0) {
+    var w = weak[0];
+    return 'Lass uns gleich konkret werden. Beim Self-Check – Situation «' + w.label + '» – hast du geantwortet: «' + w.chosen + '». ' +
+           'Kein Urteil, das kennt wirklich jede:r. Aber erzähl mal: Wann gab es so eine Situation zuletzt bei dir – und wie ist es ausgegangen?';
+  }
   var openers = {
-    hf1: 'Schön, dass du dabei bist! Du hast dir Prozessmanagement vorgenommen. Gab es diese Woche eine Situation, in der du einen Prozess umgehen wolltest – oder versucht warst, eine Abkürzung zu nehmen?',
-    hf2: 'Schön, dass du dabei bist! Wissensmanagement ist dein Ziel. Gab es diese Woche eine Situation, in der du Wissen hättest teilen können – es aber nicht getan hast? Was hat dich zurückgehalten?',
-    hf3: 'Schön, dass du dabei bist! Du hast dir Führung & Leadership vorgenommen. Gab es diese Woche eine Entscheidung, die du getroffen hast – oder eine, die du vermieden hast?',
-    hf4: 'Schön, dass du dabei bist! Weiterentwicklung ist dein Ziel. Gab es diese Woche einen Moment, in dem du etwas Neues hättest ausprobieren können – aber beim Vertrauten geblieben bist?',
-    hf5: 'Schön, dass du dabei bist! Kommunikation & Transparenz liegt dir am Herzen. Gab es diese Woche eine Information, die du zurückgehalten hast – bewusst oder unbewusst?',
-    hf6: 'Schön, dass du dabei bist! Feedback & Fehlerkultur ist dein Entwicklungsfeld. Gab es diese Woche eine Situation, in der du Feedback hättest geben können – und es nicht getan hast?',
-    hf7: 'Schön, dass du dabei bist! Kooperation über Bereichsgrenzen liegt dir am Herzen. Gab es diese Woche einen Moment, in dem ein anderer Bereich etwas von dir gebraucht hätte – und wie bist du damit umgegangen?'
+    hf1: 'Du hast dir Prozessmanagement vorgenommen – und im Check ziemlich sauber geantwortet. Umso spannender: Gab es diese Woche eine Situation, in der die Abkürzung verlockend war? Sei ehrlich, hier hört niemand mit.',
+    hf2: 'Wissen teilen ist dein Ziel. Hand aufs Herz: Welches Wissen liegt gerade nur bei dir – und was müsste passieren, damit du es weitergibst?',
+    hf3: 'Führung & Leadership also. Denk an die letzte Woche: Welche Entscheidung hast du getroffen – und welche hast du geschickt vermieden?',
+    hf4: 'Weiterentwicklung ist dein Ziel. Was wolltest du eigentlich schon länger lernen oder ausprobieren – und was hält dich bisher davon ab?',
+    hf5: 'Kommunikation & Transparenz. Gibt es gerade eine Information, die du mit dir herumträgst und noch nicht weitergegeben hast? Was hält sie zurück?',
+    hf6: 'Feedback & Fehlerkultur. Denk an die letzte Situation, in der du dir gedacht hast: «Das müsste ich eigentlich ansprechen.» Was war da los?',
+    hf7: 'Kooperation über Bereichsgrenzen. Wann hat zuletzt ein anderer Bereich etwas von dir gebraucht – und wie ist es gelaufen?'
   };
-  return (companionHF && openers[companionHF]) ? openers[companionHF] : 'Schön, dass du dabei bist! Erzähl mir: Was hat dich diese Woche beschäftigt – in Bezug auf ' + chosenGoal + '?';
+  return (companionHF && openers[companionHF]) ? openers[companionHF] : 'Lass uns loslegen: Was hat dich diese Woche beschäftigt – in Bezug auf ' + chosenGoal + '?';
 }
 
 async function sendMessage() {
